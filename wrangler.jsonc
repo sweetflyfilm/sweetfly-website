@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sweetfly-website",
+  "compatibility_date": "2026-05-18",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "sweetfly-website - web -html"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
