@@ -116,10 +116,10 @@
   #sf-embed .sf-gear-card:hover { border-color: var(--text-muted); transform: translateY(-4px); }
   #sf-embed .sf-gear-card.sf-hidden { display: none; }
 
-  /* MULTI ASSET ROW CAROUSEL DISPLAY */
-  #sf-embed .sf-gear-multi-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 1rem 1.5rem; background: #0c0c0d; border-bottom: 1px solid var(--border-color); }
-  #sf-embed .sf-gear-sub-img { aspect-ratio: 4/3; background: #161618; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; padding: 0.25rem; border-radius: 2px; }
-  #sf-embed .sf-gear-sub-img img { max-height: 100%; width: auto; object-fit: contain; }
+  /* CINEMATIC SPOTLIGHT GRADIENT BACKDROP ARRAY */
+  #sf-embed .sf-gear-img-wrap { width: 100%; aspect-ratio: 1/1; background: radial-gradient(circle at center, #82828c 0%, #111113 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; padding: 2rem; border-bottom: 1px solid var(--border-color); }
+  #sf-embed .sf-gear-img-wrap img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); transition: transform 0.5s ease; }
+  #sf-embed .sf-gear-card:hover .sf-gear-img-wrap img { transform: scale(1.05); }
 
   #sf-embed .sf-gear-info { padding: 1.75rem 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
   #sf-embed .sf-gear-tag-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
@@ -282,7 +282,7 @@
         <div class="sf-how-step">
           <div class="sf-how-num">Step 03</div>
           <h3>Pick Up in Denver</h3>
-          <p>Coordinate a pickup time in Aurora / Denver. Gear ships out clean and tested. Questions before your shoot? Just <a data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">Contact Us</a>.</p>
+          <p>Coordinate a pickup time in Aurora / Denver. Gear ships out clean and tested. Questions before your shoot? <a data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">Contact Us</a>.</p>
         </div>
       </div>
     </div>
@@ -310,10 +310,8 @@
       <div class="sf-gear-grid">
 
         <div class="sf-gear-card" data-cat="camera" id="gear-bm">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img"><img src="images/bm.svg" alt="Blackmagic view 1"></div>
-            <div class="sf-gear-sub-img"><img src="images/bm1.svg" alt="Blackmagic view 2"></div>
-            <div class="sf-gear-sub-img"><img src="images/bm2.svg" alt="Blackmagic view 3"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/bm.svg" alt="Blackmagic 6K Kit">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
@@ -325,9 +323,9 @@
             
             <div class="sf-gear-desc-block">
               <div class="sf-gear-desc-title">Ideal Applications</div>
-              <p><strong>1. Scripted Narrative:</strong> Scripted projects where you control staging. Shoots in <strong>Blackmagic RAW (BRAW)</strong> for massive post-production workflow flexibility.</p>
-              <p><strong>2. Documentaries:</strong> Features <strong>dual mini-XLR inputs</strong> with 48V phantom power and <strong>dual native ISO (400/3200)</strong> for clean, low-noise low-light footage.</p>
-              <p><strong>3. Music Videos:</strong> Shoots up to 60 fps at full 6K (120 fps windowed). Includes a <strong>DaVinci Resolve Studio license</strong> for advanced high-end grading.</p>
+              <p><strong>1. Scripted Narrative:</strong> Scripted projects where you control staging. Shoots in Blackmagic RAW (BRAW) for massive post-production workflow flexibility.</p>
+              <p><strong>2. Documentaries:</strong> Features dual mini-XLR inputs with 48V phantom power and dual native ISO (400/3200) for clean, low-noise low-light footage.</p>
+              <p><strong>3. Music Videos:</strong> Shoots up to 60 fps at full 6K (120 fps windowed). Includes a DaVinci Resolve Studio license for advanced high-end grading.</p>
             </div>
 
             <div class="sf-gear-desc-title">Included Kit Items</div>
@@ -347,10 +345,8 @@
         </div>
 
         <div class="sf-gear-card" data-cat="camera" id="gear-red">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img"><img src="images/red.svg" alt="RED Camera view 1"></div>
-            <div class="sf-gear-sub-img"><img src="images/red1.svg" alt="RED Camera view 2"></div>
-            <div class="sf-gear-sub-img"><img src="images/red2.svg" alt="RED Camera view 3"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/red.svg" alt="RED Camera">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
@@ -362,9 +358,9 @@
             
             <div class="sf-gear-desc-block">
               <div class="sf-gear-desc-title">Production Value Matrix</div>
-              <p><strong>1. Scripted Indie Features:</strong> Boasts <strong>16.5+ stops of dynamic range</strong> and a distinct, organic texture handling highlights beautifully without digital clipping.</p>
-              <p><strong>2. High-Speed Action:</strong> Captures <strong>6K Full Frame up to 75 fps</strong>, 100 fps at 2.4:1, 150 fps at 4K, and a staggering <strong>300 fps at 2K</strong>.</p>
-              <p><strong>3. VFX Compositing:</strong> Frames are 19MP RAW stills. <strong>REDCODE RAW (.R3D)</strong> gives visual effects artists flawless edge detail and deep color spaces.</p>
+              <p><strong>1. Scripted Indie Features:</strong> Boasts 16.5+ stops of dynamic range and a distinct, organic texture handling highlights beautifully without digital clipping.</p>
+              <p><strong>2. High-Speed Action:</strong> Captures 6K Full Frame up to 75 fps, 100 fps at 2.4:1, 150 fps at 4K, and a staggering 300 fps at 2K.</p>
+              <p><strong>3. VFX Compositing:</strong> Frames are 19MP RAW stills. REDCODE RAW (.R3D) gives visual effects artists flawless edge detail and deep color spaces.</p>
               <p><strong>4. Fashion &amp; Beauty:</strong> Delivers an organic color science for exceptional skin tones under controlled studio configurations, generating immense client prestige.</p>
               <p><strong>Key Strengths:</strong> Extreme system modularity allows swapping between PL and EF lens mounts effortlessly, bolting audio, power, or operational interfaces onto the body chassis.</p>
             </div>
@@ -387,10 +383,8 @@
         </div>
 
         <div class="sf-gear-card" data-cat="lighting" id="gear-gvm">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img"><img src="images/gvm.svg" alt="GVM view 1"></div>
-            <div class="sf-gear-sub-img"><img src="images/gvm1.svg" alt="GVM view 2"></div>
-            <div class="sf-gear-sub-img"><img src="images/gvm2.svg" alt="GVM view 3"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/gvm.svg" alt="GVM Light Kit">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
@@ -402,7 +396,7 @@
             
             <div class="sf-gear-desc-block">
               <div class="sf-gear-desc-title">Details</div>
-              <p>Great for corporate interviews, podcasts, and small narrative projects. Includes a super bright <strong>GVM Pro SD200B Bi-Color Monolight</strong> and two optional <strong>GVM SD80D Bi-Color Lights</strong>. High performance package value built for rapid deployment setups.</p>
+              <p>Great for corporate interviews, podcasts, and small narrative projects. Includes a super bright GVM Pro SD200B Bi-Color Monolight and two optional GVM SD80D Bi-Color Lights. High performance package value built for rapid deployment setups.</p>
             </div>
 
             <div class="sf-gear-desc-title">Included Kit Items</div>
@@ -421,9 +415,8 @@
         </div>
 
         <div class="sf-gear-card" data-cat="lighting" id="gear-ls300">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/300.svg" alt="Aputure view 1"></div>
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/3001.svg" alt="Aputure view 2"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/300.svg" alt="Aputure LS 300d">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
@@ -442,9 +435,8 @@
         </div>
 
         <div class="sf-gear-card" data-cat="lighting" id="gear-ls600">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/600.svg" alt="Aputure view 1"></div>
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/6001.svg" alt="Aputure view 2"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/600.svg" alt="Aputure LS 600d Pro">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
@@ -454,7 +446,7 @@
             <h3 class="sf-gear-title">Aputure LS 600d Pro Light Storm Daylight LED Light with F10 Fresnel</h3>
             <span class="sf-gear-price">$51 / Day</span>
             <div class="sf-gear-desc-block">
-              <p>Incredible daylight performance output when coupled into the large <strong>F10 Fresnel modifier</strong>. Simulates organic sun throw or cuts through intense diffusion layouts seamlessly.</p>
+              <p>Incredible daylight performance output when coupled into the large F10 Fresnel modifier. Simulates organic sun throw or cuts through intense diffusion layouts seamlessly.</p>
             </div>
             <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
@@ -463,9 +455,8 @@
         </div>
 
         <div class="sf-gear-card" data-cat="lighting" id="gear-storm80">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/80.svg" alt="Aputure view 1"></div>
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/801.svg" alt="Aputure view 2"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/80.svg" alt="Aputure Storm 80c">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
@@ -484,9 +475,8 @@
         </div>
 
         <div class="sf-gear-card" data-cat="grip" id="gear-danadolly">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/dana.svg" alt="Dana Dolly Kit 1"></div>
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/dana1.svg" alt="Dana Dolly Kit 2"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/dana.svg" alt="Dana Dolly Kit">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
@@ -505,9 +495,8 @@
         </div>
 
         <div class="sf-gear-card" data-cat="grip" id="gear-hollyland">
-          <div class="sf-gear-multi-wrap">
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/holly.svg" alt="Hollyland Pyro view 1"></div>
-            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/holly1.svg" alt="Hollyland Pyro view 2"></div>
+          <div class="sf-gear-img-wrap">
+            <img src="images/holly.svg" alt="Hollyland Pyro S">
           </div>
           <div class="sf-gear-info">
             <div class="sf-gear-tag-row">
