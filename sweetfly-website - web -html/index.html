@@ -1,4 +1,3 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +19,7 @@
     font-family: 'Geist', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    /* overflow-x: hidden removed here so the sticky navbar works properly! */
     display: block;
   }
   #sf-embed * { box-sizing: border-box; }
@@ -92,6 +91,10 @@
   #sf-embed .sf-studio-specs li i { color: var(--text-main) !important; font-size: 0.9em; width: 16px; text-align: center; display: inline-block !important; flex-shrink: 0; }
   #sf-embed .sf-bullet { color: var(--text-main) !important; font-size: 0.75rem; width: 16px; text-align: center; flex-shrink: 0; line-height: 1; }
   #sf-embed .sf-studio-img { width: 100%; height: 500px; object-fit: cover; border-radius: 4px; filter: grayscale(10%); border: 1px solid var(--border-color); }
+  
+  /* Desktop/Mobile Image Layout Rules */
+  #sf-embed .sf-studio-img-mobile { display: none; }
+  #sf-embed .sf-studio-img-desktop { display: block; }
 
   /* SERVICES */
   #sf-embed .sf-services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -137,7 +140,6 @@
   #sf-embed .sf-footer-links a { color: var(--text-muted) !important; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; }
   #sf-embed .sf-footer-links a:hover { color: var(--text-main) !important; }
   
-  /* FOOTER BUTTERFLY LOCKUP */
   #sf-embed .sf-footer-graphic-box { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
   #sf-embed .sf-footer-butterfly { height: 64px; width: 64px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 2px; transition: border-color 0.3s; }
   #sf-embed .sf-footer-graphic-box:hover .sf-footer-butterfly { border-color: rgba(255, 255, 255, 0.4); }
@@ -162,7 +164,14 @@
     
     #sf-embed .sf-hero-buttons { flex-direction: column; width: 100%; max-width: 400px; }
     #sf-embed .sf-hero-buttons .sf-btn { width: 100%; }
-    #sf-embed .sf-studio-grid, #sf-embed .sf-services-grid, #sf-embed .sf-stats-grid { grid-template-columns: 1fr; gap: 3rem; }
+    
+    /* Mobile Studio Image Swap */
+    #sf-embed .sf-studio-grid { grid-template-columns: 1fr; gap: 3rem; }
+    #sf-embed .sf-studio-img-desktop { display: none; }
+    #sf-embed .sf-studio-img-mobile { display: block; margin: 2rem 0; }
+    #sf-embed .sf-studio-specs { margin-top: 0; margin-bottom: 2rem; }
+    
+    #sf-embed .sf-services-grid, #sf-embed .sf-stats-grid { grid-template-columns: 1fr; gap: 3rem; }
     #sf-embed .sf-studio-img { height: 350px; }
     #sf-embed .sf-service-card { padding: 2rem; }
     #sf-embed .sf-carousel-slides-wrapper { min-height: auto; }
@@ -246,6 +255,10 @@
           <h2>The Shop</h2>
           <p>An intimate, private studio space built specifically for independent creators. Whether you are shooting a documentary interview, a music video, or recording a podcast, our space is ready to go.</p>
           
+          <div class="sf-studio-img-mobile">
+            <img src="images/studio.jpg" alt="Sweet Flypaper Studio Space" class="sf-studio-img">
+          </div>
+
           <ul class="sf-studio-specs">
             <li>
               <i class="fa-solid fa-ruler-combined" aria-hidden="true"></i>
@@ -270,9 +283,11 @@
           </ul>
           <a href="studio.html" class="sf-btn sf-btn-primary">See Pricing <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <div>
+        
+        <div class="sf-studio-img-desktop">
           <img src="images/studio.jpg" alt="Sweet Flypaper Studio Space" class="sf-studio-img">
         </div>
+
       </div>
     </div>
   </section>
