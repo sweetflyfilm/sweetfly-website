@@ -37,6 +37,13 @@
     --chart-yellow: #f59e0b;
     --chart-red: #ef4444;
 
+    /* Continuous Ombre Palette - Coverage Page Spectrum */
+    --coverage-green: 40, 70, 45;   /* Moody Olive Green */
+    --coverage-blue: 15, 65, 105;   /* Deep Ocean Blue */
+    
+    /* Scattered Contrast Accent */
+    --coverage-contrast: 235, 120, 15; /* Cinematic Tungsten Amber */
+
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: 'Geist', sans-serif;
@@ -83,14 +90,86 @@
   #sf-embed .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
   #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
 
-  /* HERO */
-  #sf-embed .sf-inner-hero { position: relative; width: 100%; padding: 8rem 0 6rem; border-bottom: 1px solid var(--border-color); background-color: var(--bg-dark); }
-  #sf-embed .sf-inner-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  #sf-embed .sf-inner-hero-text h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
-  #sf-embed .sf-inner-hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 500px; line-height: 1.6; }
-  #sf-embed .sf-inner-hero-visual { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; border: 1px solid var(--border-color); background-color: var(--bg-panel); display: flex; align-items: center; justify-content: center; padding: 2rem; }
-  #sf-embed .sf-inner-hero-visual img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(15%); transition: filter 0.5s ease, transform 0.5s ease; }
-  #sf-embed .sf-inner-hero-visual:hover img { filter: grayscale(0%); transform: scale(1.03); }
+  /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
+  #sf-embed .sf-hero { 
+    position: relative; 
+    width: 100%; 
+    min-height: 80vh; 
+    display: flex; 
+    align-items: flex-end; 
+    overflow: hidden; 
+    border-bottom: 1px solid var(--border-color); 
+    background-color: #050505; 
+  }
+  
+  #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
+  #sf-embed .sf-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
+
+  /* LAYER 1: BASE GRAPHIC PHOTOGRAPH SYSTEM */
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: right 5% center;
+    z-index: 1; 
+    filter: grayscale(100%) contrast(1.2); 
+    opacity: 0.45; 
+    pointer-events: none;
+    transition: transform 10s ease;
+  }
+  #sf-embed .sf-hero:hover .hero-bg-img { transform: scale(1.04); }
+
+  /* LAYER 2: THE AMBIENT OLIVE/BLUE LIGHT GEL SHEET */
+  .pulse-base {
+    position: absolute; 
+    inset: -50px; 
+    z-index: 2; 
+    background-image: 
+      radial-gradient(circle at 20% 45%, rgba(var(--coverage-green), 0.85) 0%, transparent 70%),
+      radial-gradient(circle at 80% 45%, rgba(var(--coverage-blue), 0.75) 0%, transparent 70%);
+    mix-blend-mode: overlay;
+    animation: baseBreathe 6s ease-in-out infinite alternate;
+  }
+  @keyframes baseBreathe {
+    0%   { transform: scale(0.96); opacity: 0.75; }
+    100% { transform: scale(1.04); opacity: 1; }
+  }
+
+  /* LAYER 3: TUNGSTEN AMBER PERIMETER COMPLEMENTARY LIGHT */
+  .contrast-perimeter {
+    position: absolute;
+    inset: -20px;
+    z-index: 3;
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(var(--coverage-contrast), 0.45) 0%, transparent 55%),
+      radial-gradient(circle at 100% 100%, rgba(var(--coverage-contrast), 0.42) 0%, transparent 55%),
+      radial-gradient(circle at 100% 10%, rgba(var(--coverage-contrast), 0.38) 0%, transparent 50%);
+    mix-blend-mode: screen;
+    animation: contrastBreathe 4.5s ease-in-out infinite alternate;
+  }
+  @keyframes contrastBreathe {
+    0%   { opacity: 0.55; }
+    100% { opacity: 1; }
+  }
+
+  /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
+  .radar-ring { 
+    position: absolute; top: 45%; left: 50%; 
+    width: 150px; height: 150px; 
+    border-radius: 50%; 
+    z-index: 4; 
+    pointer-events: none; 
+    border: 3px solid rgba(var(--coverage-contrast), 0.65);
+    box-shadow: inset 0 0 60px rgba(var(--coverage-contrast), 0.45), 0 0 60px rgba(var(--coverage-contrast), 0.45);
+    animation: deepRadar 8s linear infinite; 
+  }
+  @keyframes deepRadar { 
+    0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 
+    15% { opacity: 0.85; }
+    100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } 
+  }
 
   /* --- EPIC DIVINE MANIFESTO SECTION --- */
   #sf-embed .sf-manifesto-section { 
@@ -204,6 +283,13 @@
   /* OVERLAYS & NOISE EFFECT LAYER */
   #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
 
+  /* SCROLL REVEAL STRUCTURE */
+  #sf-embed .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  #sf-embed .reveal.visible { opacity: 1; transform: translateY(0); }
+  #sf-embed .reveal-d1 { transition-delay: 0.1s; }
+  #sf-embed .reveal-d2 { transition-delay: 0.2s; }
+  #sf-embed .reveal-d3 { transition-delay: 0.3s; }
+
   /* RESPONSIVE RESPONSES */
   @media (max-width: 900px) {
     #sf-embed .sf-section-padding { padding: 4rem 0; }
@@ -219,8 +305,7 @@
     #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
     #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
     
-    #sf-embed .sf-inner-hero { padding: 4rem 0; }
-    #sf-embed .sf-inner-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    #sf-embed .sf-hero { min-height: 65vh; }
     
     /* MOBILE "STARS" FIX: Disable fixed parallax, remove jittery film grain */
     #sf-embed::after { display: none; }
@@ -251,7 +336,7 @@
       <ul class="sf-nav-menu">
         <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
         <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
-        <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
+        <li><a href="coverage.html" class="sf-nav-link active"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
         <li><a href="projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
         <li><a href="community.html" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
         <li><a href="info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
@@ -267,16 +352,25 @@
     <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
   </button>
 
-  <section class="sf-inner-hero">
-    <div class="sf-container sf-inner-hero-grid">
-      <div class="sf-inner-hero-text reveal">
-        <span class="sf-label">Story Studio</span>
-        <h1>Script<br>Coverage.</h1>
-        <p>In the beginning, there is the word. Let our talented readers guide you. Zero AI used, ever.</p>
-        <a href="#submit" class="sf-btn sf-btn-primary">Get Coverage Here <i class="fa-solid fa-arrow-down"></i></a>
-      </div>
-      <div class="sf-inner-hero-visual reveal reveal-d1">
-        <img src="images/glasses.svg" alt="Script reading glasses">
+  <section class="sf-hero">
+    <img src="images/glasses.svg" class="hero-bg-img" alt="Script reading glasses illustration">
+
+    <div class="pulse-base"></div>
+    
+    <div class="contrast-perimeter"></div>
+    
+    <div class="radar-ring"></div>
+
+    <div class="sf-hero-veil"></div>
+
+    <div class="sf-hero-content">
+      <div class="sf-container">
+        <div class="reveal">
+          <span class="sf-label">Story Studio</span>
+          <h1 style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.05; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.04em;">Script<br>Coverage.</h1>
+          <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 550px; line-height: 1.6; margin-bottom: 2rem;">In the beginning, there is the word. Let our talented readers guide you. Zero AI used, ever.</p>
+          <a href="#submit" class="sf-btn sf-btn-primary">Get Coverage Here <i class="fa-solid fa-arrow-down"></i></a>
+        </div>
       </div>
     </div>
   </section>
@@ -525,8 +619,8 @@
 </div>
 
 <script>
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
+  // Intersection scroll reveal configurations
+  const revealEls = document.querySelectorAll('#sf-embed .reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -534,7 +628,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   revealEls.forEach(el => observer.observe(el));
 </script>
 
