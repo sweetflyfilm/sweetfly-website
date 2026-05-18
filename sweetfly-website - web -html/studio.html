@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<script async src="https://tally.so/widgets/embed.js"></script>
+
 <style>
   :root {
     --bg-dark: #0a0a0a;
@@ -30,49 +32,51 @@
     font-family: 'Geist', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    /* Removed overflow-x: hidden; to allow sticky navbar to work! */
   }
 
-  h1, h2, h3, h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main); }
+  p { color: var(--text-muted); }
   a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
   img { max-width: 100%; height: auto; display: block; }
 
-  /* --- BRANDING --- */
-  .butterfly-icon { height: 32px; width: 32px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255,255,255,0.6); border-radius: 2px; }
-  .nav-text-logo { height: 18px; width: auto; object-fit: contain; filter: invert(1); margin-top: 2px; }
-  .full-brand-logo { max-width: 220px; height: auto; filter: invert(1); margin-bottom: 1.5rem; }
-
   /* --- UTILITY --- */
   .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; } /* Unified class mapping */
   .section-padding { padding: 6rem 0; }
   .label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; display: block; }
 
   /* --- BUTTONS --- */
-  .btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; }
+  .btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
   .btn-primary { background-color: var(--accent); color: var(--bg-dark); border: 1px solid var(--accent); }
-  .btn-primary:hover { background-color: var(--accent-hover); }
+  .btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark); }
   .btn-ghost { background-color: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.5); }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* --- NAV --- */
-  nav { position: sticky; top: 0; z-index: 1000; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1rem 0; }
-  .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-  .nav-logo { display: flex; align-items: center; gap: 0.75rem; z-index: 1001; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; font-size: 0.9rem; font-weight: 400; align-items: center; }
-  .nav-links a { display: flex; align-items: center; gap: 0.5rem; }
-  .nav-links a:hover { color: var(--text-muted); }
-  .nav-links i { font-size: 0.85rem; color: var(--text-muted); }
-  .menu-btn { display: none; }
-  .menu-icon { display: none; cursor: pointer; font-size: 1.5rem; z-index: 1001; position: relative; }
+  /* --- MASTER ARCHITECTURAL NAVIGATION --- */
+  .sf-navbar { position: sticky; top: 0; z-index: 10000; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
+  .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
+  .sf-nav-logo { display: flex; align-items: center; }
+  .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); transition: height 0.2s ease; }
+  .sf-nav-menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  .sf-nav-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
+  .sf-nav-link:hover { color: var(--text-muted); }
+  .sf-nav-link i { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* --- FLOATING CONTACT TRIGGER BUTTON --- */
+  .sf-floating-contact { position: fixed; bottom: 2rem; right: 2rem; z-index: 99999; background-color: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.75rem 1.25rem; font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.2s ease; }
+  .sf-floating-contact:hover { border-color: var(--text-main); background-color: var(--text-main); color: var(--bg-dark) !important; }
+  .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
+  .sf-floating-contact:hover i { color: var(--bg-dark); }
 
   /* --- HERO --- */
   .inner-hero { position: relative; width: 100%; padding: 8rem 0 6rem; border-bottom: 1px solid var(--border-color); background-color: var(--bg-dark); }
   .inner-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .inner-hero-text h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
   .inner-hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 500px; line-height: 1.6; }
-  .inner-hero-visual { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; border: 1px solid var(--border-color); background-color: var(--bg-panel); }
-  .inner-hero-visual video { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); transition: filter 0.5s ease; }
-  .inner-hero-visual:hover video { filter: grayscale(0%); }
+  .inner-hero-visual { position: relative; width: 100%; aspect-ratio: 4/3; overflow: hidden; border-radius: 4px; border: 1px solid var(--border-color); background-color: var(--bg-panel); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .inner-hero-visual img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(15%); transition: filter 0.5s ease, transform 0.5s ease; }
+  .inner-hero-visual:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
   /* --- USE CASE STRIP (FADING SLIDER) --- */
   .usecase-strip { border-bottom: 1px solid var(--border-color); padding: 3rem 0; background: var(--bg-panel); text-align: center; }
@@ -89,8 +93,8 @@
   .feature-text h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1rem; line-height: 1.1; }
   .feature-text p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem; }
   
-  .feature-visual { position: relative; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-color); }
-  .feature-visual img { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: grayscale(10%); transition: transform 0.6s ease, filter 0.6s ease; }
+  .feature-visual { position: relative; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-color); background-color: var(--bg-panel); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .feature-visual img { width: 100%; aspect-ratio: 4/3; object-fit: contain; filter: grayscale(10%); transition: transform 0.6s ease, filter 0.6s ease; }
   .feature-visual:hover img { transform: scale(1.03); filter: grayscale(0%); }
 
   /* --- SPECS GRID --- */
@@ -98,7 +102,7 @@
   .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem 2rem; margin-top: 3rem; }
   .spec-item { display: flex; align-items: flex-start; gap: 1rem; }
   .spec-icon { font-size: 1.5rem; color: var(--accent); flex-shrink: 0; margin-top: 0.2rem; }
-  .spec-details h4 { font-family: 'Geist Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+  .spec-details h4 { font-family: 'Geist Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; color: var(--text-main); }
   .spec-details p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
   /* --- PRICING --- */
@@ -109,7 +113,7 @@
   .pricing-card { background: var(--bg-panel); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.2s; }
   .pricing-card:hover { background: var(--bg-card); }
   .pricing-tier { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-  .pricing-rate { font-size: 2.5rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin: 0.5rem 0; }
+  .pricing-rate { font-size: 2.5rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin: 0.5rem 0; color: var(--text-main); }
   .pricing-rate span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
   .pricing-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.5rem; }
   .pricing-note { margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
@@ -125,13 +129,20 @@
   .booking-divider::before, .booking-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
   .tally-placeholder { background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 4px; padding: 2rem; text-align: center; font-family: 'Geist Mono', monospace; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.05em; margin-top: 0.5rem; }
 
-  /* --- FOOTER --- */
-  footer { background-color: var(--bg-dark); border-top: 1px solid var(--border-color); padding: 4rem 0 2rem; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
-  .footer-col h4 { font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; color: var(--text-muted); }
-  .footer-col p, .footer-col a { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; display: block; margin-bottom: 0.5rem; }
-  .footer-col a:hover { color: var(--text-main); }
-  .footer-bottom { padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: var(--text-muted); font-size: 0.85rem; font-family: 'Geist Mono', monospace; }
+  /* --- MASTER ARCHITECTURAL FOOTER --- */
+  .sf-footer { background-color: var(--bg-panel); border-top: 1px solid var(--border-color); padding: 5rem 0 3rem 0; color: var(--text-muted); font-size: 0.9rem; }
+  .sf-footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr) 1.2fr; gap: 3rem; align-items: start; }
+  .sf-footer-brand p { max-width: 320px; color: var(--text-muted) !important; font-size: 0.85rem; line-height: 1.5; margin-top: 1.25rem; }
+  .sf-footer-title { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main) !important; margin-bottom: 1.25rem; }
+  .sf-footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .sf-footer-links a { color: var(--text-muted) !important; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .sf-footer-links a:hover { color: var(--text-main) !important; }
+  
+  .sf-footer-graphic-box { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+  .sf-footer-butterfly { height: 64px; width: 64px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 2px; transition: border-color 0.3s; }
+  .sf-footer-graphic-box:hover .sf-footer-butterfly { border-color: rgba(255, 255, 255, 0.4); }
+  .sf-butterfly-caption { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text-main); text-transform: lowercase; margin-top: 0.65rem; padding-right: 0.1em; opacity: 0.5; }
+  .sf-footer-bottom { border-top: 1px solid var(--border-color); margin-top: 4rem; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', monospace; font-size: 0.7rem; letter-spacing: 0.02em; }
 
   /* --- FILM GRAIN --- */
   body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.35; }
@@ -142,59 +153,72 @@
   .reveal-d1 { transition-delay: 0.1s; }
   .reveal-d2 { transition-delay: 0.2s; }
 
-  /* --- MOBILE --- */
+  /* --- MOBILE BREAKPOINTS --- */
   @media (max-width: 900px) {
     .section-padding { padding: 4rem 0; }
-    .menu-icon { display: block; }
-    .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-panel); flex-direction: column; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-color); align-items: flex-start; gap: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .menu-btn:checked ~ .nav-links { display: flex; }
     
+    /* Nav & Footer overrides */
+    .sf-navbar { padding: 1rem 0; }
+    .sf-nav-text-logo { height: 48px; }
+    .sf-nav-inner { flex-direction: column; gap: 1.25rem; text-align: center; }
+    .sf-nav-menu { width: 100%; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .sf-nav-link span { display: none; }
+    .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
+    .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
+    .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
+    .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
     .inner-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
     .inner-hero { padding: 6rem 0 4rem; }
     
     .feature-row, .feature-row.reverse { grid-template-columns: 1fr; gap: 2.5rem; direction: ltr; padding: 4rem 0; }
-    .feature-visual { grid-row: 1; }
+    .feature-visual { grid-row: 1; padding: 1.5rem; }
     .feature-text { grid-row: 2; }
     
     .specs-grid { grid-template-columns: 1fr; gap: 2rem; }
     .pricing-grid { grid-template-columns: 1fr; }
     .booking-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="Sweet Flypaper Icon" class="butterfly-icon">
-      <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper Text" class="nav-text-logo">
+<nav class="sf-navbar">
+  <div class="sf-container sf-nav-inner">
+    <a href="index.html" class="sf-nav-logo">
+      <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" class="sf-nav-text-logo">
     </a>
-    <input type="checkbox" id="menu-btn" class="menu-btn">
-    <label for="menu-btn" class="menu-icon"><i class="fa-solid fa-bars"></i></label>
-    <ul class="nav-links">
-      <li><a href="studio.html"><i class="fa-solid fa-door-open"></i> Studio Space</a></li>
-      <li><a href="gear.html"><i class="fa-solid fa-video"></i> Gear Rental</a></li>
-      <li><a href="coverage.html"><i class="fa-solid fa-file-pen"></i> Coverage</a></li>
-      <li><a href="index.html#work"><i class="fa-solid fa-film"></i> Our Work</a></li>
-      <li><a href="#book">Book Now</a></li>
+    
+    <ul class="sf-nav-menu">
+      <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
+      <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
+      <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
+      <li><a href="projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
+      <li><a href="community.html" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
+      <li><a href="info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
     </ul>
   </div>
 </nav>
 
+<button class="sf-floating-contact" 
+        data-tally-open="ODPpg7" 
+        data-tally-hide-title="1" 
+        data-tally-emoji-text="👋🏾" 
+        data-tally-emoji-animation="wave">
+  <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
+</button>
+
 <section class="inner-hero">
   <div class="container inner-hero-grid">
     <div class="inner-hero-text reveal">
-      <span class="label">Space · Denver, CO</span>
-      <h1>Your Private<br>Soundstage.</h1>
-      <p>A controlled, fully-equipped studio environment built specifically for independent creators, music videos, and interviews.</p>
-      <a href="#book" class="btn btn-primary">Check Availability <i class="fa-solid fa-arrow-down"></i></a>
+      <span class="label">Location | Aurora</span>
+      <h1>The Shop</h1>
+      <p>An intimate, private studio space built specifically for independent creators. Whether you are shooting a documentary interview, a music video, or recording a podcast, our space is ready to go.</p>
+      <a href="#pricing" class="btn btn-primary">Check Pricing <i class="fa-solid fa-arrow-down"></i></a>
     </div>
     <div class="inner-hero-visual reveal reveal-d1">
-      <video autoplay loop muted playsinline>
-        <source src="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/lpp.mp4" type="video/mp4">
-      </video>
+      <img src="images/private.svg" alt="The Shop Private Studio">
     </div>
   </div>
 </section>
@@ -224,7 +248,7 @@
       <p>It’s an intimate but powerful footprint designed to give directors total control over their environment without the massive overhead of a commercial warehouse.</p>
     </div>
     <div class="feature-visual reveal reveal-d1">
-      <img src="web - studio #3.jpg" alt="Studio lighting and haze setup with slider">
+      <img src="images/main.svg" alt="The Main Stage">
     </div>
   </div>
 
@@ -236,7 +260,7 @@
       <p>Need extra gear? Because our rental inventory is housed right here, you can add cinema cameras, Aputure lighting, or grip gear directly to your studio booking.</p>
     </div>
     <div class="feature-visual reveal reveal-d1">
-      <img src="web - studio #4.jpg" alt="Camera crew filming talent in the studio">
+      <img src="images/crews.svg" alt="Built for Crews">
     </div>
   </div>
 
@@ -247,7 +271,7 @@
       <p>Not shooting motion? The studio is perfectly dialed in for editorial and commercial photography. Control the ambient light completely and utilize our seamless paper backdrops and strobe modifiers to get the perfect shot.</p>
     </div>
     <div class="feature-visual reveal reveal-d1">
-      <img src="web - studio tl.jpg" alt="Portrait photography setup with blue lighting">
+      <img src="images/stills.svg" alt="Portrait & Stills">
     </div>
   </div>
 
@@ -259,7 +283,7 @@
       <p>From laying down voiceovers and podcast tracks to cutting your final feature, it's a quiet, creative sanctuary.</p>
     </div>
     <div class="feature-visual reveal reveal-d1">
-      <img src="web - recording studio.jpg" alt="Recording and editing suite with monitors and keyboard">
+      <img src="images/edit.svg" alt="The Editing & Audio Suite">
     </div>
   </div>
 
@@ -324,7 +348,7 @@
   </div>
 </section>
 
-<section class="pricing-section">
+<section id="pricing" class="pricing-section">
   <div class="container">
     <div class="pricing-header reveal">
       <span class="label">Rates</span>
@@ -333,17 +357,17 @@
     <div class="pricing-grid reveal">
       <div class="pricing-card">
         <div class="pricing-tier">Hourly</div>
-        <div class="pricing-rate">$<span>Contact for rate</span></div>
+        <div class="pricing-rate">$<span>70</span></div>
         <div class="pricing-desc">Ideal for quick interviews, voiceover sessions, or portrait shoots that don't need a full half-day block.</div>
       </div>
       <div class="pricing-card">
         <div class="pricing-tier">Half Day <span style="color: var(--text-muted); font-size: 0.7rem;">/ 4 hrs</span></div>
-        <div class="pricing-rate">$<span>Contact for rate</span></div>
+        <div class="pricing-rate">$<span>250</span></div>
         <div class="pricing-desc">The most popular option for music videos, podcast recordings, and short-form content shoots.</div>
       </div>
       <div class="pricing-card">
         <div class="pricing-tier">Full Day <span style="color: var(--text-muted); font-size: 0.7rem;">/ 8 hrs</span></div>
-        <div class="pricing-rate">$<span>Contact for rate</span></div>
+        <div class="pricing-rate">$<span>400</span></div>
         <div class="pricing-desc">Full-day access for larger productions, multi-look shoots, or anything requiring extended setup and breakdown time.</div>
       </div>
     </div>
@@ -362,48 +386,65 @@
       </div>
       
       <div class="booking-actions">
-        <a href="https://www.sharegrid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           Book on Sharegrid <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
         <div class="booking-divider">or</div>
-        <a href="#" class="btn btn-ghost">
+        <a href="#" class="btn btn-ghost" data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">
           Book Directly <i class="fa-solid fa-arrow-right"></i>
         </a>
-        <div class="tally-placeholder">
-          Booking form coming soon
-        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <a href="index.html" style="display: block;">
-          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper Film" class="full-brand-logo">
-        </a>
-        <p>Creators of our weirdest, wildest dreams.</p>
-        <p style="margin-top: 1rem;"><i class="fa-solid fa-location-dot"></i> Aurora / Denver, Colorado</p>
+<footer class="sf-footer">
+  <div class="sf-container">
+    <div class="sf-footer-grid">
+      
+      <div class="sf-footer-brand">
+        <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" style="height: 144px; width: auto; filter: invert(1); display: block;">
+        <p>We are the creators of our wildest, weirdest dreams. Come Fly With Us.</p>
       </div>
-      <div class="footer-col">
-        <h4>Services</h4>
-        <a href="studio.html">Book Studio Space</a>
-        <a href="gear.html">Rent Gear</a>
-        <a href="coverage.html">Script Coverage</a>
+      
+      <div>
+        <div class="sf-footer-title">Studio Services</div>
+        <ul class="sf-footer-links">
+          <li><a href="studio.html">The Shop</a></li>
+          <li><a href="gear.html">Gear Rental</a></li>
+          <li><a href="coverage.html">Script Coverage</a></li>
+        </ul>
       </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="#" target="_blank" rel="noopener noreferrer">Facebook <i class="fa-solid fa-external-link-alt" style="font-size: 0.7em;"></i></a>
-        <a href="#" target="_blank" rel="noopener noreferrer">Instagram <i class="fa-solid fa-external-link-alt" style="font-size: 0.7em;"></i></a>
-        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn <i class="fa-solid fa-external-link-alt" style="font-size: 0.7em;"></i></a>
+      
+      <div>
+        <div class="sf-footer-title">Company</div>
+        <ul class="sf-footer-links">
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="info.html">About Us</a></li>
+        </ul>
       </div>
+
+      <div>
+        <div class="sf-footer-title">Social Media</div>
+        <ul class="sf-footer-links">
+          <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" style="width: 14px;"></i> Facebook</a></li>
+          <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" style="width: 14px;"></i> Instagram</a></li>
+          <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" style="width: 14px;"></i> Linkedin</a></li>
+        </ul>
+      </div>
+
+      <div class="sf-footer-graphic-box">
+        <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo Mark" class="sf-footer-butterfly">
+        <div class="sf-butterfly-caption">we fly</div>
+      </div>
+
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Sweet Flypaper Film LLC.</span>
-      <span>Built for Independents.</span>
+    
+    <div class="sf-footer-bottom">
+      <div>&copy; 2026 SWEET FLYPAPER. ALL RIGHTS RESERVED.</div>
+      <div>DENVER &bull; AURORA &bull; BELIZE</div>
     </div>
   </div>
 </footer>
