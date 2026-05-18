@@ -32,7 +32,6 @@
     font-family: 'Geist', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    /* Removed overflow-x: hidden; to allow sticky navbar to work! */
   }
 
   h1, h2, h3, h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main); }
@@ -42,7 +41,7 @@
 
   /* --- UTILITY --- */
   .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; } /* Unified class mapping */
+  .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; } 
   .section-padding { padding: 6rem 0; }
   .label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; display: block; }
 
@@ -78,13 +77,13 @@
   .inner-hero-visual img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(15%); transition: filter 0.5s ease, transform 0.5s ease; }
   .inner-hero-visual:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
-  /* --- USE CASE STRIP (FADING SLIDER) --- */
+  /* --- USE CASE STRIP --- */
   .usecase-strip { border-bottom: 1px solid var(--border-color); padding: 3rem 0; background: var(--bg-panel); text-align: center; }
   .usecase-wrap { position: relative; min-height: 45px; display: flex; align-items: center; justify-content: center; }
   .usecase-item { position: absolute; font-family: 'Geist Mono', monospace; font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-main); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
   .usecase-item.active { opacity: 1; pointer-events: auto; position: relative; }
 
-  /* --- STUDIO FEATURES (ALTERNATING GRID) --- */
+  /* --- STUDIO FEATURES --- */
   .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 5rem 0; border-bottom: 1px solid var(--border-color); }
   .feature-row:last-child { border-bottom: none; }
   .feature-row.reverse { direction: rtl; }
@@ -113,12 +112,15 @@
   .pricing-card { background: var(--bg-panel); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.2s; }
   .pricing-card:hover { background: var(--bg-card); }
   .pricing-tier { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-  .pricing-rate { font-size: 2.5rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin: 0.5rem 0; color: var(--text-main); }
-  .pricing-rate span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+  
+  /* FIXED PRICING SIZING */
+  .pricing-rate { display: flex; align-items: flex-start; font-size: 3.5rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin: 0.5rem 0; color: var(--text-main); }
+  .pricing-currency { font-size: 1.25rem; font-weight: 400; color: var(--text-muted); margin-top: 0.4rem; margin-right: 0.2rem; }
+  
   .pricing-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.5rem; }
   .pricing-note { margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
 
-  /* --- BOOKING CTA (DUAL COLUMN SYSTEM) --- */
+  /* --- BOOKING CTA --- */
   .booking-section { padding: 8rem 0; background: var(--bg-panel); border-top: 1px solid var(--border-color); }
   .booking-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
   .booking-text h2 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin-bottom: 1rem; line-height: 1.05; }
@@ -127,7 +129,6 @@
   .booking-actions .btn { justify-content: space-between; padding: 1.1rem 1.75rem; font-size: 0.88rem; }
   .booking-divider { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0.5rem 0; }
   .booking-divider::before, .booking-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
-  .tally-placeholder { background: var(--bg-card); border: 1px dashed var(--border-color); border-radius: 4px; padding: 2rem; text-align: center; font-family: 'Geist Mono', monospace; font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.05em; margin-top: 0.5rem; }
 
   /* --- MASTER ARCHITECTURAL FOOTER --- */
   .sf-footer { background-color: var(--bg-panel); border-top: 1px solid var(--border-color); padding: 5rem 0 3rem 0; color: var(--text-muted); font-size: 0.9rem; }
@@ -157,7 +158,6 @@
   @media (max-width: 900px) {
     .section-padding { padding: 4rem 0; }
     
-    /* Nav & Footer overrides */
     .sf-navbar { padding: 1rem 0; }
     .sf-nav-text-logo { height: 48px; }
     .sf-nav-inner { flex-direction: column; gap: 1.25rem; text-align: center; }
@@ -202,7 +202,7 @@
 </nav>
 
 <button class="sf-floating-contact" 
-        data-tally-open="ODPpg7" 
+        data-tally-open="KYWv6V" 
         data-tally-hide-title="1" 
         data-tally-emoji-text="👋🏾" 
         data-tally-emoji-animation="wave">
@@ -357,17 +357,17 @@
     <div class="pricing-grid reveal">
       <div class="pricing-card">
         <div class="pricing-tier">Hourly</div>
-        <div class="pricing-rate">$<span>70</span></div>
+        <div class="pricing-rate"><span class="pricing-currency">$</span>70</div>
         <div class="pricing-desc">Ideal for quick interviews, voiceover sessions, or portrait shoots that don't need a full half-day block.</div>
       </div>
       <div class="pricing-card">
         <div class="pricing-tier">Half Day <span style="color: var(--text-muted); font-size: 0.7rem;">/ 4 hrs</span></div>
-        <div class="pricing-rate">$<span>250</span></div>
+        <div class="pricing-rate"><span class="pricing-currency">$</span>250</div>
         <div class="pricing-desc">The most popular option for music videos, podcast recordings, and short-form content shoots.</div>
       </div>
       <div class="pricing-card">
         <div class="pricing-tier">Full Day <span style="color: var(--text-muted); font-size: 0.7rem;">/ 8 hrs</span></div>
-        <div class="pricing-rate">$<span>400</span></div>
+        <div class="pricing-rate"><span class="pricing-currency">$</span>400</div>
         <div class="pricing-desc">Full-day access for larger productions, multi-look shoots, or anything requiring extended setup and breakdown time.</div>
       </div>
     </div>
@@ -386,11 +386,11 @@
       </div>
       
       <div class="booking-actions">
-        <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <a href="https://www.sharegrid.com/denver/l/395279?type=rent" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           Book on Sharegrid <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
         <div class="booking-divider">or</div>
-        <a href="#" class="btn btn-ghost" data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">
+        <a href="#" class="btn btn-ghost" data-tally-open="KYWv6V" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">
           Book Directly <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
