@@ -56,10 +56,11 @@
   .sf-navbar { position: sticky; top: 0; z-index: 10000; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
   .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
   .sf-nav-logo { display: flex; align-items: center; }
-  .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); }
+  .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); transition: height 0.2s ease; }
   .sf-nav-menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
   .sf-nav-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
   .sf-nav-link:hover { color: var(--text-muted); }
+  .sf-nav-link.active { color: var(--text-muted); border-bottom: 1px solid var(--text-muted); padding-bottom: 2px; }
   .sf-nav-link i { font-size: 0.85rem; color: var(--text-muted); }
 
   /* FLOATING CONTACT */
@@ -261,37 +262,70 @@
   }
   .sidebar-gold { color: var(--gold); }
 
-  /* STILLS / GALLERY */
-  .gallery-section {
+  /* --- SINGLE FRAME CAROUSEL (POSTERS & STILLS) --- */
+  .media-showcase {
     border-bottom: 1px solid var(--border-color);
     padding: 5rem 0;
+    background: var(--bg-dark);
   }
-  .gallery-header {
+  .media-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 2.5rem;
   }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 2px;
-  }
-  .gallery-item {
+  .media-frame {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    min-height: 500px;
+    max-height: 800px;
+    background: #050505;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
     overflow: hidden;
-    background: var(--bg-panel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(15%);
-    transition: transform 0.6s ease, filter 0.4s ease;
+  .media-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    pointer-events: none;
   }
-  .gallery-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
-  .gallery-item.tall { grid-row: 1 / 3; min-height: 460px; }
-  .gallery-item.short { min-height: 225px; }
+  .media-slide.active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+  }
+  .media-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Prevents cropping, perfect for vertical posters */
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+  }
+  .media-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .media-dot {
+    width: 40px;
+    height: 2px;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .media-dot.active {
+    background: var(--accent);
+  }
 
   /* PREV/NEXT NAV */
   .project-nav {
@@ -369,9 +403,7 @@
     .project-body { padding: 4rem 0; }
     .project-body-grid { grid-template-columns: 1fr; gap: 3rem; }
 
-    .gallery-grid { grid-template-columns: 1fr 1fr; }
-    .gallery-item.tall { grid-row: auto; grid-column: 1 / -1; min-height: 220px; }
-    .gallery-item.short { min-height: 180px; }
+    .media-frame { height: 50vh; min-height: 400px; }
 
     .project-nav { grid-template-columns: 1fr; }
     .project-nav-item { border-right: none; border-bottom: 1px solid var(--border-color); text-align: left; align-items: flex-start; }
@@ -381,6 +413,9 @@
     .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
     .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .media-frame { height: 40vh; min-height: 350px; padding: 1rem; }
   }
 </style>
 </head>
@@ -395,7 +430,7 @@
       <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
       <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio Space</span></a></li>
       <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
-      <li><a href="projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
+      <li><a href="projects.html" class="sf-nav-link active"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
       <li><a href="community.html" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
       <li><a href="info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
     </ul>
@@ -410,37 +445,35 @@
   <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
 </button>
 
-<!-- BREADCRUMB -->
 <div class="breadcrumb">
   <div class="container breadcrumb-inner">
     <a href="index.html">Home</a>
     <span class="breadcrumb-sep">/</span>
     <a href="projects.html">Projects</a>
     <span class="breadcrumb-sep">/</span>
-    <span class="breadcrumb-current">Love Pills and a Pistol</span>
+    <span class="breadcrumb-current">Love, Pills, & A Pistol</span>
   </div>
 </div>
 
-<!-- PROJECT HERO -->
 <section class="project-hero">
   <img
-    src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg"
+    src="images/lpp.jpg"
     alt="Love Pills and a Pistol"
     class="project-hero-img"
+    onerror="this.src='https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg'"
   >
   <div class="project-hero-overlay" aria-hidden="true"></div>
   <div class="project-hero-content">
     <div class="container">
       <div class="project-type-pill reveal">
-        <i class="fa-solid fa-film" style="font-size:0.6rem;"></i> Short Film &nbsp;·&nbsp; 2025
+        <i class="fa-solid fa-film" style="font-size:0.6rem;"></i> Short Film &nbsp;·&nbsp; 2026
       </div>
-      <h1 class="reveal reveal-d1">Love Pills<br>and a Pistol</h1>
+      <h1 class="reveal reveal-d1">Love, Pills,<br>&amp; A Pistol</h1>
       <p class="project-tagline reveal reveal-d2">Is love ever enough?</p>
     </div>
   </div>
 </section>
 
-<!-- META ROW -->
 <div class="project-meta-row">
   <div class="project-meta-cell">
     <span class="project-meta-label">Starring</span>
@@ -467,7 +500,6 @@
   </div>
 </div>
 
-<!-- CONTENT BODY -->
 <section class="project-body">
   <div class="container">
     <div class="project-body-grid">
@@ -478,10 +510,10 @@
           As the wind persuades the tree to dance, the tree doesn't resist. But the wind can push too hard, ending the love affair. Because wind can only be wind.
         </p>
         <p>
-          Love Pills and a Pistol is an intimate short film exploring the space between passion and destruction — and whether love alone is ever a good enough reason to stay.
+          Love, Pills, & A Pistol is an intimate short film exploring the space between passion and destruction — and whether love alone is ever a good enough reason to stay.
         </p>
         <p style="margin-top: 2.5rem;">
-          <a href="#" class="btn btn-ghost">Watch the Film <i class="fa-solid fa-play" style="font-size:0.75rem;"></i></a>
+          <a href="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/video/lpp-trailer.mp4" target="_blank" class="btn btn-ghost">Watch the Trailer <i class="fa-solid fa-play" style="font-size:0.75rem;"></i></a>
         </p>
       </div>
 
@@ -492,7 +524,7 @@
         </div>
         <div class="sidebar-item">
           <span class="sidebar-label">Year</span>
-          <span class="sidebar-value">2025</span>
+          <span class="sidebar-value">2026</span>
         </div>
         <div class="sidebar-item">
           <span class="sidebar-label">Directed By</span>
@@ -516,60 +548,41 @@
   </div>
 </section>
 
-<!-- STILLS GALLERY -->
-<section class="gallery-section">
+<section class="media-showcase">
   <div class="container">
-    <div class="gallery-header reveal">
+    
+    <div class="media-header reveal">
       <div>
-        <span class="label">Production Stills</span>
-        <h3 style="font-size: 1.5rem;">Behind the Frame</h3>
+        <span class="label">Gallery</span>
+        <h3 style="font-size: 1.5rem;">Posters &amp; Stills</h3>
       </div>
     </div>
 
-    <div class="gallery-grid reveal reveal-d1">
-      <!-- Large left -->
-      <div class="gallery-item tall">
-        <img
-          src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg"
-          alt="Production still"
-        >
+    <div class="media-frame reveal reveal-d1" id="mediaCarousel">
+      
+      <div class="media-slide active" data-slide="0">
+        <img src="images/lpp-poster.jpg" onerror="this.src='https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg'" alt="Official Poster">
       </div>
-      <!-- Top right -->
-      <div class="gallery-item short">
-        <img
-          src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg"
-          alt="Production still"
-          style="object-position: center 20%;"
-        >
+
+      <div class="media-slide" data-slide="1">
+        <img src="images/lpp.jpg" onerror="this.style.display='none'" alt="Production Still 1">
       </div>
-      <!-- Second right -->
-      <div class="gallery-item short">
-        <img
-          src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg"
-          alt="Production still"
-          style="object-position: center 80%;"
-        >
+
+      <div class="media-slide" data-slide="2">
+        <img src="images/b4ts.png" onerror="this.style.display='none'" alt="Production Still 2">
       </div>
-      <!-- Bottom row -->
-      <div class="gallery-item short" style="min-height:200px; grid-column: 1;">
-        <img
-          src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg"
-          alt="Production still"
-          style="object-position:right center;"
-        >
-      </div>
-      <div class="gallery-item short" style="min-height:200px; grid-column: 2 / 4;">
-        <img
-          src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg"
-          alt="Production still"
-          style="object-position:left center;"
-        >
-      </div>
+
     </div>
+
+    <div class="media-controls reveal reveal-d2" id="mediaDots">
+      <div class="media-dot active" onclick="sfGoToMediaSlide(0)"></div>
+      <div class="media-dot" onclick="sfGoToMediaSlide(1)"></div>
+      <div class="media-dot" onclick="sfGoToMediaSlide(2)"></div>
+    </div>
+
   </div>
 </section>
 
-<!-- PREV / NEXT NAV -->
 <nav class="project-nav" aria-label="Project navigation">
   <a href="project-broke-boys.html" class="project-nav-item">
     <span class="project-nav-dir"><i class="fa-solid fa-arrow-left"></i> Prev Work</span>
@@ -581,7 +594,6 @@
   </a>
 </nav>
 
-<!-- FOOTER -->
 <footer class="sf-footer">
   <div class="container">
     <div class="sf-footer-grid">
@@ -637,6 +649,36 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   revealEls.forEach(el => observer.observe(el));
+
+  // Single Frame Carousel Logic
+  (function() {
+    const slides = document.querySelectorAll('.media-slide');
+    const dots = document.querySelectorAll('.media-dot');
+    const dotContainer = document.getElementById('mediaDots');
+    let currentSlide = 0;
+    
+    // Auto-hide dots if there is only 1 slide (e.g. just a poster)
+    let validSlides = 0;
+    slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      // basic check if the image has a source
+      if(img && img.getAttribute('src') !== '') validSlides++;
+    });
+
+    if(validSlides <= 1 && dotContainer) {
+      dotContainer.style.display = 'none';
+    }
+
+    window.sfGoToMediaSlide = function(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      
+      if(slides[index]) slides[index].classList.add('active');
+      if(dots[index]) dots[index].classList.add('active');
+      
+      currentSlide = index;
+    };
+  })();
 </script>
 
 </body>
