@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gear & Rentals | Sweet Flypaper Film</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<style>
+  #sf-embed {
+    --bg-dark: #0a0a0a;
+    --bg-panel: #141414;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --border-color: #27272a;
+    --accent: #ffffff;
+    --accent-hover: #e2e8f0;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Geist', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    display: block;
+  }
+  #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  #sf-embed h1, #sf-embed h2, #sf-embed h3, #sf-embed h4 {
+    font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main) !important;
+  }
+  #sf-embed p { color: #e2e8f0 !important; }
+  #sf-embed a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+  #sf-embed img { max-width: 100%; height: auto; display: block; }
+
+  #sf-embed .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  #sf-embed .sf-section-padding { padding: 6rem 0; }
+  #sf-embed .sf-label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted) !important; margin-bottom: 1rem; display: block; }
+  #sf-embed .sf-label a { color: var(--text-muted) !important; border-bottom: 1px solid transparent; transition: border-color 0.2s ease, color 0.2s ease; }
+  #sf-embed .sf-label a:hover { color: var(--text-main) !important; border-bottom-color: var(--text-muted); }
+
+  #sf-embed .sf-btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
+  #sf-embed .sf-btn-primary { background-color: var(--accent); color: var(--bg-dark) !important; border: 1px solid var(--accent); }
+  #sf-embed .sf-btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark) !important; }
+  #sf-embed .sf-btn-ghost { background-color: transparent; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.5); }
+  #sf-embed .sf-btn-ghost:hover { border-color: var(--accent); color: var(--accent) !important; }
+
+  /* NAVIGATION */
+  #sf-embed .sf-navbar { position: sticky; top: 0; z-index: 10000; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
+  #sf-embed .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
+  #sf-embed .sf-nav-logo { display: flex; align-items: center; }
+  #sf-embed .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); transition: height 0.2s ease; }
+
+  #sf-embed .sf-nav-menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  #sf-embed .sf-nav-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
+  #sf-embed .sf-nav-link:hover { color: var(--text-muted); }
+  #sf-embed .sf-nav-link i { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* FLOATING CONTACT TRIGGER BUTTON */
+  #sf-embed .sf-floating-contact { position: fixed; bottom: 2rem; right: 2rem; z-index: 99999; background-color: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.75rem 1.25rem; font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.2s ease; }
+  #sf-embed .sf-floating-contact:hover { border-color: var(--text-main); background-color: var(--text-main); color: var(--bg-dark) !important; }
+  #sf-embed .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
+  #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
+
+  /* INNER HERO SUBPAGES */
+  #sf-embed .sf-inner-hero { position: relative; width: 100%; padding: 6rem 0; border-bottom: 1px solid var(--border-color); background-color: var(--bg-dark); }
+  #sf-embed .sf-inner-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  #sf-embed .sf-inner-hero-text h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
+  #sf-embed .sf-inner-hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 500px; line-height: 1.6; }
+  #sf-embed .sf-inner-hero-visual { position: relative; width: 100%; aspect-ratio: 16/10; overflow: hidden; border-radius: 4px; border: 1px solid var(--border-color); background-color: var(--bg-panel); }
+  #sf-embed .sf-inner-hero-visual img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: filter 0.5s ease; }
+  #sf-embed .sf-inner-hero-visual:hover img { filter: grayscale(0%); }
+
+  /* TESTIMONIAL DISPLAY FADER */
+  #sf-embed .sf-testimonial-strip { background-color: var(--bg-panel); border-bottom: 1px solid var(--border-color); padding: 4rem 0; text-align: center; }
+  #sf-embed .sf-testimonial-wrap { position: relative; min-height: 180px; display: flex; align-items: center; justify-content: center; }
+  #sf-embed .sf-testimonial-item { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.8s ease; pointer-events: none; width: 100%; }
+  #sf-embed .sf-testimonial-item.active { opacity: 1; pointer-events: auto; position: relative; }
+  #sf-embed .sf-testimonial-quote { font-size: clamp(1.05rem, 2.2vw, 1.3rem); font-style: italic; line-height: 1.5; margin-bottom: 1rem; color: var(--text-main); max-width: 850px; }
+  
+  /* REVIEW SUBHEADING */
+  #sf-embed .sf-testimonial-rented { font-family: 'Geist Mono', monospace; font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15); transition: all 0.2s ease; display: inline-block; padding-bottom: 0.1rem; }
+  #sf-embed .sf-testimonial-rented.active-link:hover { color: var(--text-main); border-bottom-color: var(--text-main); }
+  
+  #sf-embed .sf-testimonial-author { font-family: 'Geist Mono', monospace; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; }
+
+  /* INVENTORY WORKFLOW PROCESS */
+  #sf-embed .sf-how-strip { border-bottom: 1px solid var(--border-color); padding: 5rem 0; }
+  #sf-embed .sf-how-header { margin-bottom: 3rem; }
+  #sf-embed .sf-how-header h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+  #sf-embed .sf-how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  #sf-embed .sf-how-step { padding: 2rem 2.5rem 2rem 0; border-right: 1px solid var(--border-color); }
+  #sf-embed .sf-how-step:last-child { border-right: none; padding-right: 0; padding-left: 2.5rem; }
+  #sf-embed .sf-how-step:nth-child(2) { padding-left: 2.5rem; }
+  #sf-embed .sf-how-num { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+  #sf-embed .sf-how-step h3 { font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 500; }
+  #sf-embed .sf-how-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+  #sf-embed .sf-how-step a { color: var(--text-main); text-decoration: underline; cursor: pointer; font-weight: 500; }
+  #sf-embed .sf-how-step a:hover { color: var(--text-muted); }
+
+  /* EQUIPMENT RENDERING GRID SYSTEM */
+  #sf-embed .sf-gear-section { padding: 5rem 0; scroll-margin-top: 100px; }
+  #sf-embed .sf-gear-filters { display: flex; gap: 0; border: 1px solid var(--border-color); border-radius: 2px; width: fit-content; margin-bottom: 3rem; overflow: hidden; }
+  #sf-embed .sf-filter-btn { font-family: 'Geist Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.6rem 1.2rem; background: transparent; color: var(--text-muted); border: none; cursor: pointer; border-right: 1px solid var(--border-color); transition: all 0.2s; white-space: nowrap; }
+  #sf-embed .sf-filter-btn:last-child { border-right: none; }
+  #sf-embed .sf-filter-btn:hover { color: var(--text-main); background: var(--bg-panel); }
+  #sf-embed .sf-filter-btn.active { background: var(--accent); color: var(--bg-dark); }
+
+  #sf-embed .sf-gear-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
+  #sf-embed .sf-gear-card { background-color: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; scroll-margin-top: 100px; }
+  #sf-embed .sf-gear-card:hover { border-color: var(--text-muted); transform: translateY(-4px); }
+  #sf-embed .sf-gear-card.sf-hidden { display: none; }
+
+  /* MULTI ASSET ROW CAROUSEL DISPLAY */
+  #sf-embed .sf-gear-multi-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; padding: 1rem 1.5rem; background: #0c0c0d; border-bottom: 1px solid var(--border-color); }
+  #sf-embed .sf-gear-sub-img { aspect-ratio: 4/3; background: #161618; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; padding: 0.25rem; border-radius: 2px; }
+  #sf-embed .sf-gear-sub-img img { max-height: 100%; width: auto; object-fit: contain; }
+
+  #sf-embed .sf-gear-info { padding: 1.75rem 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+  #sf-embed .sf-gear-tag-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  #sf-embed .sf-gear-category { font-family: 'Geist Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+  #sf-embed .sf-gear-card-logo { height: 12px; width: auto; filter: invert(1); opacity: 0.25; }
+  
+  #sf-embed .sf-gear-title { font-family: 'Geist Mono', monospace; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; line-height: 1.4; color: var(--text-main); min-height: 2.8em; display: flex; align-items: center; }
+  #sf-embed .sf-gear-price { color: var(--text-muted); font-size: 0.9rem; font-family: 'Geist Mono', monospace; margin-bottom: 1.25rem; display: block; }
+  
+  /* TECHNICAL SUB-DETAILS EXPANSIONS */
+  #sf-embed .sf-gear-desc-block { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; margin-bottom: 1.25rem; }
+  #sf-embed .sf-gear-desc-title { font-family: 'Geist Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); margin-bottom: 0.5rem; }
+  #sf-embed .sf-gear-desc-block p { font-size: 0.8rem; color: var(--text-muted) !important; line-height: 1.5; margin-bottom: 0.75rem; }
+  #sf-embed .sf-gear-desc-block p strong { color: inherit; font-weight: 600; }
+  
+  #sf-embed .sf-gear-kit-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; margin-bottom: 1rem; }
+  #sf-embed .sf-gear-kit-list li { font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 0.4rem; align-items: baseline; }
+  #sf-embed .sf-gear-kit-list li strong { font-family: 'Geist Mono', monospace; color: inherit; font-weight: 600; font-size: 0.75rem; }
+
+  #sf-embed .sf-gear-book-link { margin-top: auto; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.05); font-family: 'Geist Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; transition: color 0.2s; }
+  #sf-embed .sf-gear-card:hover .sf-gear-book-link { color: var(--text-muted); }
+
+  #sf-embed .sf-inventory-cta { margin-top: 4rem; padding: 2.5rem 3rem; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-panel); display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  #sf-embed .sf-inventory-cta-text h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+  #sf-embed .sf-inventory-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
+
+  /* FOOTER */
+  #sf-embed .sf-footer { background-color: var(--bg-panel); border-top: 1px solid var(--border-color); padding: 5rem 0 3rem 0; color: var(--text-muted); font-size: 0.9rem; }
+  #sf-embed .sf-footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr) 1.2fr; gap: 3rem; align-items: start; }
+  #sf-embed .sf-footer-brand p { max-width: 320px; color: var(--text-muted) !important; font-size: 0.85rem; line-height: 1.5; margin-top: 1.25rem; }
+  #sf-embed .sf-footer-title { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main) !important; margin-bottom: 1.25rem; }
+  #sf-embed .sf-footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  #sf-embed .sf-footer-links a { color: var(--text-muted) !important; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+  #sf-embed .sf-footer-links a:hover { color: var(--text-main) !important; }
+  
+  #sf-embed .sf-footer-graphic-box { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+  #sf-embed .sf-footer-butterfly { height: 64px; width: 64px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 2px; transition: border-color 0.3s; }
+  #sf-embed .sf-footer-graphic-box:hover .sf-footer-butterfly { border-color: rgba(255, 255, 255, 0.4); }
+  #sf-embed .sf-butterfly-caption { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text-main); text-transform: lowercase; margin-top: 0.65rem; padding-right: 0.1em; opacity: 0.5; }
+  #sf-embed .sf-footer-bottom { border-top: 1px solid var(--border-color); margin-top: 4rem; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', monospace; font-size: 0.7rem; letter-spacing: 0.02em; }
+
+  /* NOISE COATING ARRAY EFFECT */
+  #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
+
+  /* RESPONSIVE RESPONSES */
+  @media (max-width: 900px) {
+    #sf-embed .sf-section-padding { padding: 4rem 0; }
+    #sf-embed .sf-navbar { padding: 1rem 0; }
+    #sf-embed .sf-nav-text-logo { height: 48px; }
+    #sf-embed .sf-nav-inner { flex-direction: column; gap: 1.25rem; text-align: center; }
+    #sf-embed .sf-nav-menu { width: 100%; justify-content: center; gap: 1.5rem; }
+    #sf-embed .sf-nav-link span { display: none; }
+    #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
+    #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
+    #sf-embed .sf-inner-hero { padding: 4rem 0; }
+    #sf-embed .sf-inner-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    #sf-embed .sf-how-steps { grid-template-columns: 1fr; }
+    #sf-embed .sf-how-step { border-right: none; border-bottom: 1px solid var(--border-color); padding: 2rem 0; }
+    #sf-embed .sf-how-step:last-child { border-bottom: none; }
+    #sf-embed .sf-how-step:nth-child(2) { padding-left: 0; }
+    #sf-embed .sf-gear-filters { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 2rem; }
+    #sf-embed .sf-gear-filters::-webkit-scrollbar { display: none; }
+    #sf-embed .sf-gear-grid { grid-template-columns: 1fr; gap: 2rem; }
+    #sf-embed .sf-inventory-cta { flex-direction: column; align-items: flex-start; padding: 2rem; }
+    #sf-embed .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    #sf-embed .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
+    #sf-embed .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    #sf-embed .sf-gear-kit-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="sf-embed">
+
+  <nav class="sf-navbar">
+    <div class="sf-container sf-nav-inner">
+      <a href="index.html" class="sf-nav-logo">
+        <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" class="sf-nav-text-logo">
+      </a>
+      
+      <ul class="sf-nav-menu">
+        <li><a href="gear.html" class="sf-nav-menu-item sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
+        <li><a href="studio.html" class="sf-nav-menu-item sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
+        <li><a href="coverage.html" class="sf-nav-menu-item sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
+        <li><a href="projects.html" class="sf-nav-menu-item sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
+        <li><a href="community.html" class="sf-nav-menu-item sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
+        <li><a href="info.html" class="sf-nav-menu-item sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="sf-inner-hero">
+    <div class="sf-container sf-inner-hero-grid">
+      <div class="sf-inner-hero-text">
+        <span class="sf-label">Rentals &middot; Denver | Aurora | The Springs | Boulder</span>
+        <h1>Great Gear. Better Rates.</h1>
+        <p>Cinema-grade gear for independent creators. Pick up in Denver, book securely through Sharegrid.</p>
+        <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-btn sf-btn-primary">
+          View Full Inventory on Sharegrid <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+      <div class="sf-inner-hero-visual">
+        <img src="images/gear.jpg" alt="Sweet Flypaper Studio — Gear on Set">
+      </div>
+    </div>
+  </section>
+
+  <div class="sf-testimonial-strip">
+    <div class="sf-container">
+      <div class="sf-testimonial-wrap" id="testimonialSlider">
+        
+        <div class="sf-testimonial-item active" data-test="0">
+          <p class="sf-testimonial-quote">"Great experience. He was very responsive and accommodating to my changing production schedule. Gear worked perfect. Highly recommend if you're in the Denver area."</p>
+          <a href="#gear-gvm" class="sf-testimonial-rented active-link">Rented: GVM Pro 3 LED Light Kit</a>
+          <span class="sf-testimonial-author">— Jon Delouz</span>
+        </div>
+
+        <div class="sf-testimonial-item" data-test="1">
+          <p class="sf-testimonial-quote">"Terrell is a wonderful person to rent from. Quick communication, easy to work with. Gear is well taken care of. Highly recommend."</p>
+          <a href="#gear-hollyland" class="sf-testimonial-rented active-link">Rented: Hollyland Pyro S Video Transmission Kit</a>
+          <span class="sf-testimonial-author">— Brekon Baxter</span>
+        </div>
+
+        <div class="sf-testimonial-item" data-test="2">
+          <p class="sf-testimonial-quote">"This rental was nice and easy!"</p>
+          <a href="#gear-bm" class="sf-testimonial-rented active-link">Rented: Blackmagic Design Pocket Cinema Camera 6K</a>
+          <span class="sf-testimonial-author">— Jacob Walker</span>
+        </div>
+
+        <div class="sf-testimonial-item" data-test="3">
+          <p class="sf-testimonial-quote">"Terrell was great to work with. There was something slightly malfunctioning with the lens I rented so he delivered me another one that helped finish the shoot. Would definitely rent from again!"</p>
+          <span class="sf-testimonial-rented" style="cursor: default; border: none;">Rented: Canon EF 16-35mm f/2.8L USM Lens</span>
+          <span class="sf-testimonial-author">— Walden Band LLC</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="sf-how-strip">
+    <div class="sf-container">
+      <div class="sf-how-header">
+        <span class="sf-label">Process</span>
+        <h2>How Renting Works</h2>
+      </div>
+      <div class="sf-how-steps">
+        <div class="sf-how-step">
+          <div class="sf-how-num">Step 01</div>
+          <h3>Browse the Inventory</h3>
+          <p>Our full gear list lives on Sharegrid — a trusted marketplace for film equipment. Filter by category, check availability, and build your package.</p>
+        </div>
+        <div class="sf-how-step">
+          <div class="sf-how-num">Step 02</div>
+          <h3>Book &amp; Pay Securely</h3>
+          <p>Reserve through Sharegrid's checkout. Payment is held securely until the rental period begins. Weekend and weekly discounts apply automatically.</p>
+        </div>
+        <div class="sf-how-step">
+          <div class="sf-how-num">Step 03</div>
+          <h3>Pick Up in Denver</h3>
+          <p>Coordinate a pickup time in Aurora / Denver. Gear ships out clean and tested. Questions before your shoot? Just <a data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">Contact Us</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="sf-gear-section">
+    <div class="sf-container">
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+        <div>
+          <span class="sf-label">Inventory</span>
+          <h2>Build Your Package</h2>
+          <p style="color: var(--text-muted); max-width: 600px; margin-top: 0.5rem; font-size: 0.95rem;">Meticulously maintained, cinema-ready equipment available for same-day pickup in Denver.</p>
+        </div>
+        <button class="sf-btn sf-btn-ghost" style="flex-shrink: 0;" data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">Questions? Contact Us</button>
+      </div>
+
+      <div class="sf-gear-filters">
+        <button class="sf-filter-btn active" data-filter="all">All</button>
+        <button class="sf-filter-btn" data-filter="camera">Camera</button>
+        <button class="sf-filter-btn" data-filter="lighting">Lighting</button>
+        <button class="sf-filter-btn" data-filter="grip">Grip</button>
+      </div>
+
+      <div class="sf-gear-grid">
+
+        <div class="sf-gear-card" data-cat="camera" id="gear-bm">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img"><img src="images/bm.svg" alt="Blackmagic view 1"></div>
+            <div class="sf-gear-sub-img"><img src="images/bm1.svg" alt="Blackmagic view 2"></div>
+            <div class="sf-gear-sub-img"><img src="images/bm2.svg" alt="Blackmagic view 3"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Camera</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">Blackmagic Design Pocket Cinema 6k Pro (g2) "indie" cinema kit</h3>
+            <span class="sf-gear-price">$91 / Day</span>
+            
+            <div class="sf-gear-desc-block">
+              <div class="sf-gear-desc-title">Ideal Applications</div>
+              <p><strong>1. Scripted Narrative:</strong> Scripted projects where you control staging. Shoots in <strong>Blackmagic RAW (BRAW)</strong> for massive post-production workflow flexibility.</p>
+              <p><strong>2. Documentaries:</strong> Features <strong>dual mini-XLR inputs</strong> with 48V phantom power and <strong>dual native ISO (400/3200)</strong> for clean, low-noise low-light footage.</p>
+              <p><strong>3. Music Videos:</strong> Shoots up to 60 fps at full 6K (120 fps windowed). Includes a <strong>DaVinci Resolve Studio license</strong> for advanced high-end grading.</p>
+            </div>
+
+            <div class="sf-gear-desc-title">Included Kit Items</div>
+            <ul class="sf-gear-kit-list">
+              <li><strong>2x</strong> 128gb CFast Card</li>
+              <li><strong>4x</strong> Cables</li>
+              <li><strong>1x</strong> Charging cable</li>
+              <li><strong>4x</strong> 15mm rails</li>
+              <li><strong>1x</strong> 15mm rail riser</li>
+              <li><strong>1x</strong> Charger</li>
+            </ul>
+
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sf-gear-card" data-cat="camera" id="gear-red">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img"><img src="images/red.svg" alt="RED Camera view 1"></div>
+            <div class="sf-gear-sub-img"><img src="images/red1.svg" alt="RED Camera view 2"></div>
+            <div class="sf-gear-sub-img"><img src="images/red2.svg" alt="RED Camera view 3"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Camera</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">RED DSMC Epic Dragon 6k Package</h3>
+            <span class="sf-gear-price">$190 / Day</span>
+            
+            <div class="sf-gear-desc-block">
+              <div class="sf-gear-desc-title">Production Value Matrix</div>
+              <p><strong>1. Scripted Indie Features:</strong> Boasts <strong>16.5+ stops of dynamic range</strong> and a distinct, organic texture handling highlights beautifully without digital clipping.</p>
+              <p><strong>2. High-Speed Action:</strong> Captures <strong>6K Full Frame up to 75 fps</strong>, 100 fps at 2.4:1, 150 fps at 4K, and a staggering <strong>300 fps at 2K</strong>.</p>
+              <p><strong>3. VFX Compositing:</strong> Frames are 19MP RAW stills. <strong>REDCODE RAW (.R3D)</strong> gives visual effects artists flawless edge detail and deep color spaces.</p>
+              <p><strong>4. Fashion &amp; Beauty:</strong> Delivers an organic color science for exceptional skin tones under controlled studio configurations, generating immense client prestige.</p>
+              <p><strong>Key Strengths:</strong> Extreme system modularity allows swapping between PL and EF lens mounts effortlessly, bolting audio, power, or operational interfaces onto the body chassis.</p>
+            </div>
+
+            <div class="sf-gear-desc-title">Included Kit Items</div>
+            <ul class="sf-gear-kit-list">
+              <li><strong>1x</strong> 128 GB REDMAG SSD</li>
+              <li><strong>2x</strong> 64 GB REDMAG SSD</li>
+              <li><strong>1x</strong> 5.0 RED Monitor</li>
+              <li><strong>1x</strong> REDBOMB EVF</li>
+              <li><strong>2x</strong> Lemo Cable</li>
+              <li><strong>2x</strong> V-Mount Battery</li>
+              <li><strong>1x</strong> Tilta Nano Focus</li>
+            </ul>
+
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sf-gear-card" data-cat="lighting" id="gear-gvm">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img"><img src="images/gvm.svg" alt="GVM view 1"></div>
+            <div class="sf-gear-sub-img"><img src="images/gvm1.svg" alt="GVM view 2"></div>
+            <div class="sf-gear-sub-img"><img src="images/gvm2.svg" alt="GVM view 3"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Lighting</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">GVM Pro 3 LED Light Kit (1 Softbox, 2 Lanterns Included)</h3>
+            <span class="sf-gear-price">$24 / Day</span>
+            
+            <div class="sf-gear-desc-block">
+              <div class="sf-gear-desc-title">Details</div>
+              <p>Great for corporate interviews, podcasts, and small narrative projects. Includes a super bright <strong>GVM Pro SD200B Bi-Color Monolight</strong> and two optional <strong>GVM SD80D Bi-Color Lights</strong>. High performance package value built for rapid deployment setups.</p>
+            </div>
+
+            <div class="sf-gear-desc-title">Included Kit Items</div>
+            <ul class="sf-gear-kit-list">
+              <li><strong>1x</strong> SD200B Fixture</li>
+              <li><strong>2x</strong> SD80D Fixture</li>
+              <li><strong>1x</strong> Modifier Softbox</li>
+              <li><strong>2x</strong> Space Lanterns</li>
+              <li><strong>1x</strong> Heavy Duty Case</li>
+            </ul>
+
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Build Package on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sf-gear-card" data-cat="lighting" id="gear-ls300">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/300.svg" alt="Aputure view 1"></div>
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/3001.svg" alt="Aputure view 2"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Lighting</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">Aputure Light Storm LS C300d Mark II LED Light Kit</h3>
+            <span class="sf-gear-price">$40 / Day</span>
+            <div class="sf-gear-desc-block">
+              <p>Malleable high-output punch daylight light source. Syncs natively into advanced modifier arrays for key illumination work on narrative setups.</p>
+            </div>
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sf-gear-card" data-cat="lighting" id="gear-ls600">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/600.svg" alt="Aputure view 1"></div>
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/6001.svg" alt="Aputure view 2"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Lighting</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">Aputure LS 600d Pro Light Storm Daylight LED Light with F10 Fresnel</h3>
+            <span class="sf-gear-price">$51 / Day</span>
+            <div class="sf-gear-desc-block">
+              <p>Incredible daylight performance output when coupled into the large <strong>F10 Fresnel modifier</strong>. Simulates organic sun throw or cuts through intense diffusion layouts seamlessly.</p>
+            </div>
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sf-gear-card" data-cat="lighting" id="gear-storm80">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/80.svg" alt="Aputure view 1"></div>
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/801.svg" alt="Aputure view 2"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Lighting</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">Aputure STORM 80c BLAIR LED Monolight with CF4 Fresnel</h3>
+            <span class="sf-gear-price">$30 / Day</span>
+            <div class="sf-gear-desc-block">
+              <p>Utilizes advanced color rendering monoblock performance systems for exact tint calibrations across unpredictable indie spaces.</p>
+            </div>
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sf-gear-card" data-cat="grip" id="gear-danadolly">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/dana.svg" alt="Dana Dolly Kit 1"></div>
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/dana1.svg" alt="Dana Dolly Kit 2"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Grip</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">Dana Dolly Kit with Combo Lowboy stands and 6ft Speed Rails</h3>
+            <span class="sf-gear-price">$150 / Day</span>
+            <div class="sf-gear-desc-block">
+              <p>Meticulously maintained tracking system. Delivers ultra-smooth slide tracks for heavy structural production camera configurations.</p>
+            </div>
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="sf-gear-card" data-cat="grip" id="gear-hollyland">
+          <div class="sf-gear-multi-wrap">
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/holly.svg" alt="Hollyland Pyro view 1"></div>
+            <div class="sf-gear-sub-img" style="grid-column: span 1.5;"><img src="images/holly1.svg" alt="Hollyland Pyro view 2"></div>
+          </div>
+          <div class="sf-gear-info">
+            <div class="sf-gear-tag-row">
+              <span class="sf-gear-category">Grip</span>
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo" class="sf-gear-card-logo">
+            </div>
+            <h3 class="sf-gear-title">The hollyland pyro s wireless kit</h3>
+            <span class="sf-gear-price">$31 / Day</span>
+            
+            <div class="sf-gear-desc-block">
+              <p>Multi-receiver video transmission tracking monitor deployment module. Feeds pristine reference monitor arrays instantly across operations.</p>
+            </div>
+
+            <div class="sf-gear-desc-title">Included Kit Items</div>
+            <ul class="sf-gear-kit-list">
+              <li><strong>1x</strong> Carrying Case</li>
+              <li><strong>1x</strong> SDI Cable</li>
+              <li><strong>1x</strong> HDMI Cable</li>
+            </ul>
+
+            <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
+              <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sf-inventory-cta">
+        <a href="https://www.sharegrid.com/denver/users/sweetflypaper" target="_blank" rel="noopener noreferrer" class="sf-btn sf-btn-primary" style="width: 100%; padding: 1.5rem; font-size: 1rem;">
+          Full Inventory on Sharegrid <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="sf-footer">
+    <div class="sf-container">
+      <div class="sf-footer-grid">
+        
+        <div class="sf-footer-brand">
+          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" style="height: 144px; width: auto; filter: invert(1); display: block;">
+          <p>We are the creators of our wildest, weirdest dreams. Come Fly With Us.</p>
+        </div>
+        
+        <div>
+          <div class="sf-footer-title">Studio Services</div>
+          <ul class="sf-footer-links">
+            <li><a href="studio.html">The Shop</a></li>
+            <li><a href="gear.html">Gear Rental</a></li>
+            <li><a href="coverage.html">Script Coverage</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <div class="sf-footer-title">Company</div>
+          <ul class="sf-footer-links">
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="info.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="sf-footer-title">Social Media</div>
+          <ul class="sf-footer-links">
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" style="width: 14px;"></i> Facebook</a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" style="width: 14px;"></i> Instagram</a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" style="width: 14px;"></i> Linkedin</a></li>
+          </ul>
+        </div>
+
+        <div class="sf-footer-graphic-box">
+          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo Mark" class="sf-footer-butterfly">
+          <div class="sf-butterfly-caption">we fly</div>
+        </div>
+
+      </div>
+      
+      <div class="sf-footer-bottom">
+        <div>&copy; 2026 SWEET FLYPAPER. ALL RIGHTS RESERVED.</div>
+        <div>DENVER &bull; AURORA &bull; BELIZE</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="sf-floating-contact" 
+          data-tally-open="ODPpg7" 
+          data-tally-hide-title="1" 
+          data-tally-emoji-text="👋🏾" 
+          data-tally-emoji-animation="wave">
+    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
+  </button>
+
+</div>
+
+<script>
+  (function() {
+
+    /* ── RUNTIME CATEGORY FILTER CONTROLLER ───────────────────────────────── */
+    const filterBtns = document.querySelectorAll('#sf-embed .sf-filter-btn');
+    const gearCards = document.querySelectorAll('#sf-embed .sf-gear-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        
+        gearCards.forEach(card => {
+          if (filter === 'all' || card.dataset.cat === filter) {
+            card.classList.remove('sf-hidden');
+          } else {
+            card.classList.add('sf-hidden');
+          }
+        });
+      });
+    });
+
+    /* ── TESTIMONIAL DISPLAY TRANSITION FADER FITTING ─────────────────────── */
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('#sf-embed .sf-testimonial-item');
+    const totalTestimonials = testimonials.length;
+
+    if (totalTestimonials > 0) {
+      setInterval(() => {
+        if(testimonials[currentTestimonial]) {
+          testimonials[currentTestimonial].classList.remove('active');
+          currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+          
+          setTimeout(() => {
+            if(testimonials[currentTestimonial]) {
+              testimonials[currentTestimonial].classList.add('active');
+            }
+          }, 50);
+        }
+      }, 6000);
+    }
+
+  })();
+</script>
+
+</body>
+</html>
