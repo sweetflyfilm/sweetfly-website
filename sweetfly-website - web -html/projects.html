@@ -105,6 +105,8 @@
   #sf-embed .sf-project-card:hover { border-color: var(--text-muted); transform: translateY(-4px); }
   #sf-embed .sf-project-card.sf-hidden { display: none !important; }
 
+  /* The JS engine will apply inline flex-direction (row or row-reverse) to alternate these automatically */
+  
   #sf-embed .sf-project-img-wrap { width: 50%; position: relative; overflow: hidden; flex-shrink: 0; background-color: var(--bg-dark); }
   #sf-embed .sf-project-img-wrap img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; filter: grayscale(20%); transition: transform 0.6s ease, filter 0.6s ease; }
   #sf-embed .sf-project-card:hover .sf-project-img-wrap img { transform: scale(1.03); filter: grayscale(0%); }
@@ -118,11 +120,11 @@
   #sf-embed .sf-project-title { font-size: clamp(1.8rem, 3vw, 2.8rem); margin-bottom: 0.75rem; line-height: 1.1; }
   #sf-embed .sf-project-desc { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem; }
 
-  /* RESTORED SPECS/INFO BULLETS WITH GEAR LINKS */
+  /* RESTORED SPECS/INFO BULLETS WITH GEAR LINKS AND TEXT WRAPPING FIX */
   #sf-embed .sf-project-specs { list-style: none; margin: 0 0 2rem 0; font-size: 0.95rem; padding: 0; }
-  #sf-embed .sf-project-specs li { margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.75rem; color: var(--text-muted); }
-  #sf-embed .sf-project-specs li i { color: var(--text-main); font-size: 0.9em; width: 16px; text-align: center; display: inline-block; flex-shrink: 0; }
-  #sf-embed .sf-bullet { color: var(--text-main); font-size: 0.75rem; width: 16px; text-align: center; flex-shrink: 0; line-height: 1; }
+  #sf-embed .sf-project-specs li { margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 0.75rem; color: var(--text-muted); line-height: 1.6; }
+  #sf-embed .sf-project-specs li i { color: var(--text-main); font-size: 0.9em; width: 16px; text-align: center; display: inline-block; flex-shrink: 0; margin-top: 0.3rem; }
+  #sf-embed .sf-bullet { color: var(--text-main); font-size: 0.75rem; width: 16px; text-align: center; flex-shrink: 0; line-height: 1; margin-top: 0.35rem; }
   
   #sf-embed .sf-inline-link { color: var(--text-main); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s ease; position: relative; z-index: 10; }
   #sf-embed .sf-inline-link:hover { border-color: var(--accent); }
@@ -271,9 +273,9 @@
           <p class="sf-project-desc">Is love ever enough? An exploration of addiction, relationships, and the breaking point.</p>
           
           <ul class="sf-project-specs">
-            <li><i class="fa-solid fa-award"></i> <span class="sf-bullet">–</span> Film Shortage 2025 Selection</li>
-            <li><i class="fa-solid fa-building"></i> <span class="sf-bullet">–</span> Filmed at The Shop</li>
-            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2026</li>
+            <li><i class="fa-solid fa-award"></i> <span class="sf-bullet">–</span> <span>Film Shortage 2025 Selection</span></li>
+            <li><i class="fa-solid fa-building"></i> <span class="sf-bullet">–</span> <span>Filmed at The Shop</span></li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> <span>Release 2026</span></li>
           </ul>
 
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
@@ -293,9 +295,9 @@
           <p class="sf-project-desc">When the world treats you wrong, how far will you go to make it right.</p>
           
           <ul class="sf-project-specs">
-            <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> Created by Terrell Lamont</li>
-            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2028</li>
-            <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> Gear: <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-ls600'; event.preventDefault();">Aputure LS 600D</span>, <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-ls300'; event.preventDefault();">LS 300 Mark II</span>, <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-storm80'; event.preventDefault();">Storm 80c</span></li>
+            <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> <span>Created by Terrell Lamont</span></li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> <span>Release 2028</span></li>
+            <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> <span>Gear: <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-ls600'; event.preventDefault();">Aputure LS 600D</span>, <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-ls300'; event.preventDefault();">LS 300 Mark II</span>, <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-storm80'; event.preventDefault();">Storm 80c</span></span></li>
           </ul>
 
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
@@ -315,9 +317,9 @@
           <p class="sf-project-desc">You are enough for me. An intimate narrative drama from the team.</p>
           
           <ul class="sf-project-specs">
-            <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> Created by Devin Hill</li>
-            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2028</li>
-            <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> Gear: Shot on <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-bm'; event.preventDefault();">Blackmagic 6K</span></li>
+            <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> <span>Created by Devin Hill</span></li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> <span>Release 2028</span></li>
+            <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> <span>Gear: Shot on <span class="sf-inline-link" onclick="window.location.href='gear.html#gear-bm'; event.preventDefault();">Blackmagic 6K</span></span></li>
           </ul>
 
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
@@ -337,8 +339,8 @@
           <p class="sf-project-desc">Currently in development. A multi-part episodic story from the Sweet Flypaper team.</p>
           
           <ul class="sf-project-specs">
-            <li><i class="fa-solid fa-pen-nib"></i> <span class="sf-bullet">–</span> In Development</li>
-            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> TBA</li>
+            <li><i class="fa-solid fa-pen-nib"></i> <span class="sf-bullet">–</span> <span>In Development</span></li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> <span>TBA</span></li>
           </ul>
 
           <span class="sf-project-link">Coming Soon <i class="fa-solid fa-arrow-right"></i></span>
