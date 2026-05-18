@@ -26,7 +26,7 @@
     font-family: 'Geist', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    /* Removed overflow-x: hidden; to allow position: sticky to work properly */
     display: block;
   }
   #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -175,10 +175,13 @@
     #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
     #sf-embed .sf-inner-hero { padding: 4rem 0; }
     #sf-embed .sf-inner-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    
+    /* MOBILE INDENTATION FIX */
     #sf-embed .sf-how-steps { grid-template-columns: 1fr; }
     #sf-embed .sf-how-step { border-right: none; border-bottom: 1px solid var(--border-color); padding: 2rem 0; }
-    #sf-embed .sf-how-step:last-child { border-bottom: none; }
+    #sf-embed .sf-how-step:last-child { border-bottom: none; padding-left: 0; }
     #sf-embed .sf-how-step:nth-child(2) { padding-left: 0; }
+    
     #sf-embed .sf-gear-filters { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 2rem; }
     #sf-embed .sf-gear-filters::-webkit-scrollbar { display: none; }
     #sf-embed .sf-gear-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -290,13 +293,10 @@
   <section class="sf-gear-section">
     <div class="sf-container">
 
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
-        <div>
-          <span class="sf-label">Inventory</span>
-          <h2>Build Your Package</h2>
-          <p style="color: var(--text-muted); max-width: 600px; margin-top: 0.5rem; font-size: 0.95rem;">Meticulously maintained, cinema-ready equipment available for same-day pickup in Denver.</p>
-        </div>
-        <button class="sf-btn sf-btn-ghost" style="flex-shrink: 0;" data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">Questions? Contact Us</button>
+      <div style="margin-bottom: 3rem;">
+        <span class="sf-label">Inventory</span>
+        <h2>Build Your Package</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin-top: 0.5rem; font-size: 0.95rem;">Meticulously maintained, cinema-ready equipment available for same-day pickup in Denver.</p>
       </div>
 
       <div class="sf-gear-filters">
