@@ -75,9 +75,10 @@
   #sf-embed .sf-inner-hero-text h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
   #sf-embed .sf-inner-hero-text p { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; line-height: 1.6; }
 
-  /* --- FILTER & SEARCH BAR --- */
-  #sf-embed .sf-filter-bar { position: sticky; top: 96px; z-index: 999; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1.25rem 0; margin-bottom: 4rem; transition: all 0.3s ease; }
-  #sf-embed .sf-filter-controls { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  /* --- TWO-ROW FILTER & SEARCH BAR --- */
+  #sf-embed .sf-filter-bar { position: sticky; top: 96px; z-index: 999; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; margin-bottom: 4rem; transition: all 0.3s ease; }
+  
+  #sf-embed .sf-filter-top-row { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
   
   #sf-embed .sf-filter-list { display: flex; gap: 2rem; list-style: none; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   #sf-embed .sf-filter-list::-webkit-scrollbar { display: none; }
@@ -85,17 +86,16 @@
   #sf-embed .sf-filter-btn:hover { color: var(--text-main); }
   #sf-embed .sf-filter-btn.active { color: var(--text-main); border-bottom-color: var(--accent); }
 
-  #sf-embed .sf-search-sort-wrap { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-
   /* SORT DROPDOWN */
   #sf-embed .sf-sort-dropdown { background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.65rem 1rem; border-radius: 4px; outline: none; cursor: pointer; transition: border-color 0.3s; }
   #sf-embed .sf-sort-dropdown:focus { border-color: var(--text-muted); }
 
-  /* SEARCH BOX */
-  #sf-embed .sf-search-box { display: flex; align-items: center; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 4px; padding: 0.6rem 1rem; width: 100%; max-width: 320px; transition: border-color 0.3s; }
+  /* SEARCH BOX (BOTTOM ROW) */
+  #sf-embed .sf-filter-bottom-row { width: 100%; display: flex; }
+  #sf-embed .sf-search-box { display: flex; align-items: center; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 4px; padding: 0.8rem 1rem; width: 100%; transition: border-color 0.3s; }
   #sf-embed .sf-search-box:focus-within { border-color: var(--text-muted); }
-  #sf-embed .sf-search-box i { color: var(--text-muted); font-size: 0.85rem; }
-  #sf-embed .sf-search-box input { background: transparent; border: none; color: var(--text-main); font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; width: 100%; margin-left: 0.75rem; outline: none; }
+  #sf-embed .sf-search-box i { color: var(--text-muted); font-size: 0.9rem; }
+  #sf-embed .sf-search-box input { background: transparent; border: none; color: var(--text-main); font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; width: 100%; margin-left: 0.75rem; outline: none; }
   #sf-embed .sf-search-box input::placeholder { color: #52525b; }
 
   /* --- PROJECTS STACK (ALTERNATING ROWS) --- */
@@ -164,11 +164,10 @@
     
     #sf-embed .sf-inner-hero { padding: 4rem 0 2rem; }
     
-    /* MOBILE DOUBLE STICKY FIX */
-    #sf-embed .sf-filter-bar { position: relative; top: 0; padding: 1rem 0; margin-bottom: 2rem; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-    #sf-embed .sf-filter-controls { flex-direction: column; align-items: stretch; gap: 1rem; }
-    #sf-embed .sf-search-sort-wrap { flex-direction: column; align-items: stretch; width: 100%; }
-    #sf-embed .sf-search-box { max-width: 100%; }
+    /* MOBILE DOUBLE STICKY FIX & FILTER BAR ADJUSTMENTS */
+    #sf-embed .sf-filter-bar { position: relative; top: 0; padding: 1rem 0; margin-bottom: 2rem; }
+    #sf-embed .sf-filter-top-row { flex-direction: column; align-items: stretch; gap: 1.5rem; margin-bottom: 1.5rem; }
+    #sf-embed .sf-filter-list { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; }
     
     /* MOBILE STACK FORCE: Instantly snaps all rows to standard Image top, Text bottom */
     #sf-embed .sf-project-card { flex-direction: column !important; }
@@ -226,16 +225,16 @@
   </section>
 
   <div class="sf-filter-bar">
-    <div class="sf-container sf-filter-controls">
+    <div class="sf-container">
       
-      <ul class="sf-filter-list">
-        <li><button class="sf-filter-btn active" data-filter="all">All Work</button></li>
-        <li><button class="sf-filter-btn" data-filter="features">Features</button></li>
-        <li><button class="sf-filter-btn" data-filter="shorts">Short Films</button></li>
-        <li><button class="sf-filter-btn" data-filter="series">Series</button></li>
-      </ul>
+      <div class="sf-filter-top-row">
+        <ul class="sf-filter-list">
+          <li><button class="sf-filter-btn active" data-filter="all">All</button></li>
+          <li><button class="sf-filter-btn" data-filter="features">Features</button></li>
+          <li><button class="sf-filter-btn" data-filter="shorts">Short Films</button></li>
+          <li><button class="sf-filter-btn" data-filter="series">Series</button></li>
+        </ul>
 
-      <div class="sf-search-sort-wrap">
         <select id="projectSort" class="sf-sort-dropdown">
           <option value="default">Sort By...</option>
           <option value="date-new">Newest First</option>
@@ -243,7 +242,9 @@
           <option value="name-asc">Name (A-Z)</option>
           <option value="name-desc">Name (Z-A)</option>
         </select>
-        
+      </div>
+
+      <div class="sf-filter-bottom-row">
         <div class="sf-search-box">
           <i class="fa-solid fa-search"></i>
           <input type="text" id="projectSearch" placeholder="Search title, year, etc...">
