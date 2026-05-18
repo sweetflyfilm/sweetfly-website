@@ -31,6 +31,7 @@
     --border-color: #27272a;
     --accent: #ffffff;
     --accent-hover: #e2e8f0;
+    --gold: #D4AF37;
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: 'Geist', sans-serif;
@@ -52,12 +53,6 @@
   #sf-embed .sf-section-padding { padding: 6rem 0; }
   #sf-embed .sf-label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted) !important; margin-bottom: 1rem; display: block; }
 
-  #sf-embed .sf-btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
-  #sf-embed .sf-btn-primary { background-color: var(--accent); color: var(--bg-dark) !important; border: 1px solid var(--accent); }
-  #sf-embed .sf-btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark) !important; }
-  #sf-embed .sf-btn-ghost { background-color: transparent; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.5); }
-  #sf-embed .sf-btn-ghost:hover { border-color: var(--accent); color: var(--accent) !important; }
-
   /* NAVIGATION */
   #sf-embed .sf-navbar { position: sticky; top: 0; z-index: 10000; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
   #sf-embed .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
@@ -76,43 +71,66 @@
   #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
 
   /* HERO */
-  #sf-embed .sf-inner-hero { position: relative; width: 100%; padding: 8rem 0 4rem; border-bottom: 1px solid var(--border-color); background-color: var(--bg-dark); }
+  #sf-embed .sf-inner-hero { position: relative; width: 100%; padding: 8rem 0 4rem; background-color: var(--bg-dark); }
   #sf-embed .sf-inner-hero-text h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
   #sf-embed .sf-inner-hero-text p { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; line-height: 1.6; }
 
-  /* FILTER BAR */
+  /* --- FILTER & SEARCH BAR --- */
   #sf-embed .sf-filter-bar { position: sticky; top: 96px; z-index: 999; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1.25rem 0; margin-bottom: 4rem; transition: all 0.3s ease; }
-  #sf-embed .sf-filter-list { display: flex; gap: 2rem; list-style: none; }
-  #sf-embed .sf-filter-btn { background: none; border: none; font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); cursor: pointer; padding-bottom: 0.25rem; border-bottom: 1px solid transparent; transition: all 0.2s ease; }
+  #sf-embed .sf-filter-controls { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  
+  #sf-embed .sf-filter-list { display: flex; gap: 2rem; list-style: none; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  #sf-embed .sf-filter-list::-webkit-scrollbar { display: none; }
+  #sf-embed .sf-filter-btn { background: none; border: none; font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); cursor: pointer; padding-bottom: 0.25rem; border-bottom: 1px solid transparent; transition: all 0.2s ease; white-space: nowrap; }
   #sf-embed .sf-filter-btn:hover { color: var(--text-main); }
   #sf-embed .sf-filter-btn.active { color: var(--text-main); border-bottom-color: var(--accent); }
 
-  /* PROJECTS GRID */
-  #sf-embed .sf-projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem 3rem; padding-bottom: 6rem; }
-  #sf-embed .sf-project-card { display: flex; flex-direction: column; gap: 1.5rem; transition: transform 0.3s ease; cursor: pointer; }
-  #sf-embed .sf-project-card:hover { transform: translateY(-5px); }
-  #sf-embed .sf-project-card.sf-hidden { display: none; }
+  #sf-embed .sf-search-sort-wrap { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
-  /* FEATURED CARD STYLING */
-  #sf-embed .sf-project-card.featured { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 4rem; margin-bottom: 2rem; }
+  /* SORT DROPDOWN */
+  #sf-embed .sf-sort-dropdown { background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.65rem 1rem; border-radius: 4px; outline: none; cursor: pointer; transition: border-color 0.3s; }
+  #sf-embed .sf-sort-dropdown:focus { border-color: var(--text-muted); }
+
+  /* SEARCH BOX */
+  #sf-embed .sf-search-box { display: flex; align-items: center; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 4px; padding: 0.6rem 1rem; width: 100%; max-width: 320px; transition: border-color 0.3s; }
+  #sf-embed .sf-search-box:focus-within { border-color: var(--text-muted); }
+  #sf-embed .sf-search-box i { color: var(--text-muted); font-size: 0.85rem; }
+  #sf-embed .sf-search-box input { background: transparent; border: none; color: var(--text-main); font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; width: 100%; margin-left: 0.75rem; outline: none; }
+  #sf-embed .sf-search-box input::placeholder { color: #52525b; }
+
+  /* --- PROJECTS STACK (ALTERNATING ROWS) --- */
+  #sf-embed .sf-projects-stack { display: flex; flex-direction: column; gap: 4rem; padding-bottom: 6rem; }
   
-  #sf-embed .sf-project-img-wrap { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: 4px; border: 1px solid var(--border-color); background-color: var(--bg-panel); }
-  #sf-embed .sf-project-card.featured .sf-project-img-wrap { flex: 1.6; }
-  #sf-embed .sf-project-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%); transition: transform 0.6s ease, filter 0.6s ease; }
+  #sf-embed .sf-project-card { display: flex; background-color: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; transition: border-color 0.3s ease, transform 0.3s ease; text-decoration: none; cursor: pointer; }
+  #sf-embed .sf-project-card:hover { border-color: var(--text-muted); transform: translateY(-4px); }
+  #sf-embed .sf-project-card.sf-hidden { display: none !important; }
+
+  /* The JS engine will apply inline flex-direction (row or row-reverse) to alternate these automatically */
+  
+  #sf-embed .sf-project-img-wrap { width: 50%; position: relative; overflow: hidden; flex-shrink: 0; background-color: var(--bg-dark); }
+  #sf-embed .sf-project-img-wrap img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; filter: grayscale(20%); transition: transform 0.6s ease, filter 0.6s ease; }
   #sf-embed .sf-project-card:hover .sf-project-img-wrap img { transform: scale(1.03); filter: grayscale(0%); }
 
-  #sf-embed .sf-project-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  #sf-embed .sf-project-info { width: 50%; padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; }
   
   /* METADATA & GOLD DOT */
   #sf-embed .sf-project-meta { display: flex; align-items: center; gap: 0.75rem; font-family: 'Geist Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; }
-  #sf-embed .sf-gold-dot { width: 6px; height: 6px; background-color: #D4AF37; border-radius: 50%; box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); flex-shrink: 0; }
+  #sf-embed .sf-gold-dot { width: 6px; height: 6px; background-color: var(--gold); border-radius: 50%; box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); flex-shrink: 0; }
   
-  #sf-embed .sf-project-title { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 0.75rem; line-height: 1.1; }
-  #sf-embed .sf-project-card.featured .sf-project-title { font-size: clamp(2.5rem, 4vw, 3.5rem); }
-  #sf-embed .sf-project-desc { color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  #sf-embed .sf-project-title { font-size: clamp(1.8rem, 3vw, 2.8rem); margin-bottom: 0.75rem; line-height: 1.1; }
+  #sf-embed .sf-project-desc { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem; }
+
+  /* RESTORED SPECS/INFO BULLETS */
+  #sf-embed .sf-project-specs { list-style: none; margin: 0 0 2rem 0; font-size: 0.95rem; padding: 0; }
+  #sf-embed .sf-project-specs li { margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.75rem; color: var(--text-muted); }
+  #sf-embed .sf-project-specs li i { color: var(--text-main); font-size: 0.9em; width: 16px; text-align: center; display: inline-block; flex-shrink: 0; }
+  #sf-embed .sf-bullet { color: var(--text-main); font-size: 0.75rem; width: 16px; text-align: center; flex-shrink: 0; line-height: 1; }
 
   #sf-embed .sf-project-link { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); display: inline-flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.2rem; align-self: flex-start; transition: border-color 0.2s ease; }
   #sf-embed .sf-project-card:hover .sf-project-link { border-color: var(--accent); }
+
+  /* NO RESULTS STATE */
+  #sf-embed .sf-no-results { text-align: center; padding: 4rem 0; font-family: 'Geist Mono', monospace; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: none; }
 
   /* FOOTER */
   #sf-embed .sf-footer { background-color: var(--bg-panel); border-top: 1px solid var(--border-color); padding: 5rem 0 3rem 0; color: var(--text-muted); font-size: 0.9rem; }
@@ -148,10 +166,17 @@
     
     /* MOBILE DOUBLE STICKY FIX */
     #sf-embed .sf-filter-bar { position: relative; top: 0; padding: 1rem 0; margin-bottom: 2rem; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-    #sf-embed .sf-filter-list { gap: 1.5rem; }
+    #sf-embed .sf-filter-controls { flex-direction: column; align-items: stretch; gap: 1rem; }
+    #sf-embed .sf-search-sort-wrap { flex-direction: column; align-items: stretch; width: 100%; }
+    #sf-embed .sf-search-box { max-width: 100%; }
     
-    #sf-embed .sf-projects-grid { grid-template-columns: 1fr; gap: 4rem; }
-    #sf-embed .sf-project-card.featured { flex-direction: column; gap: 1.5rem; }
+    /* MOBILE STACK FORCE: Instantly snaps all rows to standard Image top, Text bottom */
+    #sf-embed .sf-project-card { flex-direction: column !important; }
+    #sf-embed .sf-project-img-wrap, 
+    #sf-embed .sf-project-info { width: 100%; }
+    #sf-embed .sf-project-info { padding: 2.5rem 2rem; }
+    
+    #sf-embed .sf-projects-stack { gap: 3rem; }
     
     #sf-embed .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     #sf-embed .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
@@ -194,26 +219,44 @@
     <div class="sf-container">
       <div class="sf-inner-hero-text reveal">
         <span class="sf-label">Originals</span>
-        <h1>Projects.</h1>
+        <h1>Projects</h1>
         <p>A collection of our original films, features, and series. We build stories from the ground up.</p>
       </div>
     </div>
   </section>
 
   <div class="sf-filter-bar">
-    <div class="sf-container">
+    <div class="sf-container sf-filter-controls">
+      
       <ul class="sf-filter-list">
         <li><button class="sf-filter-btn active" data-filter="all">All Work</button></li>
         <li><button class="sf-filter-btn" data-filter="features">Features</button></li>
         <li><button class="sf-filter-btn" data-filter="shorts">Short Films</button></li>
+        <li><button class="sf-filter-btn" data-filter="series">Series</button></li>
       </ul>
+
+      <div class="sf-search-sort-wrap">
+        <select id="projectSort" class="sf-sort-dropdown">
+          <option value="default">Sort By...</option>
+          <option value="date-new">Newest First</option>
+          <option value="date-old">Oldest First</option>
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+        </select>
+        
+        <div class="sf-search-box">
+          <i class="fa-solid fa-search"></i>
+          <input type="text" id="projectSearch" placeholder="Search title, year, etc...">
+        </div>
+      </div>
+
     </div>
   </div>
 
   <section class="sf-container">
-    <div class="sf-projects-grid">
+    <div class="sf-projects-stack" id="projectsGrid">
 
-      <a href="#" class="sf-project-card featured reveal" data-cat="shorts">
+      <a href="#" class="sf-project-card reveal" data-cat="shorts" data-title="Love, Pills, & A Pistol" data-year="2026" data-index="0">
         <div class="sf-project-img-wrap">
           <img src="images/lpp.jpg" alt="Love, Pills, & A Pistol">
         </div>
@@ -223,12 +266,19 @@
             <span>Short Film &middot; 2026</span>
           </div>
           <h2 class="sf-project-title">Love, Pills, &amp; A Pistol</h2>
-          <p class="sf-project-desc">Is love ever enough? An exploration of addiction, relationships, and the breaking point. Official Selection Film Shortage 2025.</p>
+          <p class="sf-project-desc">Is love ever enough? An exploration of addiction, relationships, and the breaking point.</p>
+          
+          <ul class="sf-project-specs">
+            <li><i class="fa-solid fa-award"></i> <span class="sf-bullet">–</span> Film Shortage 2025 Selection</li>
+            <li><i class="fa-solid fa-building"></i> <span class="sf-bullet">–</span> Filmed at The Shop</li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2026</li>
+          </ul>
+
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
 
-      <a href="#" class="sf-project-card reveal reveal-d1" data-cat="features">
+      <a href="#" class="sf-project-card reveal reveal-d1" data-cat="features" data-title="Blu Has a Gun" data-year="2028" data-index="1">
         <div class="sf-project-img-wrap">
           <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg" alt="Blu Has a Gun">
         </div>
@@ -238,12 +288,19 @@
             <span>Feature Film &middot; 2028</span>
           </div>
           <h2 class="sf-project-title">Blu Has a Gun</h2>
-          <p class="sf-project-desc">When the world treats you wrong, how far will you go to make it right. Created by Terrell Lamont.</p>
+          <p class="sf-project-desc">When the world treats you wrong, how far will you go to make it right.</p>
+          
+          <ul class="sf-project-specs">
+            <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> Created by Terrell Lamont</li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2028</li>
+            <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> Gear: Aputure LS 600D, LS 300 Mark II, Storm 80c</li>
+          </ul>
+
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
 
-      <a href="#" class="sf-project-card reveal reveal-d2" data-cat="shorts">
+      <a href="#" class="sf-project-card reveal reveal-d2" data-cat="shorts" data-title="Before The Sun" data-year="2028" data-index="2">
         <div class="sf-project-img-wrap">
           <img src="images/b4ts.png" alt="Before The Sun">
         </div>
@@ -253,12 +310,42 @@
             <span>Short Film &middot; 2028</span>
           </div>
           <h2 class="sf-project-title">Before The Sun</h2>
-          <p class="sf-project-desc">You are enough for me. An intimate narrative created by Devin Hill.</p>
+          <p class="sf-project-desc">You are enough for me. An intimate narrative drama from the team.</p>
+          
+          <ul class="sf-project-specs">
+            <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> Created by Devin Hill</li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2028</li>
+            <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> Gear: Shot on Blackmagic 6K</li>
+          </ul>
+
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
 
+      <a href="#" class="sf-project-card reveal" data-cat="series" data-title="Untitled Series" data-year="2029" data-index="3">
+        <div class="sf-project-img-wrap">
+          <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Film Rolls">
+        </div>
+        <div class="sf-project-info">
+          <div class="sf-project-meta">
+            <span class="sf-gold-dot"></span>
+            <span>Web Series &middot; Coming Soon</span>
+          </div>
+          <h2 class="sf-project-title">Untitled Series</h2>
+          <p class="sf-project-desc">Currently in development. A multi-part episodic story from the Sweet Flypaper team.</p>
+          
+          <ul class="sf-project-specs">
+            <li><i class="fa-solid fa-pen-nib"></i> <span class="sf-bullet">–</span> In Development</li>
+            <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> TBA</li>
+          </ul>
+
+          <span class="sf-project-link">Coming Soon <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
     </div>
+    
+    <div id="noResultsMsg" class="sf-no-results">No projects match your criteria.</div>
   </section>
 
   <footer class="sf-footer">
@@ -326,26 +413,94 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   revealEls.forEach(el => observer.observe(el));
 
-  // Category Filter Controller
+  // Category Filter, Sort, & Real-time Search Engine
   const filterBtns = document.querySelectorAll('#sf-embed .sf-filter-btn');
-  const projectCards = document.querySelectorAll('#sf-embed .sf-project-card');
+  const searchInput = document.getElementById('projectSearch');
+  const sortSelect = document.getElementById('projectSort');
+  const noResultsMsg = document.getElementById('noResultsMsg');
+  const projectsGrid = document.getElementById('projectsGrid');
 
+  function updateProjectBoard() {
+    const activeFilter = document.querySelector('#sf-embed .sf-filter-btn.active').dataset.filter;
+    const searchTerm = searchInput.value.toLowerCase();
+    const sortValue = sortSelect.value;
+    
+    // Grab all project cards into an array to sort them
+    let cardsArray = Array.from(document.querySelectorAll('#sf-embed .sf-project-card'));
+    
+    // 1. Sort the array
+    if (sortValue !== 'default') {
+      cardsArray.sort((a, b) => {
+        if (sortValue === 'name-asc') return a.dataset.title.localeCompare(b.dataset.title);
+        if (sortValue === 'name-desc') return b.dataset.title.localeCompare(a.dataset.title);
+        if (sortValue === 'date-new') return parseInt(b.dataset.year) - parseInt(a.dataset.year);
+        if (sortValue === 'date-old') return parseInt(a.dataset.year) - parseInt(b.dataset.year);
+        return 0;
+      });
+    } else {
+      // Revert to original order based on data-index
+      cardsArray.sort((a, b) => parseInt(a.dataset.index) - parseInt(b.dataset.index));
+    }
+
+    // 2. Re-append to DOM in sorted order
+    cardsArray.forEach(card => projectsGrid.appendChild(card));
+    
+    // 3. Filter & Apply Alternating Layout
+    let visibleCount = 0;
+    const isDesktop = window.innerWidth > 900;
+
+    cardsArray.forEach(card => {
+      const textContent = card.innerText.toLowerCase();
+      const matchesFilter = (activeFilter === 'all' || card.dataset.cat === activeFilter);
+      const matchesSearch = textContent.includes(searchTerm);
+
+      if (matchesFilter && matchesSearch) {
+        card.classList.remove('sf-hidden');
+        
+        // Alternating logic applied only to visible cards on Desktop
+        if (isDesktop) {
+          if (visibleCount % 2 !== 0) {
+            card.style.flexDirection = 'row-reverse';
+          } else {
+            card.style.flexDirection = 'row';
+          }
+        } else {
+          // Force standard column stack on mobile
+          card.style.flexDirection = 'column';
+        }
+        
+        visibleCount++;
+      } else {
+        card.classList.add('sf-hidden');
+      }
+    });
+
+    // Toggle Empty State Message
+    if(visibleCount === 0) {
+      noResultsMsg.style.display = 'block';
+    } else {
+      noResultsMsg.style.display = 'none';
+    }
+  }
+
+  // Bind Buttons & Inputs
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      
-      const filter = btn.dataset.filter;
-      
-      projectCards.forEach(card => {
-        if (filter === 'all' || card.dataset.cat === filter) {
-          card.classList.remove('sf-hidden');
-        } else {
-          card.classList.add('sf-hidden');
-        }
-      });
+      updateProjectBoard();
     });
   });
+
+  searchInput.addEventListener('input', updateProjectBoard);
+  sortSelect.addEventListener('change', updateProjectBoard);
+  
+  // Re-calculate layout if the user resizes the browser window
+  window.addEventListener('resize', updateProjectBoard);
+
+  // Run engine on load
+  updateProjectBoard();
+
 </script>
 
 </body>
