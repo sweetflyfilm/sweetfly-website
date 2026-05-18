@@ -13,6 +13,16 @@
 <script async src="https://tally.so/widgets/embed.js"></script>
 
 <style>
+  /* THE INTENTIONAL WHITE BORDER FRAME */
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    border: 8px solid #ffffff; 
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
   #sf-embed {
     --bg-dark: #0a0a0a;
     --bg-panel: #141414;
@@ -35,12 +45,6 @@
     display: block;
   }
   
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #0a0a0a;
-  }
-
   #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
   
   #sf-embed h1, #sf-embed h2, #sf-embed h3, #sf-embed h4 {
@@ -207,7 +211,10 @@
     #sf-embed .sf-navbar { padding: 1rem 0; }
     #sf-embed .sf-nav-text-logo { height: 48px; }
     #sf-embed .sf-nav-inner { flex-direction: column; gap: 1.25rem; text-align: center; }
-    #sf-embed .sf-nav-menu { width: 100%; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    
+    /* MOBILE NAV ICON FIX: Forced into one single row */
+    #sf-embed .sf-nav-menu { width: 100%; justify-content: center; gap: 1rem; flex-wrap: nowrap; }
+    
     #sf-embed .sf-nav-link span { display: none; }
     #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
     #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
@@ -215,7 +222,10 @@
     #sf-embed .sf-inner-hero { padding: 4rem 0; }
     #sf-embed .sf-inner-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
     
-    #sf-embed .sf-manifesto-section { padding: 6rem 0; background-attachment: scroll; }
+    /* MOBILE "STARS" FIX: Disable fixed parallax, remove jittery film grain */
+    #sf-embed::after { display: none; }
+    #sf-embed .sf-manifesto-section { padding: 6rem 0; background-attachment: scroll !important; background-position: center top; }
+    
     #sf-embed .sf-features-grid { grid-template-columns: 1fr; }
     #sf-embed .sf-included-grid { grid-template-columns: 1fr; gap: 4rem; }
     
@@ -454,7 +464,7 @@
           <p>Human readers. Five-day turnaround. No AI, no algorithms, no vague promises. Just honest, expert notes from people who understand what it takes to get a story made.</p>
         </div>
         <div class="sf-booking-actions">
-          <a href="#" class="sf-btn sf-btn-primary">
+          <a href="#" class="sf-btn sf-btn-primary" data-tally-open="KYWv6V" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">
             Submit Your Script <i class="fa-solid fa-file-arrow-up"></i>
           </a>
         </div>
