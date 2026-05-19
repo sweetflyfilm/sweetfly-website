@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Not Found | Sweet Flypaper Film</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<style>
+  body {
+    margin: 0; padding: 0;
+    background-color: #0a0a0a;
+    border: 8px solid #ffffff;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sf-embed {
+    --bg-dark: #0a0a0a;
+    --bg-panel: #141414;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --border-color: #27272a;
+    --accent: #ffffff;
+    --accent-hover: #e2e8f0;
+    
+    /* 404 Emergency / Lost Signal Palette */
+    --error-crimson: 140, 10, 30;  /* Deep Blood Red */
+    --error-dark: 10, 0, 5;        /* Near Black */
+    
+    /* Alert Radar Ping */
+    --error-alert: 255, 40, 60;    /* Siren Red */
+    
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Geist', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
+  #sf-embed h1, #sf-embed h2, #sf-embed h3, #sf-embed h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main) !important; }
+  #sf-embed p { color: var(--text-muted); }
+  #sf-embed a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+  #sf-embed img { max-width: 100%; height: auto; display: block; }
+
+  #sf-embed .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  #sf-embed .sf-label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted) !important; margin-bottom: 1rem; display: block; }
+
+  #sf-embed .sf-btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
+  #sf-embed .sf-btn-primary { background-color: var(--accent); color: var(--bg-dark) !important; border: 1px solid var(--accent); }
+  #sf-embed .sf-btn-primary:hover { background-color: var(--accent-hover); }
+  #sf-embed .sf-btn-ghost { background-color: transparent; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.5); }
+  #sf-embed .sf-btn-ghost:hover { border-color: var(--accent); color: var(--accent) !important; }
+
+  /* NAV */
+  #sf-embed .sf-navbar { position: sticky; top: 0; z-index: 10000; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
+  #sf-embed .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
+  #sf-embed .sf-nav-logo { display: flex; align-items: center; }
+  #sf-embed .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); transition: height 0.2s ease; }
+  #sf-embed .sf-nav-menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  #sf-embed .sf-nav-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
+  #sf-embed .sf-nav-link:hover { color: var(--text-muted); }
+  #sf-embed .sf-nav-link.active { color: var(--text-muted); border-bottom: 1px solid var(--text-muted); padding-bottom: 2px; }
+  #sf-embed .sf-nav-link i { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* FLOATING CONTACT */
+  #sf-embed .sf-floating-contact { position: fixed; bottom: 2rem; right: 2rem; z-index: 99999; background-color: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.75rem 1.25rem; font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.2s ease; }
+  #sf-embed .sf-floating-contact:hover { border-color: var(--text-main); background-color: var(--text-main); color: var(--bg-dark) !important; }
+  #sf-embed .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
+  #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
+
+  /* ── 404 FULL SCREEN HERO ── */
+  #sf-embed .sf-hero {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #050505;
+  }
+  
+  #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 4rem 0; }
+  #sf-embed .sf-hero-veil { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.2) 100%); z-index: 15; pointer-events: none; }
+
+  /* LAYER 1: BASE GRAPHIC SYSTEM */
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; 
+    filter: grayscale(100%) contrast(1.5); 
+    opacity: 0.25; 
+    pointer-events: none;
+    transition: transform 10s ease;
+  }
+  #sf-embed .sf-hero:hover .hero-bg-img { transform: scale(1.04); }
+
+  /* LAYER 2: THE AMBIENT CRIMSON LIGHT GEL SHEET */
+  .pulse-base {
+    position: absolute; 
+    inset: -50px; 
+    z-index: 2; 
+    background-image: 
+      radial-gradient(circle at 30% 50%, rgba(var(--error-crimson), 0.6) 0%, transparent 60%),
+      radial-gradient(circle at 70% 50%, rgba(var(--error-dark), 0.8) 0%, transparent 70%);
+    mix-blend-mode: overlay;
+    animation: baseBreathe 4s ease-in-out infinite alternate;
+  }
+  @keyframes baseBreathe {
+    0%   { transform: scale(0.98); opacity: 0.8; }
+    100% { transform: scale(1.02); opacity: 1; }
+  }
+
+  /* LAYER 3: CONTRAST SIREN RED PERIMETER COMPLEMENTARY LIGHT */
+  .contrast-perimeter {
+    position: absolute;
+    inset: -20px;
+    z-index: 3;
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(var(--error-alert), 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(var(--error-alert), 0.2) 0%, transparent 50%);
+    mix-blend-mode: screen;
+    animation: contrastBreathe 3s ease-in-out infinite alternate;
+  }
+  @keyframes contrastBreathe {
+    0%   { opacity: 0.4; }
+    100% { opacity: 0.85; }
+  }
+
+  /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
+  .radar-ring { 
+    position: absolute; top: 50%; left: 50%; 
+    width: 150px; height: 150px; 
+    border-radius: 50%; 
+    z-index: 4; 
+    pointer-events: none; 
+    border: 3px solid rgba(var(--error-alert), 0.7);
+    box-shadow: inset 0 0 60px rgba(var(--error-alert), 0.5), 0 0 60px rgba(var(--error-alert), 0.5);
+    animation: deepRadar 6s linear infinite; 
+  }
+  @keyframes deepRadar { 
+    0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 
+    15% { opacity: 0.9; }
+    100% { transform: translate(-50%,-50%) scale(7.5); opacity: 0; } 
+  }
+
+  #sf-embed .sf-hero h1 {
+    font-size: clamp(5rem, 15vw, 10rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+  
+  #sf-embed .sf-hero h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── FOOTER ── */
+  #sf-embed .sf-footer { background-color: var(--bg-panel); padding: 5rem 0 3rem 0; font-size: 0.9rem; }
+  #sf-embed .sf-footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr) 1.2fr; gap: 3rem; align-items: start; }
+  #sf-embed .sf-footer-brand p { max-width: 320px; color: var(--text-muted) !important; font-size: 0.85rem; line-height: 1.5; margin-top: 1.25rem; }
+  #sf-embed .sf-footer-title { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main) !important; margin-bottom: 1.25rem; }
+  #sf-embed .sf-footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  #sf-embed .sf-footer-links a { color: var(--text-muted) !important; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+  #sf-embed .sf-footer-links a:hover { color: var(--text-main) !important; }
+  
+  #sf-embed .sf-footer-graphic-box { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+  #sf-embed .sf-footer-butterfly { height: 64px; width: 64px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; transition: border-color 0.3s; }
+  #sf-embed .sf-footer-graphic-box:hover .sf-footer-butterfly { border-color: rgba(255,255,255,0.4); }
+  #sf-embed .sf-butterfly-caption { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text-main); text-transform: lowercase; margin-top: 0.65rem; padding-right: 0.1em; opacity: 0.5; }
+  #sf-embed .sf-footer-bottom { border-top: 1px solid var(--border-color); margin-top: 4rem; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', monospace; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--text-muted); }
+
+  /* GRAIN */
+  #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
+
+  /* SCROLL REVEAL */
+  #sf-embed .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  #sf-embed .reveal.visible { opacity: 1; transform: translateY(0); }
+  #sf-embed .reveal-d1 { transition-delay: 0.1s; }
+  #sf-embed .reveal-d2 { transition-delay: 0.2s; }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    #sf-embed .sf-navbar { padding: 1rem 0; }
+    #sf-embed .sf-nav-text-logo { height: 48px; }
+    #sf-embed .sf-nav-inner { flex-direction: column; gap: 1.25rem; }
+    
+    /* MOBILE NAV ICON FIX */
+    #sf-embed .sf-nav-menu { width: 100%; justify-content: center; gap: 1rem; flex-wrap: nowrap; }
+    
+    #sf-embed .sf-nav-link span { display: none; }
+    #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
+    #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
+
+    #sf-embed .sf-hero { min-height: 65vh; text-align: center; justify-content: center; align-items: center; }
+    #sf-embed .sf-hero-veil { background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.6) 100%); }
+    
+    #sf-embed .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    #sf-embed .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
+    #sf-embed .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    #sf-embed::after { display: none; }
+  }
+</style>
+</head>
+<body>
+<div id="sf-embed">
+
+  <nav class="sf-navbar">
+    <div class="sf-container sf-nav-inner">
+      <a href="index.html" class="sf-nav-logo">
+        <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" class="sf-nav-text-logo">
+      </a>
+      <ul class="sf-nav-menu">
+        <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
+        <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
+        <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
+        <li><a href="projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
+        <li><a href="https://playground.sweetflyfilm.com" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
+        <li><a href="info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <button class="sf-floating-contact"
+          data-tally-open="KYWv6V"
+          data-tally-hide-title="1"
+          data-tally-emoji-text="👋🏾"
+          data-tally-emoji-animation="wave">
+    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
+  </button>
+
+  <section class="sf-hero">
+    <img src="/images/404.png" alt="Lost Signal" class="hero-bg-img">
+
+    <div class="pulse-base"></div>
+    
+    <div class="contrast-perimeter"></div>
+    
+    <div class="radar-ring"></div>
+
+    <div class="sf-hero-veil"></div>
+
+    <div class="sf-hero-content">
+      <div class="sf-container">
+        <span class="sf-label reveal">Error Code</span>
+        <h1 class="reveal reveal-d1">404.</h1>
+        <h2 class="reveal reveal-d1">You are not in the right place honey.</h2>
+        <p class="reveal reveal-d2" style="font-size: 1.15rem; max-width: 500px; margin-bottom: 2.5rem;">The tape ran out. The page you are looking for has been moved, deleted, or never existed in the first place.</p>
+        
+        <div class="reveal reveal-d2">
+          <a href="index.html" class="sf-btn sf-btn-primary">
+            <i class="fa-solid fa-house"></i> Return to Base
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sf-footer">
+    <div class="sf-container">
+      <div class="sf-footer-grid">
+        <div class="sf-footer-brand">
+          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" style="height:144px;width:auto;filter:invert(1);display:block;">
+          <p>We are the creators of our wildest, weirdest dreams. Come Fly With Us.</p>
+        </div>
+        <div>
+          <div class="sf-footer-title">Studio Services</div>
+          <ul class="sf-footer-links">
+            <li><a href="studio.html">The Shop</a></li>
+            <li><a href="gear.html">Gear Rental</a></li>
+            <li><a href="coverage.html">Script Coverage</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="sf-footer-title">Company</div>
+          <ul class="sf-footer-links">
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="https://playground.sweetflyfilm.com">Community</a></li>
+            <li><a href="info.html">About Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="sf-footer-title">Social Media</div>
+          <ul class="sf-footer-links">
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" style="width:14px;"></i> Facebook</a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" style="width:14px;"></i> Instagram</a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" style="width:14px;"></i> Linkedin</a></li>
+          </ul>
+        </div>
+        <div class="sf-footer-graphic-box">
+          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo Mark" class="sf-footer-butterfly">
+          <div class="sf-butterfly-caption">we fly</div>
+        </div>
+      </div>
+      <div class="sf-footer-bottom">
+        <div>&copy; 2026 SWEET FLYPAPER. ALL RIGHTS RESERVED.</div>
+        <div>DENVER &bull; AURORA &bull; BELIZE</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Scroll reveal framework controller
+  const revealEls = document.querySelectorAll('#sf-embed .reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
