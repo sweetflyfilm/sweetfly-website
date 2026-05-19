@@ -32,6 +32,14 @@
     --accent: #ffffff;
     --accent-hover: #e2e8f0;
     --gold: #D4AF37;
+    
+    /* Continuous Ombre Palette - Projects Page Spectrum */
+    --proj-blue: 15, 65, 115;      /* Deep Ocean Blue */
+    --proj-purple: 75, 20, 140;    /* Deep Purple */
+    
+    /* Scattered Contrast Accent */
+    --proj-contrast: 0, 255, 180;  /* Electric Mint Contrast */
+
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: 'Geist', sans-serif;
@@ -70,10 +78,87 @@
   #sf-embed .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
   #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
 
-  /* HERO */
-  #sf-embed .sf-inner-hero { position: relative; width: 100%; padding: 8rem 0 4rem; background-color: var(--bg-dark); }
-  #sf-embed .sf-inner-hero-text h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.05; margin-bottom: 1.5rem; }
-  #sf-embed .sf-inner-hero-text p { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; line-height: 1.6; }
+  /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
+  #sf-embed .sf-hero { 
+    position: relative; 
+    width: 100%; 
+    min-height: 80vh; 
+    display: flex; 
+    align-items: flex-end; 
+    overflow: hidden; 
+    border-bottom: 1px solid var(--border-color); 
+    background-color: #050505; 
+  }
+  
+  #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
+  #sf-embed .sf-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
+
+  /* LAYER 1: BASE GRAPHIC PHOTOGRAPH SYSTEM */
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* Forced to contain so the horizontal strip gets all its width in */
+    object-fit: contain; 
+    object-position: center;
+    z-index: 1; 
+    filter: grayscale(100%) contrast(1.2); 
+    opacity: 0.55; 
+    pointer-events: none;
+    transition: transform 10s ease;
+  }
+  #sf-embed .sf-hero:hover .hero-bg-img { transform: scale(1.04); }
+
+  /* LAYER 2: THE AMBIENT BLUE/PURPLE LIGHT GEL SHEET */
+  .pulse-base {
+    position: absolute; 
+    inset: -50px; 
+    z-index: 2; 
+    background-image: 
+      radial-gradient(circle at 20% 45%, rgba(var(--proj-blue), 0.85) 0%, transparent 70%),
+      radial-gradient(circle at 80% 45%, rgba(var(--proj-purple), 0.75) 0%, transparent 70%);
+    mix-blend-mode: overlay;
+    animation: baseBreathe 6s ease-in-out infinite alternate;
+  }
+  @keyframes baseBreathe {
+    0%   { transform: scale(0.96); opacity: 0.75; }
+    100% { transform: scale(1.04); opacity: 1; }
+  }
+
+  /* LAYER 3: CONTRAST MINT PERIMETER COMPLEMENTARY LIGHT */
+  .contrast-perimeter {
+    position: absolute;
+    inset: -20px;
+    z-index: 3;
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(var(--proj-contrast), 0.45) 0%, transparent 55%),
+      radial-gradient(circle at 100% 100%, rgba(var(--proj-contrast), 0.42) 0%, transparent 55%),
+      radial-gradient(circle at 100% 10%, rgba(var(--proj-contrast), 0.38) 0%, transparent 50%);
+    mix-blend-mode: screen;
+    animation: contrastBreathe 4.5s ease-in-out infinite alternate;
+  }
+  @keyframes contrastBreathe {
+    0%   { opacity: 0.55; }
+    100% { opacity: 1; }
+  }
+
+  /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
+  .radar-ring { 
+    position: absolute; top: 45%; left: 50%; 
+    width: 150px; height: 150px; 
+    border-radius: 50%; 
+    z-index: 4; 
+    pointer-events: none; 
+    border: 3px solid rgba(var(--proj-contrast), 0.65);
+    box-shadow: inset 0 0 60px rgba(var(--proj-contrast), 0.45), 0 0 60px rgba(var(--proj-contrast), 0.45);
+    animation: deepRadar 8s linear infinite; 
+  }
+  @keyframes deepRadar { 
+    0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 
+    15% { opacity: 0.85; }
+    100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } 
+  }
 
   /* --- TWO-ROW FILTER & SEARCH BAR --- */
   #sf-embed .sf-filter-bar { position: sticky; top: 96px; z-index: 999; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; margin-bottom: 4rem; transition: all 0.3s ease; }
@@ -162,7 +247,7 @@
     #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
     #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
     
-    #sf-embed .sf-inner-hero { padding: 4rem 0 2rem; }
+    #sf-embed .sf-hero { min-height: 65vh; }
     
     /* MOBILE DOUBLE STICKY FIX & FILTER BAR ADJUSTMENTS */
     #sf-embed .sf-filter-bar { position: relative; top: 0; padding: 1rem 0; margin-bottom: 2rem; }
@@ -199,7 +284,7 @@
         <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
         <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
         <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
-        <li><a href="projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
+        <li><a href="projects.html" class="sf-nav-link active"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
         <li><a href="community.html" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
         <li><a href="info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
       </ul>
@@ -214,12 +299,24 @@
     <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
   </button>
 
-  <section class="sf-inner-hero">
-    <div class="sf-container">
-      <div class="sf-inner-hero-text reveal">
-        <span class="sf-label">Originals</span>
-        <h1>Projects</h1>
-        <p>A collection of our original films, features, and series. We build stories from the ground up.</p>
+  <section class="sf-hero">
+    <img src="/images/projectsstrip.png" class="hero-bg-img" alt="Projects Strip">
+
+    <div class="pulse-base"></div>
+    
+    <div class="contrast-perimeter"></div>
+    
+    <div class="radar-ring"></div>
+
+    <div class="sf-hero-veil"></div>
+
+    <div class="sf-hero-content">
+      <div class="sf-container">
+        <div class="sf-inner-hero-text reveal">
+          <span class="sf-label">Originals</span>
+          <h1 style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.05; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.04em;">Projects.</h1>
+          <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 550px; line-height: 1.6; margin-bottom: 2rem;">A collection of our original films, features, and series. We build stories from the ground up.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -526,4 +623,4 @@
 </script>
 
 </body>
-</html>>
+</html>
