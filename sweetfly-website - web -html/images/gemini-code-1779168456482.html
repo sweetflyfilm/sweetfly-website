@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info | Sweet Flypaper Film</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<style>
+  body {
+    margin: 0; padding: 0;
+    background-color: #0a0a0a;
+    border: 8px solid #ffffff;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  #sf-embed {
+    --bg-dark: #0a0a0a;
+    --bg-panel: #141414;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --border-color: #27272a;
+    --accent: #ffffff;
+    --accent-hover: #e2e8f0;
+    
+    /* Continuous Ombre Palette - Info Page Terminal Spectrum */
+    --info-uv: 95, 25, 155;       /* Ultraviolet */
+    --info-magenta: 155, 25, 90;  /* Magenta/Crimson */
+    
+    /* Scattered Contrast Accent */
+    --info-contrast: 255, 180, 30; /* Electric Tungsten Gold */
+    --gold: #D4AF37;
+    
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Geist', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: block;
+  }
+
+  #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
+  #sf-embed h1, #sf-embed h2, #sf-embed h3, #sf-embed h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main) !important; }
+  #sf-embed p { color: var(--text-muted); }
+  #sf-embed a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+  #sf-embed img { max-width: 100%; height: auto; display: block; }
+
+  #sf-embed .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  #sf-embed .sf-label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted) !important; margin-bottom: 1rem; display: block; }
+
+  #sf-embed .sf-btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
+  #sf-embed .sf-btn-primary { background-color: var(--accent); color: var(--bg-dark) !important; border: 1px solid var(--accent); }
+  #sf-embed .sf-btn-primary:hover { background-color: var(--accent-hover); }
+  #sf-embed .sf-btn-ghost { background-color: transparent; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.5); }
+  #sf-embed .sf-btn-ghost:hover { border-color: var(--accent); }
+
+  /* NAV */
+  #sf-embed .sf-navbar { position: sticky; top: 0; z-index: 10000; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
+  #sf-embed .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
+  #sf-embed .sf-nav-logo { display: flex; align-items: center; }
+  #sf-embed .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); transition: height 0.2s ease; }
+  #sf-embed .sf-nav-menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+  #sf-embed .sf-nav-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
+  #sf-embed .sf-nav-link:hover { color: var(--text-muted); }
+  #sf-embed .sf-nav-link.active { color: var(--text-muted); border-bottom: 1px solid var(--text-muted); padding-bottom: 2px; }
+  #sf-embed .sf-nav-link i { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* FLOATING CONTACT */
+  #sf-embed .sf-floating-contact { position: fixed; bottom: 2rem; right: 2rem; z-index: 99999; background-color: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.75rem 1.25rem; font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.2s ease; }
+  #sf-embed .sf-floating-contact:hover { border-color: var(--text-main); background-color: var(--text-main); color: var(--bg-dark) !important; }
+  #sf-embed .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
+  #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
+
+  /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
+  #sf-embed .sf-hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #050505;
+  }
+  
+  #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
+  #sf-embed .sf-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
+
+  /* LAYER 1: BASE GRAPHIC VIDEO SYSTEM */
+  .hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; 
+    filter: grayscale(100%) contrast(1.2); 
+    opacity: 0.45; 
+    pointer-events: none;
+    transition: transform 10s ease;
+  }
+  #sf-embed .sf-hero:hover .hero-bg-video { transform: scale(1.04); }
+
+  /* LAYER 2: THE AMBIENT UV/MAGENTA LIGHT GEL SHEET */
+  .pulse-base {
+    position: absolute; 
+    inset: -50px; 
+    z-index: 2; 
+    background-image: 
+      radial-gradient(circle at 20% 45%, rgba(var(--info-uv), 0.85) 0%, transparent 70%),
+      radial-gradient(circle at 80% 45%, rgba(var(--info-magenta), 0.75) 0%, transparent 70%);
+    mix-blend-mode: overlay;
+    animation: baseBreathe 6s ease-in-out infinite alternate;
+  }
+  @keyframes baseBreathe {
+    0%   { transform: scale(0.96); opacity: 0.75; }
+    100% { transform: scale(1.04); opacity: 1; }
+  }
+
+  /* LAYER 3: CONTRAST TUNGSTEN GOLD PERIMETER COMPLEMENTARY LIGHT */
+  .contrast-perimeter {
+    position: absolute;
+    inset: -20px;
+    z-index: 3;
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(var(--info-contrast), 0.45) 0%, transparent 55%),
+      radial-gradient(circle at 100% 100%, rgba(var(--info-contrast), 0.42) 0%, transparent 55%),
+      radial-gradient(circle at 100% 10%, rgba(var(--info-contrast), 0.38) 0%, transparent 50%);
+    mix-blend-mode: screen;
+    animation: contrastBreathe 4.5s ease-in-out infinite alternate;
+  }
+  @keyframes contrastBreathe {
+    0%   { opacity: 0.55; }
+    100% { opacity: 1; }
+  }
+
+  /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
+  .radar-ring { 
+    position: absolute; top: 45%; left: 50%; 
+    width: 150px; height: 150px; 
+    border-radius: 50%; 
+    z-index: 4; 
+    pointer-events: none; 
+    border: 3px solid rgba(var(--info-contrast), 0.65);
+    box-shadow: inset 0 0 60px rgba(var(--info-contrast), 0.45), 0 0 60px rgba(var(--info-contrast), 0.45);
+    animation: deepRadar 8s linear infinite; 
+  }
+  @keyframes deepRadar { 
+    0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 
+    15% { opacity: 0.85; }
+    100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } 
+  }
+
+  #sf-embed .sf-hero h1 {
+    font-size: clamp(4.5rem, 11vw, 8.5rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+  }
+  #sf-embed .sf-hero-tagline {
+    font-family: 'Geist Mono', monospace;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  #sf-embed .sf-hero-tagline::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+
+  /* ── MARQUEE BAND ── */
+  #sf-embed .sf-marquee {
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-panel);
+    padding: 0.9rem 0;
+    white-space: nowrap;
+  }
+  #sf-embed .sf-marquee-track {
+    display: inline-flex;
+    gap: 2.5rem;
+    animation: sfScroll 25s linear infinite;
+    align-items: center;
+  }
+  @keyframes sfScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  #sf-embed .sf-marquee-item {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 1.25rem;
+  }
+  #sf-embed .sf-marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; opacity: 0.55; }
+
+  /* ── PEOPLE SECTIONS (Founders + Advisory) ── */
+  #sf-embed .sf-people-section {
+    padding: 7rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .sf-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .sf-section-header h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  /* CINEMATIC SPOTLIGHT BACKGROUND FOR TRANSPARENT HEADSHOTS */
+  #sf-embed .sf-founder-img-wrap,
+  #sf-embed .sf-advisor-img-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at top center, #23232f 0%, #0c0c10 100%);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* FOUNDER CARDS — big, editorial */
+  #sf-embed .sf-founders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    border: 1px solid var(--border-color);
+  }
+  #sf-embed .sf-founder-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-panel);
+    cursor: default;
+  }
+  #sf-embed .sf-founder-img-wrap {
+    aspect-ratio: 3/4;
+  }
+  #sf-embed .sf-founder-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: bottom center; /* Keeps transparent bodies grounded */
+    filter: grayscale(15%);
+    transition: transform 0.7s ease, filter 0.5s ease;
+  }
+  #sf-embed .sf-founder-card:hover .sf-founder-img-wrap img {
+    transform: scale(1.04);
+    filter: grayscale(0%);
+  }
+  #sf-embed .sf-founder-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.65) 100%);
+    pointer-events: none;
+  }
+  #sf-embed .sf-founder-info {
+    padding: 2rem 2.25rem 2.5rem;
+  }
+  #sf-embed .sf-founder-name {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-main);
+    margin-bottom: 0.3rem;
+  }
+  #sf-embed .sf-founder-role {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  #sf-embed .sf-founder-bio {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── MISSION STATEMENT ── */
+  #sf-embed .sf-mission {
+    padding: 8rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .sf-mission-text-centered {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  #sf-embed .sf-mission-quote {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: rgba(248,250,252,0.9);
+    font-style: italic;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    margin-bottom: 2.5rem;
+  }
+  #sf-embed .sf-mission-text-centered p {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--text-muted);
+    margin-bottom: 1.75rem;
+  }
+  #sf-embed .sf-mission-text-centered p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ADVISORY GRID — tighter, 5-up */
+  #sf-embed .sf-advisory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--border-color);
+  }
+  #sf-embed .sf-advisor-card {
+    border-right: 1px solid var(--border-color);
+    overflow: hidden;
+    background: var(--bg-dark);
+    transition: background 0.2s ease;
+  }
+  #sf-embed .sf-advisor-card:last-child { border-right: none; }
+  #sf-embed .sf-advisor-card:not(.empty-card):hover { background: var(--bg-panel); }
+  
+  #sf-embed .sf-advisor-img-wrap {
+    aspect-ratio: 1/1;
+  }
+  #sf-embed .sf-advisor-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; 
+    object-position: bottom center; /* Keeps transparent bodies grounded */
+    filter: grayscale(40%);
+    transition: transform 0.6s ease, filter 0.4s ease;
+  }
+  #sf-embed .sf-advisor-card:hover .sf-advisor-img-wrap img {
+    transform: scale(1.06);
+    filter: grayscale(0%);
+  }
+  #sf-embed .sf-advisor-info {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+  #sf-embed .sf-advisor-name {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+  }
+  #sf-embed .sf-advisor-role {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+
+  /* Empty placeholder cards to maintain the 5-column grid borders */
+  #sf-embed .sf-advisor-card.empty-card {
+    background: transparent;
+  }
+
+  /* ── VALUES BAND ── */
+  #sf-embed .sf-values {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .sf-values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-left: 1px solid var(--border-color);
+    margin-top: 3rem;
+  }
+  #sf-embed .sf-value-cell {
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 2.5rem 2rem;
+  }
+  #sf-embed .sf-value-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+  #sf-embed .sf-value-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    color: var(--text-main) !important;
+  }
+  #sf-embed .sf-value-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  /* ── FOOTER ── */
+  #sf-embed .sf-footer { background-color: var(--bg-panel); padding: 5rem 0 3rem 0; font-size: 0.9rem; }
+  #sf-embed .sf-footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr) 1.2fr; gap: 3rem; align-items: start; }
+  #sf-embed .sf-footer-brand p { max-width: 320px; color: var(--text-muted) !important; font-size: 0.85rem; line-height: 1.5; margin-top: 1.25rem; }
+  #sf-embed .sf-footer-title { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main) !important; margin-bottom: 1.25rem; }
+  #sf-embed .sf-footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  #sf-embed .sf-footer-links a { color: var(--text-muted) !important; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+  #sf-embed .sf-footer-links a:hover { color: var(--text-main) !important; }
+  
+  #sf-embed .sf-footer-graphic-box { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+  #sf-embed .sf-footer-butterfly { height: 64px; width: 64px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; transition: border-color 0.3s; }
+  #sf-embed .sf-footer-graphic-box:hover .sf-footer-butterfly { border-color: rgba(255,255,255,0.4); }
+  #sf-embed .sf-butterfly-caption { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text-main); text-transform: lowercase; margin-top: 0.65rem; padding-right: 0.1em; opacity: 0.5; }
+  #sf-embed .sf-footer-bottom { border-top: 1px solid var(--border-color); margin-top: 4rem; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', monospace; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--text-muted); }
+
+  /* GRAIN */
+  #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
+
+  /* SCROLL REVEAL */
+  #sf-embed .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  #sf-embed .reveal.visible { opacity: 1; transform: translateY(0); }
+  #sf-embed .reveal-d1 { transition-delay: 0.1s; }
+  #sf-embed .reveal-d2 { transition-delay: 0.2s; }
+  #sf-embed .reveal-d3 { transition-delay: 0.3s; }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    #sf-embed .sf-navbar { padding: 1rem 0; }
+    #sf-embed .sf-nav-text-logo { height: 48px; }
+    #sf-embed .sf-nav-inner { flex-direction: column; gap: 1.25rem; }
+    
+    /* MOBILE NAV ICON FIX: Forced into one single row */
+    #sf-embed .sf-nav-menu { width: 100%; justify-content: center; gap: 1rem; flex-wrap: nowrap; }
+    
+    #sf-embed .sf-nav-link span { display: none; }
+    #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
+    #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
+
+    #sf-embed .sf-hero { min-height: 65vh; }
+    #sf-embed .sf-mission { padding: 4rem 0; }
+    #sf-embed .sf-mission-text-centered p { font-size: 1rem; }
+    #sf-embed .sf-mission-quote { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+
+    #sf-embed .sf-people-section { padding: 4rem 0; }
+    #sf-embed .sf-founders-grid { grid-template-columns: 1fr; gap: 1px; }
+    #sf-embed .sf-advisory-grid { grid-template-columns: repeat(2, 1fr); }
+    #sf-embed .sf-advisor-card { border-right: none; border-bottom: 1px solid var(--border-color); }
+    #sf-embed .sf-values-grid { grid-template-columns: 1fr; }
+    
+    #sf-embed .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    #sf-embed .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
+    #sf-embed .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    #sf-embed::after { display: none; }
+  }
+  @media (max-width: 480px) {
+    #sf-embed .sf-advisory-grid { grid-template-columns: 1fr 1fr; }
+    #sf-embed .sf-hero h1 { font-size: clamp(3rem, 14vw, 5rem); }
+  }
+</style>
+</head>
+<body>
+<div id="sf-embed">
+
+  <nav class="sf-navbar">
+    <div class="sf-container sf-nav-inner">
+      <a href="index.html" class="sf-nav-logo">
+        <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" class="sf-nav-text-logo">
+      </a>
+      <ul class="sf-nav-menu">
+        <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
+        <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
+        <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
+        <li><a href="projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
+        <li><a href="https://playground.sweetflyfilm.com" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
+        <li><a href="info.html" class="sf-nav-link active"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <button class="sf-floating-contact"
+          data-tally-open="KYWv6V"
+          data-tally-hide-title="1"
+          data-tally-emoji-text="👋🏾"
+          data-tally-emoji-animation="wave">
+    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
+  </button>
+
+  <section class="sf-hero">
+    <video src="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/worldisyours.mp4" autoplay loop muted playsinline class="hero-bg-video"></video>
+
+    <div class="pulse-base"></div>
+    
+    <div class="contrast-perimeter"></div>
+    
+    <div class="radar-ring"></div>
+
+    <div class="sf-hero-veil"></div>
+
+    <div class="sf-hero-content">
+      <div class="sf-container">
+        <span class="sf-label reveal">The Flyers · Denver, Aurora, Belize</span>
+        <h1 class="reveal reveal-d1">About<br>Us.</h1>
+        <p class="sf-hero-tagline reveal reveal-d2">Community. Art. Grit. We fly.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sf-marquee" aria-hidden="true">
+    <div class="sf-marquee-track">
+      <span class="sf-marquee-item">Community<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Art<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Grit<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">We Fly<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Denver<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Aurora<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Belize<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Sweet Flypaper Film<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Community<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Art<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Grit<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">We Fly<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Denver<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Aurora<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Belize<span class="sf-marquee-dot"></span></span>
+      <span class="sf-marquee-item">Sweet Flypaper Film<span class="sf-marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <section class="sf-people-section">
+    <div class="sf-container">
+      <div class="sf-section-header reveal">
+        <div>
+          <span class="sf-label">The Flyers</span>
+          <h2>Founders</h2>
+        </div>
+      </div>
+
+      <div class="sf-founders-grid reveal reveal-d1">
+
+        <div class="sf-founder-card">
+          <div class="sf-founder-img-wrap">
+            <img src="/images/terrell.png" alt="Terrell Lamont">
+            <div class="sf-founder-img-overlay" aria-hidden="true"></div>
+          </div>
+          <div class="sf-founder-info">
+            <div class="sf-founder-name">Terrell Lamont</div>
+            <span class="sf-founder-role">Head of Production</span>
+            <p class="sf-founder-bio">Director. Cinematographer. Musician. Go-getter.</p>
+          </div>
+        </div>
+
+        <div class="sf-founder-card">
+          <div class="sf-founder-img-wrap">
+            <img src="/images/grant.png" alt="Grant Hughes">
+            <div class="sf-founder-img-overlay" aria-hidden="true"></div>
+          </div>
+          <div class="sf-founder-info">
+            <div class="sf-founder-name">Grant Hughes</div>
+            <span class="sf-founder-role">Head of Development</span>
+            <p class="sf-founder-bio">Writer. Producer. Educator. Over-thinker.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-mission">
+    <div class="sf-container reveal">
+      <div class="sf-mission-text-centered">
+        <p class="sf-mission-quote">"We are the creators of our wildest, weirdest dreams."</p>
+        <p>Sweet Flypaper Film is a boutique film production company and creative studio rooted in community, independent storytelling, and the belief that the most honest films come from the most honest people.</p>
+        <p>We make features, shorts, and series. We rent gear, host productions, and develop scripts. We train new filmmakers, connect crews, and build the kind of infrastructure that lets independent artists actually make their work — without waiting for permission.</p>
+        <p>Our studio, The Shop, lives in Aurora, Colorado. Our people are everywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-people-section">
+    <div class="sf-container">
+      <div class="sf-section-header reveal">
+        <div>
+          <span class="sf-label">The Flyest</span>
+          <h2>Advisory Board</h2>
+        </div>
+      </div>
+
+      <div class="sf-advisory-grid reveal reveal-d1">
+
+        <div class="sf-advisor-card">
+          <div class="sf-advisor-img-wrap">
+            <img src="/images/alicia.png" alt="Alicia Cole">
+          </div>
+          <div class="sf-advisor-info">
+            <div class="sf-advisor-name">Alicia Cole</div>
+            <div class="sf-advisor-role">Advisory Board</div>
+          </div>
+        </div>
+
+        <div class="sf-advisor-card">
+          <div class="sf-advisor-img-wrap">
+            <img src="/images/art.png" alt="Art Thomas">
+          </div>
+          <div class="sf-advisor-info">
+            <div class="sf-advisor-name">Art Thomas</div>
+            <div class="sf-advisor-role">Advisory Board</div>
+          </div>
+        </div>
+
+        <div class="sf-advisor-card">
+          <div class="sf-advisor-img-wrap">
+            <img src="/images/justin.png" alt="Justin Lewis">
+          </div>
+          <div class="sf-advisor-info">
+            <div class="sf-advisor-name">Justin Lewis</div>
+            <div class="sf-advisor-role">Advisory Board</div>
+          </div>
+        </div>
+
+        <div class="sf-advisor-card">
+          <div class="sf-advisor-img-wrap">
+            <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/67fc42d490d84f183ae5ef27_dixie%20hughes%20sf%20headshot.jpg" alt="Dixie Hughes">
+          </div>
+          <div class="sf-advisor-info">
+            <div class="sf-advisor-name">Dixie Hughes</div>
+            <div class="sf-advisor-role">Advisory Board</div>
+          </div>
+        </div>
+
+        " surrounding this block and replace the empty card below it.
+
+          <div class="sf-advisor-card">
+            <div class="sf-advisor-img-wrap">
+              <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/67fc42d490d84f183ae5ef1f_shawn%20blackston%20sf%20headshot.jpg" alt="Shawn Blackston">
+            </div>
+            <div class="sf-advisor-info">
+              <div class="sf-advisor-name">Shawn Blackston</div>
+              <div class="sf-advisor-role">Advisory Board</div>
+            </div>
+          </div>
+        -->
+        
+        <div class="sf-advisor-card empty-card"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-values">
+    <div class="sf-container">
+      <div class="reveal">
+        <span class="sf-label">How We Move</span>
+        <h2 style="font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em;">Flying.</h2>
+      </div>
+      <div class="sf-values-grid">
+        <div class="sf-value-cell reveal">
+          <div class="sf-value-num">01</div>
+          <div class="sf-value-title">Community First</div>
+          <p class="sf-value-desc">We exist to serve filmmakers, artists, and storytellers who don't have access to the infrastructure they deserve. We build it ourselves.</p>
+        </div>
+        <div class="sf-value-cell reveal reveal-d1">
+          <div class="sf-value-num">02</div>
+          <div class="sf-value-title">Honest Stories</div>
+          <p class="sf-value-desc">We don't chase trends. We chase truth. The most powerful films are the ones that know exactly who they're for and aren't afraid to say so.</p>
+        </div>
+        <div class="sf-value-cell reveal reveal-d2">
+          <div class="sf-value-num">03</div>
+          <div class="sf-value-title">Make It Happen</div>
+          <p class="sf-value-desc">We don't wait for the green light. We build the studio, write the script, find the crew, and shoot the film. That's the only way it gets done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sf-footer">
+    <div class="sf-container">
+      <div class="sf-footer-grid">
+        <div class="sf-footer-brand">
+          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" style="height:144px;width:auto;filter:invert(1);display:block;">
+          <p>We are the creators of our wildest, weirdest dreams. Come Fly With Us.</p>
+        </div>
+        <div>
+          <div class="sf-footer-title">Studio Services</div>
+          <ul class="sf-footer-links">
+            <li><a href="studio.html">The Shop</a></li>
+            <li><a href="gear.html">Gear Rental</a></li>
+            <li><a href="coverage.html">Script Coverage</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="sf-footer-title">Company</div>
+          <ul class="sf-footer-links">
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="info.html">About Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="sf-footer-title">Social Media</div>
+          <ul class="sf-footer-links">
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" style="width:14px;"></i> Facebook</a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" style="width:14px;"></i> Instagram</a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" style="width:14px;"></i> Linkedin</a></li>
+          </ul>
+        </div>
+        <div class="sf-footer-graphic-box">
+          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo Mark" class="sf-footer-butterfly">
+          <div class="sf-butterfly-caption">we fly</div>
+        </div>
+      </div>
+      <div class="sf-footer-bottom">
+        <div>&copy; 2026 SWEET FLYPAPER. ALL RIGHTS RESERVED.</div>
+        <div>DENVER &bull; AURORA &bull; BELIZE</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Scroll reveal framework controller
+  const revealEls = document.querySelectorAll('#sf-embed .reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
