@@ -1,73 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ 
+<!-- ============================================================
+     SWEET FLYPAPER — SHARED HEAD SNIPPET
+     ============================================================ -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gear & Rentals | Sweet Flypaper Film</title>
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+<link rel="stylesheet" href="/styles.css">
+ 
 <script async src="https://tally.so/widgets/embed.js"></script>
-
+<script src="/script.js" defer></script>
+ 
+<!-- ============================================================
+     GEAR PAGE — PAGE-SPECIFIC STYLES
+     ============================================================ -->
 <style>
-  :root {
-    --bg-dark: #0a0a0a;
-    --bg-panel: #141414;
-    --text-main: #ffffff;
-    --text-muted: #94a3b8;
-    --border-color: #27272a;
-    --accent: #ffffff;
-    --accent-hover: #e2e8f0;
-    
-    /* Muted Cinematic Base Colors - Gear Page */
-    --gear-red: 165, 25, 45;       
-    --gear-orange: 210, 75, 15;    
-    
-    /* Contrast Aura Color */
+ 
+  /* Gear-specific design tokens (extend shared #sf-embed vars) */
+  #sf-embed {
+    --gear-red: 165, 25, 45;
+    --gear-orange: 210, 75, 15;
     --cyan: 0, 200, 255;
   }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-dark);
-    border: 8px solid #ffffff; 
-    min-height: 100vh;
-    box-sizing: border-box;
-  }
-
-  #sf-embed {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: 'Geist', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    display: block;
-  }
-  #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
-  
-  #sf-embed h1, #sf-embed h2, #sf-embed h3, #sf-embed h4 {
-    font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main) !important;
-  }
-  #sf-embed p { color: #e2e8f0 !important; }
-  #sf-embed a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-  #sf-embed img { max-width: 100%; height: auto; display: block; }
-
-  #sf-embed .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  #sf-embed .sf-section-padding { padding: 6rem 0; }
-  #sf-embed .sf-label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted) !important; margin-bottom: 1rem; display: block; }
+ 
+  /* sf-label link extension (gear-specific) */
   #sf-embed .sf-label a { color: var(--text-muted) !important; border-bottom: 1px solid transparent; transition: border-color 0.2s ease, color 0.2s ease; }
   #sf-embed .sf-label a:hover { color: var(--text-main) !important; border-bottom-color: var(--text-muted); }
-
-  #sf-embed .sf-btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
-  #sf-embed .sf-btn-primary { background-color: var(--accent); color: var(--bg-dark) !important; border: 1px solid var(--accent); }
-  #sf-embed .sf-btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark) !important; }
-  #sf-embed .sf-btn-ghost { background-color: transparent; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.5); }
-  #sf-embed .sf-btn-ghost:hover { border-color: var(--accent); color: var(--accent) !important; }
-
+ 
   /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
   #sf-embed .sf-hero { 
     position: relative; 
@@ -82,7 +48,7 @@
   
   #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
   #sf-embed .sf-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
-
+ 
   /* LAYER 1: BASE GRAPHIC PHOTOGRAPH SYSTEM (FIXED SCOPING) */
   #sf-embed .hero-bg-img {
     position: absolute;
@@ -97,7 +63,7 @@
     transition: transform 10s ease;
   }
   #sf-embed .sf-hero:hover .hero-bg-img { transform: scale(1.04); }
-
+ 
   /* LAYER 2: THE AMBIENT RED/ORANGE LIGHT GEL SHEET */
   #sf-embed .pulse-base {
     position: absolute; 
@@ -113,7 +79,7 @@
     0%   { transform: scale(0.96); opacity: 0.75; }
     100% { transform: scale(1.04); opacity: 1; }
   }
-
+ 
   /* LAYER 3: CYAN PERIMETER COMPLEMENTARY LIGHT */
   #sf-embed .cyan-perimeter {
     position: absolute;
@@ -130,7 +96,7 @@
     0%   { opacity: 0.55; }
     100% { opacity: 1; }
   }
-
+ 
   /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
   #sf-embed .radar-ring { 
     position: absolute; top: 45%; left: 50%; 
@@ -147,7 +113,7 @@
     15% { opacity: 0.85; }
     100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } 
   }
-
+ 
   /* TESTIMONIAL DISPLAY FADER */
   #sf-embed .sf-testimonial-strip { background-color: var(--bg-panel); border-bottom: 1px solid var(--border-color); padding: 4rem 0; text-align: center; }
   #sf-embed .sf-testimonial-wrap { position: relative; min-height: 180px; display: flex; align-items: center; justify-content: center; }
@@ -159,7 +125,7 @@
   #sf-embed .sf-testimonial-rented.active-link:hover { color: var(--text-main); border-bottom-color: var(--text-main); }
   
   #sf-embed .sf-testimonial-author { font-family: 'Geist Mono', monospace; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; }
-
+ 
   /* INVENTORY WORKFLOW PROCESS */
   #sf-embed .sf-how-strip { border-bottom: 1px solid var(--border-color); padding: 5rem 0; }
   #sf-embed .sf-how-header { margin-bottom: 3rem; }
@@ -173,7 +139,7 @@
   #sf-embed .sf-how-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
   #sf-embed .sf-how-step a { color: var(--text-main); text-decoration: underline; cursor: pointer; font-weight: 500; }
   #sf-embed .sf-how-step a:hover { color: var(--text-muted); }
-
+ 
   /* EQUIPMENT RENDERING GRID SYSTEM */
   #sf-embed .sf-gear-section { padding: 5rem 0; scroll-margin-top: 100px; }
   #sf-embed .sf-gear-filters { display: flex; gap: 0; border: 1px solid var(--border-color); border-radius: 2px; width: fit-content; margin-bottom: 3rem; overflow: hidden; }
@@ -181,17 +147,17 @@
   #sf-embed .sf-filter-btn:last-child { border-right: none; }
   #sf-embed .sf-filter-btn:hover { color: var(--text-main); background: var(--bg-panel); }
   #sf-embed .sf-filter-btn.active { background: var(--accent); color: var(--bg-dark); }
-
+ 
   #sf-embed .sf-gear-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
   #sf-embed .sf-gear-card { background-color: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; transition: all 0.3s ease; display: flex; flex-direction: column; scroll-margin-top: 100px; }
   #sf-embed .sf-gear-card:hover { border-color: var(--text-muted); transform: translateY(-4px); }
   #sf-embed .sf-gear-card.sf-hidden { display: none; }
-
+ 
   /* CINEMATIC SPOTLIGHT GRADIENT BACKDROP ARRAY */
   #sf-embed .sf-gear-img-wrap { width: 100%; aspect-ratio: 1/1; background: radial-gradient(circle at center, #82828c 0%, #111113 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; padding: 2rem; border-bottom: 1px solid var(--border-color); }
   #sf-embed .sf-gear-img-wrap img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); transition: transform 0.5s ease; }
   #sf-embed .sf-gear-card:hover .sf-gear-img-wrap img { transform: scale(1.05); }
-
+ 
   #sf-embed .sf-gear-info { padding: 1.75rem 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
   #sf-embed .sf-gear-tag-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
   #sf-embed .sf-gear-category { font-family: 'Geist Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
@@ -208,26 +174,20 @@
   #sf-embed .sf-gear-kit-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; margin-bottom: 1rem; }
   #sf-embed .sf-gear-kit-list li { font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 0.4rem; align-items: baseline; }
   #sf-embed .sf-gear-kit-list li strong { font-family: 'Geist Mono', monospace; color: inherit; font-weight: 600; font-size: 0.75rem; }
-
+ 
   #sf-embed .sf-gear-book-link { margin-top: auto; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.05); font-family: 'Geist Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; transition: color 0.2s; }
   #sf-embed .sf-gear-card:hover .sf-gear-book-link { color: var(--text-muted); }
-
+ 
   #sf-embed .sf-inventory-cta { margin-top: 4rem; padding: 2.5rem 3rem; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-panel); display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
   #sf-embed .sf-inventory-cta-text h3 { font-size: 1.3rem; margin-bottom: 0.4rem; }
   #sf-embed .sf-inventory-cta-text p { color: var(--text-muted); font-size: 0.9rem; }
-
-  /* NOISE COATING ARRAY EFFECT */
-  #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
-
-  /* RESPONSIVE RESPONSES */
+ 
+  /* RESPONSIVE — GEAR PAGE ONLY */
   @media (max-width: 900px) {
-    #sf-embed .sf-section-padding { padding: 4rem 0; }
-    
     #sf-embed .sf-how-steps { grid-template-columns: 1fr; }
     #sf-embed .sf-how-step { border-right: none; border-bottom: 1px solid var(--border-color); padding: 2rem 0; }
     #sf-embed .sf-how-step:last-child { border-bottom: none; padding-left: 0; }
     #sf-embed .sf-how-step:nth-child(2) { padding-left: 0; }
-    
     #sf-embed .sf-gear-filters { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 2rem; }
     #sf-embed .sf-gear-filters::-webkit-scrollbar { display: none; }
     #sf-embed .sf-gear-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -236,14 +196,15 @@
   @media (max-width: 480px) {
     #sf-embed .sf-gear-kit-list { grid-template-columns: 1fr; }
   }
+ 
 </style>
 </head>
 <body>
-
+ 
 <div id="sf-embed">
-
- <div id="nav-placeholder"></div>
-
+ 
+  <div id="nav-placeholder"></div>
+ 
   <section class="sf-hero">
     <img src="/images/red2.jpg" class="hero-bg-img" alt="Camera Setup Rig">
     
@@ -252,7 +213,7 @@
     <div class="cyan-perimeter"></div>
     
     <div class="radar-ring"></div>
-
+ 
     <div class="sf-hero-veil"></div>
     
     <div class="sf-hero-content">
@@ -268,7 +229,7 @@
       </div>
     </div>
   </section>
-
+ 
   <div class="sf-testimonial-strip">
     <div class="sf-container">
       <div class="sf-testimonial-wrap" id="testimonialSlider">
@@ -278,29 +239,29 @@
           <a href="#gear-gvm" class="sf-testimonial-rented active-link">Rented: GVM Pro 3 LED Light Kit</a>
           <span class="sf-testimonial-author">— Jon Delouz</span>
         </div>
-
+ 
         <div class="sf-testimonial-item" data-test="1">
           <p class="sf-testimonial-quote">"Terrell is a wonderful person to rent from. Quick communication, easy to work with. Gear is well taken care of. Highly recommend."</p>
           <a href="#gear-hollyland" class="sf-testimonial-rented active-link">Rented: Hollyland Pyro S Video Transmission Kit</a>
           <span class="sf-testimonial-author">— Brekon Baxter</span>
         </div>
-
+ 
         <div class="sf-testimonial-item" data-test="2">
           <p class="sf-testimonial-quote">"This rental was nice and easy!"</p>
           <a href="#gear-bm" class="sf-testimonial-rented active-link">Rented: Blackmagic Design Pocket Cinema Camera 6K</a>
           <span class="sf-testimonial-author">— Jacob Walker</span>
         </div>
-
+ 
         <div class="sf-testimonial-item" data-test="3">
           <p class="sf-testimonial-quote">"Terrell was great to work with. There was something slightly malfunctioning with the lens I rented so he delivered me another one that helped finish the shoot. Would definitely rent from again!"</p>
           <span class="sf-testimonial-rented" style="cursor: default; border: none;">Rented: Canon EF 16-35mm f/2.8L USM Lens</span>
           <span class="sf-testimonial-author">— Walden Band LLC</span>
         </div>
-
+ 
       </div>
     </div>
   </div>
-
+ 
   <div class="sf-how-strip">
     <div class="sf-container">
       <div class="sf-how-header">
@@ -326,25 +287,25 @@
       </div>
     </div>
   </div>
-
+ 
   <section class="sf-gear-section">
     <div class="sf-container">
-
+ 
       <div style="margin-bottom: 3rem;">
         <span class="sf-label">Inventory</span>
         <h2>Build Your Package</h2>
         <p style="color: var(--text-muted); max-width: 600px; margin-top: 0.5rem; font-size: 0.95rem;">Meticulously maintained, cinema-ready equipment available for same-day pickup in Denver.</p>
       </div>
-
+ 
       <div class="sf-gear-filters">
         <button class="sf-filter-btn active" data-filter="all">All</button>
         <button class="sf-filter-btn" data-filter="camera">Camera</button>
         <button class="sf-filter-btn" data-filter="lighting">Lighting</button>
         <button class="sf-filter-btn" data-filter="grip">Grip</button>
       </div>
-
+ 
       <div class="sf-gear-grid">
-
+ 
         <div class="sf-gear-card" data-cat="camera" id="gear-bm">
           <div class="sf-gear-img-wrap">
             <img src="/images/bm.svg" alt="Blackmagic 6K Kit">
@@ -362,7 +323,7 @@
               <p><strong>2. Documentaries:</strong> Features dual mini-XLR inputs with 48V phantom power and dual native ISO (400/3200) for clean, low-noise low-light footage.</p>
               <p><strong>3. Music Videos:</strong> Shoots up to 60 fps at full 6K (120 fps windowed). Includes a DaVinci Resolve Studio license for advanced high-end grading.</p>
             </div>
-
+ 
             <div class="sf-gear-desc-title">Included Kit Items</div>
             <ul class="sf-gear-kit-list">
               <li><strong>2x</strong> 128gb CFast Card</li>
@@ -372,13 +333,13 @@
               <li><strong>1x</strong> 15mm rail riser</li>
               <li><strong>1x</strong> Charger</li>
             </ul>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
         <div class="sf-gear-card" data-cat="camera" id="gear-red">
           <div class="sf-gear-img-wrap">
             <img src="/images/red.svg" alt="RED Camera">
@@ -397,7 +358,7 @@
               <p><strong>3. VFX Compositing:</strong> Frames are 19MP RAW stills. REDCODE RAW (.R3D) gives visual effects artists flawless edge detail and deep color spaces.</p>
               <p><strong>4. Fashion &amp; Beauty:</strong> Delivers an organic color science for exceptional skin tones under controlled studio configurations, generating immense client prestige.</p>
             </div>
-
+ 
             <div class="sf-gear-desc-title">Included Kit Items</div>
             <ul class="sf-gear-kit-list">
               <li><strong>1x</strong> 128 GB REDMAG SSD</li>
@@ -408,13 +369,13 @@
               <li><strong>2x</strong> V-Mount Battery</li>
               <li><strong>1x</strong> Tilta Nano Focus</li>
             </ul>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
         <div class="sf-gear-card" data-cat="lighting" id="gear-gvm">
           <div class="sf-gear-img-wrap">
             <img src="/images/gvm.svg" alt="GVM Light Kit">
@@ -432,7 +393,7 @@
               <p><strong>2. Podcast Studios:</strong> Bi-color flexibility allows you to match practical room lights while keeping skin tones natural.</p>
               <p><strong>3. Indie Narrative:</strong> High output monolight acts as a punchy key, while lanterns provide soft, ambient fill.</p>
             </div>
-
+ 
             <div class="sf-gear-desc-title">Included Kit Items</div>
             <ul class="sf-gear-kit-list">
               <li><strong>1x</strong> SD200B Fixture</li>
@@ -441,13 +402,13 @@
               <li><strong>2x</strong> Space Lanterns</li>
               <li><strong>1x</strong> Heavy Duty Case</li>
             </ul>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Build Package on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
         <div class="sf-gear-card" data-cat="lighting" id="gear-ls300">
           <div class="sf-gear-img-wrap">
             <img src="/images/300.svg" alt="Aputure LS 300d">
@@ -465,13 +426,13 @@
               <p><strong>2. Bouncing &amp; Diffusion:</strong> Powerful enough to push through heavy silks or bounce off ceilings for ultra-soft, cinematic wrap.</p>
               <p><strong>3. Commercials:</strong> Flawless color accuracy ensures perfect skin tones on demanding, fast-paced commercial sets.</p>
             </div>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
         <div class="sf-gear-card" data-cat="lighting" id="gear-ls600">
           <div class="sf-gear-img-wrap">
             <img src="/images/600.svg" alt="Aputure LS 600d Pro">
@@ -489,13 +450,13 @@
               <p><strong>2. Large-Scale Diffusion:</strong> Massive output allows you to light entire rooms by pushing through 8x8 or 12x12 diffusion frames.</p>
               <p><strong>3. Exterior Fill:</strong> Battles the sun on daytime exterior shoots to fill in harsh shadows on your talent's face.</p>
             </div>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
         <div class="sf-gear-card" data-cat="lighting" id="gear-storm80">
           <div class="sf-gear-img-wrap">
             <img src="/images/80.svg" alt="Aputure Storm 80c">
@@ -513,13 +474,13 @@
               <p><strong>2. Practical Motivation:</strong> Dial in the exact RGB/tint to perfectly match the glow of a TV, neon sign, or street lamp.</p>
               <p><strong>3. Run-and-Gun:</strong> Lightweight and incredibly portable, perfect for adding instant shape to unpredictable indie spaces.</p>
             </div>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
         <div class="sf-gear-card" data-cat="grip" id="gear-danadolly">
           <div class="sf-gear-img-wrap">
             <img src="/images/dana.svg" alt="Dana Dolly Kit">
@@ -537,13 +498,13 @@
               <p><strong>2. Heavy Cinema Rigs:</strong> Easily supports fully built RED or Arri packages that are too heavy for standard gimbals.</p>
               <p><strong>3. Dynamic Interviews:</strong> Perfect for slow, continuous slider push-ins to add dramatic tension to documentary subjects.</p>
             </div>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
         <div class="sf-gear-card" data-cat="grip" id="gear-hollyland">
           <div class="sf-gear-img-wrap">
             <img src="/images/holly.svg" alt="Hollyland Pyro S">
@@ -561,22 +522,22 @@
               <p><strong>2. Focus Pulling:</strong> Give your 1st AC a crystal clear, lag-free signal for nailing critical focus pulls on moving subjects.</p>
               <p><strong>3. Client Monitors:</strong> Keep the client happy and out of the way by broadcasting a pristine 4K feed to their viewing station.</p>
             </div>
-
+ 
             <div class="sf-gear-desc-title">Included Kit Items</div>
             <ul class="sf-gear-kit-list">
               <li><strong>1x</strong> Carrying Case</li>
               <li><strong>1x</strong> SDI Cable</li>
               <li><strong>1x</strong> HDMI Cable</li>
             </ul>
-
+ 
             <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-gear-book-link">
               <span>Book on Sharegrid</span> <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </div>
-
+ 
       </div>
-
+ 
       <div class="sf-inventory-cta">
         <div class="sf-inventory-cta-text">
           <h3>Build Your Custom Package</h3>
@@ -586,72 +547,57 @@
           Full Inventory on Sharegrid <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
       </div>
-
+ 
     </div>
   </section>
-
+ 
   <div id="footer-placeholder"></div>
-
+ 
 </div>
-
+ 
 <script>
-  // Load Navigation
-   async function loadGlobals() {
-    const [navData, footerData] = await Promise.all([
-      fetch('/nav.html').then(r => r.text()),
-      fetch('/footer.html').then(r => r.text())
-    ]);
-    document.getElementById('nav-placeholder').innerHTML = navData;
-    document.getElementById('footer-placeholder').innerHTML = footerData;
-    if (window.Tally) window.Tally.loadEmbeds();
-  }
-  loadGlobals();
-
-  (function() {
-
-    /* ── RUNTIME CATEGORY FILTER CONTROLLER ───────────────────────────────── */
-    const filterBtns = document.querySelectorAll('#sf-embed .sf-filter-btn');
-    const gearCards = document.querySelectorAll('#sf-embed .sf-gear-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const filter = btn.dataset.filter;
-        
-        gearCards.forEach(card => {
-          if (filter === 'all' || card.dataset.cat === filter) {
-            card.classList.remove('sf-hidden');
-          } else {
-            card.classList.add('sf-hidden');
-          }
-        });
+  /* ── GEAR PAGE — PAGE-SPECIFIC JS ONLY ── */
+ 
+  /* RUNTIME CATEGORY FILTER CONTROLLER */
+  const filterBtns = document.querySelectorAll('#sf-embed .sf-filter-btn');
+  const gearCards = document.querySelectorAll('#sf-embed .sf-gear-card');
+ 
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const filter = btn.dataset.filter;
+      
+      gearCards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('sf-hidden');
+        } else {
+          card.classList.add('sf-hidden');
+        }
       });
     });
-
-    /* ── TESTIMONIAL DISPLAY TRANSITION FADER FITTING ─────────────────────── */
-    let currentTestimonial = 0;
-    const testimonials = document.querySelectorAll('#sf-embed .sf-testimonial-item');
-    const totalTestimonials = testimonials.length;
-
-    if (totalTestimonials > 0) {
-      setInterval(() => {
-        if(testimonials[currentTestimonial]) {
-          testimonials[currentTestimonial].classList.remove('active');
-          currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
-          
-          setTimeout(() => {
-            if(testimonials[currentTestimonial]) {
-              testimonials[currentTestimonial].classList.add('active');
-            }
-          }, 50);
-        }
-      }, 6000);
-    }
-
-  })();
+  });
+ 
+  /* TESTIMONIAL DISPLAY TRANSITION FADER */
+  let currentTestimonial = 0;
+  const testimonials = document.querySelectorAll('#sf-embed .sf-testimonial-item');
+  const totalTestimonials = testimonials.length;
+ 
+  if (totalTestimonials > 0) {
+    setInterval(() => {
+      if (testimonials[currentTestimonial]) {
+        testimonials[currentTestimonial].classList.remove('active');
+        currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+        setTimeout(() => {
+          if (testimonials[currentTestimonial]) {
+            testimonials[currentTestimonial].classList.add('active');
+          }
+        }, 50);
+      }
+    }, 6000);
+  }
 </script>
-
+ 
 </body>
 </html>
