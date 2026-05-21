@@ -14,46 +14,7 @@
 <script async src="https://tally.so/widgets/embed.js"></script>
 
 <style>
-  :root {
-    --bg-dark: #0a0a0a;
-    --bg-panel: #141414;
-    --bg-card: #111111;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: #27272a;
-    --accent: #ffffff;
-    --accent-hover: #e2e8f0;
-    --gold: #D4AF37;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background-color: var(--bg-dark);
-    border: 8px solid #ffffff;
-    min-height: 100vh;
-    box-sizing: border-box;
-    color: var(--text-main);
-    font-family: 'Geist', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main); }
-  p { color: var(--text-muted); }
-  a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-  img { max-width: 100%; height: auto; display: block; }
-
-  .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  .label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; display: block; }
-
-  .btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
-  .btn-primary { background-color: var(--accent); color: var(--bg-dark); border: 1px solid var(--accent); }
-  .btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark); }
-  .btn-ghost { background-color: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.5); }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* BREADCRUMB SPECIFIC OVERRIDES */
+  /* BREADCRUMB */
   #sf-embed .breadcrumb {
     border-bottom: 1px solid var(--border-color);
     background: var(--bg-panel);
@@ -74,7 +35,7 @@
   #sf-embed .breadcrumb-sep { opacity: 0.4; }
   #sf-embed .breadcrumb-current { color: var(--text-main); }
 
-  /* PROJECT HERO SPECIFIC OVERRIDES */
+  /* PROJECT HERO */
   #sf-embed .project-hero {
     position: relative;
     width: 100%;
@@ -136,7 +97,7 @@
     color: var(--text-main);
   }
 
-  /* META ROW SPECIFIC OVERRIDES */
+  /* META ROW */
   #sf-embed .project-meta-row {
     display: flex;
     gap: 0;
@@ -171,7 +132,7 @@
     font-size: 0.9rem;
   }
 
-  /* SHARE ICONS SPECIFIC OVERRIDES */
+  /* SHARE ICONS */
   #sf-embed .share-icons {
     display: flex;
     gap: 0.75rem;
@@ -188,7 +149,7 @@
   }
   #sf-embed .share-icon:hover { border-color: var(--text-main); color: var(--text-main); }
 
-  /* CONTENT BODY SPECIFIC OVERRIDES */
+  /* CONTENT BODY */
   #sf-embed .project-body {
     padding: 6rem 0;
     border-bottom: 1px solid var(--border-color);
@@ -206,7 +167,7 @@
     margin-bottom: 2rem;
   }
   
-  /* POEM SPECIFIC OVERRIDES */
+  /* POEM STYLING */
   #sf-embed .project-poem {
     font-size: 1.15rem;
     line-height: 2;
@@ -215,7 +176,7 @@
     font-style: italic;
   }
 
-  /* SPONSOR BLOCK SPECIFIC OVERRIDES */
+  /* SPONSOR TEMPLATE BLOCK */
   #sf-embed .project-sponsors {
     margin-top: 4rem;
     padding-top: 3rem;
@@ -237,7 +198,7 @@
     flex-wrap: wrap;
   }
 
-  /* DETAILS SIDEBAR SPECIFIC OVERRIDES */
+  /* DETAILS SIDEBAR */
   #sf-embed .project-details-sidebar {
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -265,7 +226,7 @@
   }
   #sf-embed .sidebar-gold { color: var(--gold); }
 
-  /* CAROUSEL GALLERY SPECIFIC OVERRIDES */
+  /* --- SINGLE FRAME CAROUSEL (POSTERS & STILLS) --- */
   #sf-embed .media-showcase {
     border-bottom: 1px solid var(--border-color);
     padding: 5rem 0;
@@ -330,7 +291,7 @@
     background: var(--accent);
   }
 
-  /* PREV/NEXT NAVIGATION MODULES */
+  /* PREV/NEXT NAV */
   #sf-embed .project-nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -364,7 +325,7 @@
     color: var(--text-main);
   }
 
-  /* RESPONSIVE RESPONSIVITY OVERRIDES */
+  /* MOBILE */
   @media (max-width: 900px) {
     #sf-embed .project-hero { min-height: 60vh; }
     #sf-embed .project-meta-row { flex-direction: column; }
@@ -393,7 +354,7 @@
   <div id="nav-placeholder"></div>
 
   <div class="breadcrumb">
-    <div class="container breadcrumb-inner">
+    <div class="sf-container breadcrumb-inner">
       <a href="/">Home</a>
       <span class="breadcrumb-sep">/</span>
       <a href="/projects.html">Projects</a>
@@ -411,7 +372,7 @@
     >
     <div class="project-hero-overlay" aria-hidden="true"></div>
     <div class="project-hero-content">
-      <div class="container">
+      <div class="sf-container">
         <div class="project-type-pill reveal">
           <i class="fa-solid fa-film" style="font-size:0.6rem;"></i> Short Film &nbsp;·&nbsp; 2026
         </div>
@@ -447,7 +408,7 @@
   </div>
 
   <section class="project-body">
-    <div class="container">
+    <div class="sf-container">
       <div class="project-body-grid">
 
         <div class="project-body-text reveal">
@@ -462,7 +423,7 @@
           </p>
 
           <p style="margin-top: 2.5rem;">
-            <a href="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/video/lpp-trailer.mp4" target="_blank" class="btn btn-ghost">Watch the Trailer <i class="fa-solid fa-play" style="font-size:0.75rem;"></i></a>
+            <a href="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/video/lpp-trailer.mp4" target="_blank" class="sf-btn sf-btn-ghost">Watch the Trailer <i class="fa-solid fa-play" style="font-size:0.75rem;"></i></a>
           </p>
           
           <div class="project-sponsors">
@@ -509,11 +470,11 @@
   </section>
 
   <section class="media-showcase">
-    <div class="container">
+    <div class="sf-container">
       
       <div class="media-header reveal">
         <div>
-          <span class="label">Gallery</span>
+          <span class="sf-label">Gallery</span>
           <h3 style="font-size: 1.5rem;">Posters &amp; Stills</h3>
         </div>
       </div>
