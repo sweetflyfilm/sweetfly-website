@@ -14,8 +14,45 @@
 <script async src="https://tally.so/widgets/embed.js"></script>
 
 <style>
-  /* ── PROJECT TEMPLATE PAGE-SPECIFIC STYLES ── */
-  
+  :root {
+    --bg-dark: #0a0a0a;
+    --bg-panel: #141414;
+    --bg-card: #111111;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #27272a;
+    --accent: #ffffff;
+    --accent-hover: #e2e8f0;
+    --gold: #D4AF37;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--bg-dark);
+    border: 8px solid #ffffff;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: var(--text-main);
+    font-family: 'Geist', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main); }
+  p { color: var(--text-muted); }
+  a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+  img { max-width: 100%; height: auto; display: block; }
+
+  .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; display: block; }
+
+  .btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
+  .btn-primary { background-color: var(--accent); color: var(--bg-dark); border: 1px solid var(--accent); }
+  .btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark); }
+  .btn-ghost { background-color: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.5); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
   /* BREADCRUMB */
   .breadcrumb {
     border-bottom: 1px solid var(--border-color);
@@ -65,7 +102,7 @@
       rgba(10,10,10,0.1) 0%,
       rgba(10,10,10,0.3) 40%,
       rgba(10,10,10,0.85) 75%,
-      rgba(10,10,10,1) 100+5%
+      rgba(10,10,10,1) 100%
     );
     z-index: 1;
   }
@@ -199,6 +236,17 @@
     align-items: center;
     flex-wrap: wrap;
   }
+  .sponsor-logo {
+    max-height: 45px;
+    max-width: 140px;
+    filter: grayscale(100%); 
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    object-fit: contain;
+  }
+  .sponsor-logo:hover {
+    opacity: 1;
+  }
 
   /* DETAILS SIDEBAR */
   .project-details-sidebar {
@@ -232,7 +280,7 @@
   .media-showcase {
     border-bottom: 1px solid var(--border-color);
     padding: 5rem 0;
-    background: #050505;
+    background: var(--bg-dark);
   }
   .media-header {
     display: flex;
@@ -327,15 +375,18 @@
     color: var(--text-main);
   }
 
-  /* MOBILE RESPONSIVE ADAPTATIONS */
+  /* MOBILE */
   @media (max-width: 900px) {
     .project-hero { min-height: 60vh; }
     .project-meta-row { flex-direction: column; }
     .project-meta-cell { border-right: none; border-bottom: 1px solid var(--border-color); padding: 1.5rem; }
     .project-meta-cell:last-child { border-bottom: none; }
+
     .project-body { padding: 4rem 0; }
     .project-body-grid { grid-template-columns: 1fr; gap: 3rem; }
+
     .media-frame { height: 50vh; min-height: 400px; }
+
     .project-nav { grid-template-columns: 1fr; }
     .project-nav-item { border-right: none; border-bottom: 1px solid var(--border-color); text-align: left; align-items: flex-start; }
     .project-nav-item:last-child { border-bottom: none; }
@@ -422,13 +473,15 @@
           </p>
 
           <p style="margin-top: 2.5rem;">
-            <a href="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/video/lpp-trailer.mp4" target="_blank" class="sf-btn sf-btn-ghost">Watch the Trailer <i class="fa-solid fa-play" style="font-size:0.75rem;"></i></a>
+            <a href="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/video/lpp-trailer.mp4" target="_blank" class="btn btn-ghost">Watch the Trailer <i class="fa-solid fa-play" style="font-size:0.75rem;"></i></a>
           </p>
           
           <div class="project-sponsors">
             <span class="sponsor-label">Supported By</span>
-            <div class="sponsor-grid"></div>
+            <div class="sponsor-grid">
+            </div>
           </div>
+
         </div>
 
         <div class="project-details-sidebar reveal reveal-d1">
