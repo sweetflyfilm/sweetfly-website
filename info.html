@@ -9,441 +9,388 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/styles.css">
 
 <script async src="https://tally.so/widgets/embed.js"></script>
-
-<style>
-  body {
-    margin: 0; padding: 0;
-    background-color: #0a0a0a;
-    border: 8px solid #ffffff;
-    min-height: 100vh;
-    box-sizing: border-box;
-  }
-
-  #sf-embed {
-    --bg-dark: #0a0a0a;
-    --bg-panel: #141414;
-    --text-main: #ffffff;
-    --text-muted: #94a3b8;
-    --border-color: #27272a;
-    --accent: #ffffff;
-    --accent-hover: #e2e8f0;
-    
-    /* Continuous Ombre Palette - Info Page Terminal Spectrum */
-    --info-uv: 95, 25, 155;       /* Ultraviolet */
-    --info-magenta: 155, 25, 90;  /* Magenta/Crimson */
-    
-    /* Scattered Contrast Accent */
-    --info-contrast: 255, 180, 30; /* Electric Tungsten Gold */
-    --gold: #D4AF37;
-    
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: 'Geist', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    display: block;
-  }
-
-  #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
-  #sf-embed h1, #sf-embed h2, #sf-embed h3, #sf-embed h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main) !important; }
-  #sf-embed p { color: var(--text-muted); }
-  #sf-embed a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-  #sf-embed img { max-width: 100%; height: auto; display: block; }
-
-  #sf-embed .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  #sf-embed .sf-label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted) !important; margin-bottom: 1rem; display: block; }
-
-  #sf-embed .sf-btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
-  #sf-embed .sf-btn-primary { background-color: var(--accent); color: var(--bg-dark) !important; border: 1px solid var(--accent); }
-  #sf-embed .sf-btn-primary:hover { background-color: var(--accent-hover); }
-  #sf-embed .sf-btn-ghost { background-color: transparent; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.5); }
-  #sf-embed .sf-btn-ghost:hover { border-color: var(--accent); }
-
-  /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
-  #sf-embed .sf-hero {
-    position: relative;
-    width: 100%;
-    min-height: 80vh;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border-color);
-    background-color: #050505;
-  }
-  
-  #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
-  #sf-embed .sf-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
-
-  /* LAYER 1: BASE GRAPHIC VIDEO SYSTEM */
-  .hero-bg-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1; 
-    filter: grayscale(100%) contrast(1.2); 
-    opacity: 0.45; 
-    pointer-events: none;
-    transition: transform 10s ease;
-  }
-  #sf-embed .sf-hero:hover .hero-bg-video { transform: scale(1.04); }
-
-  /* LAYER 2: THE AMBIENT UV/MAGENTA LIGHT GEL SHEET */
-  .pulse-base {
-    position: absolute; 
-    inset: -50px; 
-    z-index: 2; 
-    background-image: 
-      radial-gradient(circle at 20% 45%, rgba(var(--info-uv), 0.85) 0%, transparent 70%),
-      radial-gradient(circle at 80% 45%, rgba(var(--info-magenta), 0.75) 0%, transparent 70%);
-    mix-blend-mode: overlay;
-    animation: baseBreathe 6s ease-in-out infinite alternate;
-  }
-  @keyframes baseBreathe {
-    0%   { transform: scale(0.96); opacity: 0.75; }
-    100% { transform: scale(1.04); opacity: 1; }
-  }
-
-  /* LAYER 3: CONTRAST TUNGSTEN GOLD PERIMETER COMPLEMENTARY LIGHT */
-  .contrast-perimeter {
-    position: absolute;
-    inset: -20px;
-    z-index: 3;
-    background-image: 
-      radial-gradient(circle at 0% 0%, rgba(var(--info-contrast), 0.45) 0%, transparent 55%),
-      radial-gradient(circle at 100% 100%, rgba(var(--info-contrast), 0.42) 0%, transparent 55%),
-      radial-gradient(circle at 100% 10%, rgba(var(--info-contrast), 0.38) 0%, transparent 50%);
-    mix-blend-mode: screen;
-    animation: contrastBreathe 4.5s ease-in-out infinite alternate;
-  }
-  @keyframes contrastBreathe {
-    0%   { opacity: 0.55; }
-    100% { opacity: 1; }
-  }
-
-  /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
-  .radar-ring { 
-    position: absolute; top: 45%; left: 50%; 
-    width: 150px; height: 150px; 
-    border-radius: 50%; 
-    z-index: 4; 
-    pointer-events: none; 
-    border: 3px solid rgba(var(--info-contrast), 0.65);
-    box-shadow: inset 0 0 60px rgba(var(--info-contrast), 0.45), 0 0 60px rgba(var(--info-contrast), 0.45);
-    animation: deepRadar 8s linear infinite; 
-  }
-  @keyframes deepRadar { 
-    0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 
-    15% { opacity: 0.85; }
-    100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } 
-  }
-
-  #sf-embed .sf-hero h1 {
-    font-size: clamp(4.5rem, 11vw, 8.5rem);
-    font-weight: 600;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-    margin-bottom: 1.5rem;
-  }
-  #sf-embed .sf-hero-tagline {
-    font-family: 'Geist Mono', monospace;
-    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  #sf-embed .sf-hero-tagline::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: rgba(255,255,255,0.3);
-    flex-shrink: 0;
-  }
-
-  /* ── MARQUEE BAND ── */
-  #sf-embed .sf-marquee {
-    overflow: hidden;
-    border-bottom: 1px solid var(--border-color);
-    background: var(--bg-panel);
-    padding: 0.9rem 0;
-    white-space: nowrap;
-  }
-  #sf-embed .sf-marquee-track {
-    display: inline-flex;
-    gap: 2.5rem;
-    animation: sfScroll 25s linear infinite;
-    align-items: center;
-  }
-  @keyframes sfScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  #sf-embed .sf-marquee-item {
-    font-family: 'Geist Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    flex-shrink: 0;
-    display: flex; align-items: center; gap: 1.25rem;
-  }
-  #sf-embed .sf-marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; opacity: 0.55; }
-
-  /* ── PEOPLE SECTIONS (Founders + Advisory) ── */
-  #sf-embed .sf-people-section {
-    padding: 7rem 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-  #sf-embed .sf-section-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 4rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border-color);
-  }
-  #sf-embed .sf-section-header h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    letter-spacing: -0.04em;
-    line-height: 1;
-  }
-
-  /* CINEMATIC SPOTLIGHT BACKGROUND FOR TRANSPARENT HEADSHOTS */
-  #sf-embed .sf-founder-img-wrap,
-  #sf-embed .sf-advisor-img-wrap {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    background: radial-gradient(circle at top center, #23232f 0%, #0c0c10 100%);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  /* FOUNDER CARDS — big, editorial */
-  #sf-embed .sf-founders-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    border: 1px solid var(--border-color);
-  }
-  #sf-embed .sf-founder-card {
-    position: relative;
-    overflow: hidden;
-    background: var(--bg-panel);
-    cursor: default;
-  }
-  #sf-embed .sf-founder-img-wrap {
-    aspect-ratio: 3/4;
-  }
-  #sf-embed .sf-founder-img-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: bottom center; /* Keeps transparent bodies grounded */
-    filter: grayscale(15%);
-    transition: transform 0.7s ease, filter 0.5s ease;
-  }
-  #sf-embed .sf-founder-card:hover .sf-founder-img-wrap img {
-    transform: scale(1.04);
-    filter: grayscale(0%);
-  }
-  #sf-embed .sf-founder-img-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.65) 100%);
-    pointer-events: none;
-  }
-  #sf-embed .sf-founder-info {
-    padding: 2rem 2.25rem 2.5rem;
-  }
-  #sf-embed .sf-founder-name {
-    font-family: 'Geist Mono', monospace;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-main);
-    margin-bottom: 0.3rem;
-  }
-  #sf-embed .sf-founder-role {
-    font-family: 'Geist Mono', monospace;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-    display: block;
-  }
-  #sf-embed .sf-founder-bio {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  /* ── MISSION STATEMENT ── */
-  #sf-embed .sf-mission {
-    padding: 8rem 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-  #sf-embed .sf-mission-text-centered {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  #sf-embed .sf-mission-quote {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    color: rgba(248,250,252,0.9);
-    font-style: italic;
-    letter-spacing: -0.01em;
-    line-height: 1.4;
-    margin-bottom: 2.5rem;
-  }
-  #sf-embed .sf-mission-text-centered p {
-    font-size: 1.15rem;
-    line-height: 1.85;
-    color: var(--text-muted);
-    margin-bottom: 1.75rem;
-  }
-  #sf-embed .sf-mission-text-centered p:last-child {
-    margin-bottom: 0;
-  }
-
-  /* ADVISORY GRID — tighter, 5-up */
-  #sf-embed .sf-advisory-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    border: 1px solid var(--border-color);
-  }
-  #sf-embed .sf-advisor-card {
-    border-right: 1px solid var(--border-color);
-    overflow: hidden;
-    background: var(--bg-dark);
-    transition: background 0.2s ease;
-  }
-  #sf-embed .sf-advisor-card:last-child { border-right: none; }
-  #sf-embed .sf-advisor-card:not(.empty-card):hover { background: var(--bg-panel); }
-  
-  #sf-embed .sf-advisor-img-wrap {
-    aspect-ratio: 1/1;
-  }
-  #sf-embed .sf-advisor-img-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover; 
-    object-position: bottom center; /* Keeps transparent bodies grounded */
-    filter: grayscale(40%);
-    transition: transform 0.6s ease, filter 0.4s ease;
-  }
-  #sf-embed .sf-advisor-card:hover .sf-advisor-img-wrap img {
-    transform: scale(1.06);
-    filter: grayscale(0%);
-  }
-  #sf-embed .sf-advisor-info {
-    padding: 1.25rem 1.25rem 1.5rem;
-  }
-  #sf-embed .sf-advisor-name {
-    font-family: 'Geist Mono', monospace;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--text-main);
-    margin-bottom: 0.25rem;
-    line-height: 1.3;
-  }
-  #sf-embed .sf-advisor-role {
-    font-family: 'Geist Mono', monospace;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-  }
-
-  /* Empty placeholder cards to maintain the 5-column grid borders */
-  #sf-embed .sf-advisor-card.empty-card {
-    background: transparent;
-  }
-
-  /* ── VALUES BAND ── */
-  #sf-embed .sf-values {
-    padding: 6rem 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-  #sf-embed .sf-values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-left: 1px solid var(--border-color);
-    margin-top: 3rem;
-  }
-  #sf-embed .sf-value-cell {
-    border-right: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    padding: 2.5rem 2rem;
-  }
-  #sf-embed .sf-value-num {
-    font-family: 'Geist Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
-  }
-  #sf-embed .sf-value-title {
-    font-size: 1.3rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
-    color: var(--text-main) !important;
-  }
-  #sf-embed .sf-value-desc {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-  }
-
-  /* GRAIN */
-  #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
-
-  /* SCROLL REVEAL */
-  #sf-embed .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  #sf-embed .reveal.visible { opacity: 1; transform: translateY(0); }
-  #sf-embed .reveal-d1 { transition-delay: 0.1s; }
-  #sf-embed .reveal-d2 { transition-delay: 0.2s; }
-  #sf-embed .reveal-d3 { transition-delay: 0.3s; }
-
-  /* MOBILE */
-  @media (max-width: 900px) {
-    #sf-embed .sf-hero { min-height: 65vh; }
-    #sf-embed .sf-mission { padding: 4rem 0; }
-    #sf-embed .sf-mission-text-centered p { font-size: 1rem; }
-    #sf-embed .sf-mission-quote { font-size: clamp(1.4rem, 4vw, 1.8rem); }
-
-    #sf-embed .sf-people-section { padding: 4rem 0; }
-    #sf-embed .sf-founders-grid { grid-template-columns: 1fr; gap: 1px; }
-    #sf-embed .sf-advisory-grid { grid-template-columns: repeat(2, 1fr); }
-    #sf-embed .sf-advisor-card { border-right: none; border-bottom: 1px solid var(--border-color); }
-    #sf-embed .sf-values-grid { grid-template-columns: 1fr; }
-    
-    #sf-embed::after { display: none; }
-  }
-  @media (max-width: 480px) {
-    #sf-embed .sf-advisory-grid { grid-template-columns: 1fr 1fr; }
-    #sf-embed .sf-hero h1 { font-size: clamp(3rem, 14vw, 5rem); }
-  }
-</style>
 </head>
 <body>
 <div id="sf-embed">
 
   <div id="nav-placeholder"></div>
 
+  <style>
+    /* LOCAL CUSTOM DESIGN OVERRIDES */
+    #sf-embed {
+      /* Continuous Ombre Palette - Info Page Terminal Spectrum */
+      --info-uv: 95, 25, 155;       /* Ultraviolet */
+      --info-magenta: 155, 25, 90;  /* Magenta/Crimson */
+      
+      /* Scattered Contrast Accent */
+      --info-contrast: 255, 180, 30; /* Electric Tungsten Gold */
+    }
+
+    /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
+    #sf-embed .sf-hero {
+      position: relative;
+      width: 100%;
+      min-height: 80vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+      background-color: #050505;
+    }
+    
+    #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
+    #sf-embed .sf-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
+
+    /* LAYER 1: BASE GRAPHIC VIDEO SYSTEM */
+    .hero-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1; 
+      filter: grayscale(100%) contrast(1.2); 
+      opacity: 0.45; 
+      pointer-events: none;
+      transition: transform 10s ease;
+    }
+    #sf-embed .sf-hero:hover .hero-bg-video { transform: scale(1.04); }
+
+    /* LAYER 2: THE AMBIENT UV/MAGENTA LIGHT GEL SHEET */
+    .pulse-base {
+      position: absolute; 
+      inset: -50px; 
+      z-index: 2; 
+      background-image: 
+        radial-gradient(circle at 20% 45%, rgba(var(--info-uv), 0.85) 0%, transparent 70%),
+        radial-gradient(circle at 80% 45%, rgba(var(--info-magenta), 0.75) 0%, transparent 70%);
+      mix-blend-mode: overlay;
+      animation: baseBreathe 6s ease-in-out infinite alternate;
+    }
+    @keyframes baseBreathe {
+      0%   { transform: scale(0.96); opacity: 0.75; }
+      100% { transform: scale(1.04); opacity: 1; }
+    }
+
+    /* LAYER 3: CONTRAST TUNGSTEN GOLD PERIMETER COMPLEMENTARY LIGHT */
+    .contrast-perimeter {
+      position: absolute;
+      inset: -20px;
+      z-index: 3;
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(var(--info-contrast), 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(var(--info-contrast), 0.42) 0%, transparent 55%),
+        radial-gradient(circle at 100% 10%, rgba(var(--info-contrast), 0.38) 0%, transparent 50%);
+      mix-blend-mode: screen;
+      animation: contrastBreathe 4.5s ease-in-out infinite alternate;
+    }
+    @keyframes contrastBreathe {
+      0%   { opacity: 0.55; }
+      100% { opacity: 1; }
+    }
+
+    /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
+    .radar-ring { 
+      position: absolute; top: 45%; left: 50%; 
+      width: 150px; height: 150px; 
+      border-radius: 50%; 
+      z-index: 4; 
+      pointer-events: none; 
+      border: 3px solid rgba(var(--info-contrast), 0.65);
+      box-shadow: inset 0 0 60px rgba(var(--info-contrast), 0.45), 0 0 60px rgba(var(--info-contrast), 0.45);
+      animation: deepRadar 8s linear infinite; 
+    }
+    @keyframes deepRadar { 
+      0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 
+      15% { opacity: 0.85; }
+      100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } 
+    }
+
+    #sf-embed .sf-hero h1 {
+      font-size: clamp(4.5rem, 11vw, 8.5rem);
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      line-height: 0.9;
+      margin-bottom: 1.5rem;
+    }
+    #sf-embed .sf-hero-tagline {
+      font-family: 'Geist Mono', monospace;
+      font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    #sf-embed .sf-hero-tagline::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+      flex-shrink: 0;
+    }
+
+    /* ── MARQUEE BAND ── */
+    #sf-embed .sf-marquee {
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-panel);
+      padding: 0.9rem 0;
+      white-space: nowrap;
+    }
+    #sf-embed .sf-marquee-track {
+      display: inline-flex;
+      gap: 2.5rem;
+      animation: sfScroll 25s linear infinite;
+      align-items: center;
+    }
+    @keyframes sfScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    #sf-embed .sf-marquee-item {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 1.25rem;
+    }
+    #sf-embed .sf-marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; opacity: 0.55; }
+
+    /* ── PEOPLE SECTIONS (Founders + Advisory) ── */
+    #sf-embed .sf-people-section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    #sf-embed .sf-section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    #sf-embed .sf-section-header h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    /* CINEMATIC SPOTLIGHT BACKGROUND FOR TRANSPARENT HEADSHOTS */
+    #sf-embed .sf-founder-img-wrap,
+    #sf-embed .sf-advisor-img-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at top center, #23232f 0%, #0c0c10 100%);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* FOUNDER CARDS — big, editorial */
+    #sf-embed .sf-founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border: 1px solid var(--border-color);
+    }
+    #sf-embed .sf-founder-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-panel);
+      cursor: default;
+    }
+    #sf-embed .sf-founder-img-wrap {
+      aspect-ratio: 3/4;
+    }
+    #sf-embed .sf-founder-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: bottom center;
+      filter: grayscale(15%);
+      transition: transform 0.7s ease, filter 0.5s ease;
+    }
+    #sf-embed .sf-founder-card:hover .sf-founder-img-wrap img {
+      transform: scale(1.04);
+      filter: grayscale(0%);
+    }
+    #sf-embed .sf-founder-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(10,10,10,0.65) 100%);
+      pointer-events: none;
+    }
+    #sf-embed .sf-founder-info {
+      padding: 2rem 2.25rem 2.5rem;
+    }
+    #sf-embed .sf-founder-name {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+    #sf-embed .sf-founder-role {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    #sf-embed .sf-founder-bio {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── MISSION STATEMENT ── */
+    #sf-embed .sf-mission {
+      padding: 8rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    #sf-embed .sf-mission-text-centered {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #sf-embed .sf-mission-quote {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: rgba(248,250,252,0.9);
+      font-style: italic;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      margin-bottom: 2.5rem;
+    }
+    #sf-embed .sf-mission-text-centered p {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+    #sf-embed .sf-mission-text-centered p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ADVISORY GRID — tighter, 5-up */
+    #sf-embed .sf-advisory-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid var(--border-color);
+    }
+    #sf-embed .sf-advisor-card {
+      border-right: 1px solid var(--border-color);
+      overflow: hidden;
+      background: var(--bg-dark);
+      transition: background 0.2s ease;
+    }
+    #sf-embed .sf-advisor-card:last-child { border-right: none; }
+    #sf-embed .sf-advisor-card:not(.empty-card):hover { background: var(--bg-panel); }
+    
+    #sf-embed .sf-advisor-img-wrap {
+      aspect-ratio: 1/1;
+    }
+    #sf-embed .sf-advisor-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; 
+      object-position: bottom center;
+      filter: grayscale(40%);
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+    #sf-embed .sf-advisor-card:hover .sf-advisor-img-wrap img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+    #sf-embed .sf-advisor-info {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+    #sf-embed .sf-advisor-name {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+    #sf-embed .sf-advisor-role {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    #sf-embed .sf-advisor-card.empty-card {
+      background: transparent;
+    }
+
+    /* ── VALUES BAND ── */
+    #sf-embed .sf-values {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    #sf-embed .sf-values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+    #sf-embed .sf-value-cell {
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2.5rem 2rem;
+    }
+    #sf-embed .sf-value-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+    #sf-embed .sf-value-title {
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      color: var(--text-main) !important;
+    }
+    #sf-embed .sf-value-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* LOCAL MEDIA RESPONSIVE RULES */
+    @media (max-width: 900px) {
+      #sf-embed .sf-hero { min-height: 65vh; }
+      #sf-embed .sf-mission { padding: 4rem 0; }
+      #sf-embed .sf-mission-text-centered p { font-size: 1rem; }
+      #sf-embed .sf-mission-quote { font-size: clamp(1.4rem, 4vw, 1.8rem); }
+
+      #sf-embed .sf-people-section { padding: 4rem 0; }
+      #sf-embed .sf-founders-grid { grid-template-columns: 1fr; gap: 1px; }
+      #sf-embed .sf-advisory-grid { grid-template-columns: repeat(2, 1fr); }
+      #sf-embed .sf-advisor-card { border-right: none; border-bottom: 1px solid var(--border-color); }
+      #sf-embed .sf-values-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      #sf-embed .sf-advisory-grid { grid-template-columns: 1fr 1fr; }
+      #sf-embed .sf-hero h1 { font-size: clamp(3rem, 14vw, 5rem); }
+    }
+  </style>
+
   <section class="sf-hero">
     <video src="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/worldisyours.mp4" autoplay loop muted playsinline class="hero-bg-video"></video>
 
     <div class="pulse-base"></div>
-    
     <div class="contrast-perimeter"></div>
-    
     <div class="radar-ring"></div>
-
     <div class="sf-hero-veil"></div>
 
     <div class="sf-hero-content">
@@ -613,31 +560,7 @@
 
 </div>
 
-<script>
-  // ── INJECT GLOBAL COMPONENTS ──
-  async function loadGlobals() {
-    const navResponse = await fetch('/nav.html');
-    const navData = await navResponse.text();
-    document.getElementById('nav-placeholder').innerHTML = navData;
-
-    const footerResponse = await fetch('/footer.html');
-    const footerData = await footerResponse.text();
-    document.getElementById('footer-placeholder').innerHTML = footerData;
-  }
-  loadGlobals();
-
-  // Scroll reveal framework controller
-  const revealEls = document.querySelectorAll('#sf-embed .reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  revealEls.forEach(el => observer.observe(el));
-</script>
+<script src="/script.js"></script>
 
 </body>
 </html>
