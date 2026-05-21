@@ -61,23 +61,6 @@
   #sf-embed .sf-btn-ghost { background-color: transparent; color: var(--text-main) !important; border: 1px solid rgba(255,255,255,0.5); }
   #sf-embed .sf-btn-ghost:hover { border-color: var(--accent); }
 
-  /* NAV */
-  #sf-embed .sf-navbar { position: sticky; top: 0; z-index: 10000; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
-  #sf-embed .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
-  #sf-embed .sf-nav-logo { display: flex; align-items: center; }
-  #sf-embed .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); transition: height 0.2s ease; }
-  #sf-embed .sf-nav-menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
-  #sf-embed .sf-nav-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
-  #sf-embed .sf-nav-link:hover { color: var(--text-muted); }
-  #sf-embed .sf-nav-link.active { color: var(--text-muted); border-bottom: 1px solid var(--text-muted); padding-bottom: 2px; }
-  #sf-embed .sf-nav-link i { font-size: 0.85rem; color: var(--text-muted); }
-
-  /* FLOATING CONTACT */
-  #sf-embed .sf-floating-contact { position: fixed; bottom: 2rem; right: 2rem; z-index: 99999; background-color: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.75rem 1.25rem; font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.2s ease; }
-  #sf-embed .sf-floating-contact:hover { border-color: var(--text-main); background-color: var(--text-main); color: var(--bg-dark) !important; }
-  #sf-embed .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
-  #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
-
   /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
   #sf-embed .sf-hero {
     position: relative;
@@ -416,21 +399,6 @@
     color: var(--text-muted);
   }
 
-  /* ── FOOTER ── */
-  #sf-embed .sf-footer { background-color: var(--bg-panel); padding: 5rem 0 3rem 0; font-size: 0.9rem; }
-  #sf-embed .sf-footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr) 1.2fr; gap: 3rem; align-items: start; }
-  #sf-embed .sf-footer-brand p { max-width: 320px; color: var(--text-muted) !important; font-size: 0.85rem; line-height: 1.5; margin-top: 1.25rem; }
-  #sf-embed .sf-footer-title { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main) !important; margin-bottom: 1.25rem; }
-  #sf-embed .sf-footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-  #sf-embed .sf-footer-links a { color: var(--text-muted) !important; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; }
-  #sf-embed .sf-footer-links a:hover { color: var(--text-main) !important; }
-  
-  #sf-embed .sf-footer-graphic-box { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
-  #sf-embed .sf-footer-butterfly { height: 64px; width: 64px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255,255,255,0.15); border-radius: 2px; transition: border-color 0.3s; }
-  #sf-embed .sf-footer-graphic-box:hover .sf-footer-butterfly { border-color: rgba(255,255,255,0.4); }
-  #sf-embed .sf-butterfly-caption { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text-main); text-transform: lowercase; margin-top: 0.65rem; padding-right: 0.1em; opacity: 0.5; }
-  #sf-embed .sf-footer-bottom { border-top: 1px solid var(--border-color); margin-top: 4rem; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', monospace; font-size: 0.7rem; letter-spacing: 0.02em; color: var(--text-muted); }
-
   /* GRAIN */
   #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
 
@@ -443,17 +411,6 @@
 
   /* MOBILE */
   @media (max-width: 900px) {
-    #sf-embed .sf-navbar { padding: 1rem 0; }
-    #sf-embed .sf-nav-text-logo { height: 48px; }
-    #sf-embed .sf-nav-inner { flex-direction: column; gap: 1.25rem; }
-    
-    /* MOBILE NAV ICON FIX: Forced into one single row */
-    #sf-embed .sf-nav-menu { width: 100%; justify-content: center; gap: 1rem; flex-wrap: nowrap; }
-    
-    #sf-embed .sf-nav-link span { display: none; }
-    #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
-    #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
-
     #sf-embed .sf-hero { min-height: 65vh; }
     #sf-embed .sf-mission { padding: 4rem 0; }
     #sf-embed .sf-mission-text-centered p { font-size: 1rem; }
@@ -465,9 +422,6 @@
     #sf-embed .sf-advisor-card { border-right: none; border-bottom: 1px solid var(--border-color); }
     #sf-embed .sf-values-grid { grid-template-columns: 1fr; }
     
-    #sf-embed .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    #sf-embed .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
-    #sf-embed .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     #sf-embed::after { display: none; }
   }
   @media (max-width: 480px) {
@@ -479,29 +433,7 @@
 <body>
 <div id="sf-embed">
 
-  <nav class="sf-navbar">
-    <div class="sf-container sf-nav-inner">
-      <a href="index.html" class="sf-nav-logo">
-        <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" class="sf-nav-text-logo">
-      </a>
-      <ul class="sf-nav-menu">
-        <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
-        <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
-        <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
-        <li><a href="projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
-        <li><a href="https://playground.sweetflyfilm.com" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
-        <li><a href="info.html" class="sf-nav-link active"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <button class="sf-floating-contact"
-          data-tally-open="KYWv6V"
-          data-tally-hide-title="1"
-          data-tally-emoji-text="👋🏾"
-          data-tally-emoji-animation="wave">
-    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
-  </button>
+  <div id="nav-placeholder"></div>
 
   <section class="sf-hero">
     <video src="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/worldisyours.mp4" autoplay loop muted playsinline class="hero-bg-video"></video>
@@ -677,52 +609,23 @@
     </div>
   </section>
 
-  <footer class="sf-footer">
-    <div class="sf-container">
-      <div class="sf-footer-grid">
-        <div class="sf-footer-brand">
-          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" style="height:144px;width:auto;filter:invert(1);display:block;">
-          <p>We are the creators of our wildest, weirdest dreams.</p>
-        </div>
-        <div>
-          <div class="sf-footer-title">Studio Services</div>
-          <ul class="sf-footer-links">
-            <li><a href="studio.html">The Shop</a></li>
-            <li><a href="gear.html">Gear Rental</a></li>
-            <li><a href="coverage.html">Script Coverage</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="sf-footer-title">Company</div>
-          <ul class="sf-footer-links">
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li><a href="info.html">About Us</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="sf-footer-title">Social Media</div>
-          <ul class="sf-footer-links">
-            <li><a href="https://www.facebook.com/sweetflyfilm/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" style="width:14px;"></i> Facebook</a></li>
-            <li><a href="https://www.instagram.com/sweetflyfilm/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" style="width:14px;"></i> Instagram</a></li>
-            <li><a href="https://www.linkedin.com/company/sweetflyfilm" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" style="width:14px;"></i> Linkedin</a></li>
-          </ul>
-        </div>
-        <div class="sf-footer-graphic-box">
-          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo Mark" class="sf-footer-butterfly">
-          <div class="sf-butterfly-caption">we fly</div>
-        </div>
-      </div>
-      <div class="sf-footer-bottom">
-        <div>&copy; 2026 SWEET FLYPAPER. ALL RIGHTS RESERVED.</div>
-        <div>DENVER &bull; AURORA &bull; BELIZE</div>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
 </div>
 
 <script>
+  // ── INJECT GLOBAL COMPONENTS ──
+  async function loadGlobals() {
+    const navResponse = await fetch('/nav.html');
+    const navData = await navResponse.text();
+    document.getElementById('nav-placeholder').innerHTML = navData;
+
+    const footerResponse = await fetch('/footer.html');
+    const footerData = await footerResponse.text();
+    document.getElementById('footer-placeholder').innerHTML = footerData;
+  }
+  loadGlobals();
+
   // Scroll reveal framework controller
   const revealEls = document.querySelectorAll('#sf-embed .reveal');
   const observer = new IntersectionObserver((entries) => {
