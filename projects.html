@@ -274,30 +274,7 @@
 
 <div id="sf-embed">
 
-  <nav class="sf-navbar">
-    <div class="sf-container sf-nav-inner">
-      <a href="index.html" class="sf-nav-logo">
-        <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" class="sf-nav-text-logo">
-      </a>
-      
-      <ul class="sf-nav-menu">
-        <li><a href="gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li>
-        <li><a href="studio.html" class="sf-nav-link"><i class="fa-solid fa-door-open"></i> <span>Studio</span></a></li>
-        <li><a href="coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
-        <li><a href="projects.html" class="sf-nav-link active"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
-        <li><a href="community.html" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
-        <li><a href="info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <button class="sf-floating-contact" 
-          data-tally-open="KYWv6V" 
-          data-tally-hide-title="1" 
-          data-tally-emoji-text="👋🏾" 
-          data-tally-emoji-animation="wave">
-    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
-  </button>
+  <div id="nav-placeholder"></div>
 
   <section class="sf-hero">
     <img src="/images/projectsstrip.png" class="hero-bg-img" alt="Projects Strip">
@@ -469,59 +446,23 @@
     <div id="noResultsMsg" class="sf-no-results">No projects match your criteria.</div>
   </section>
 
-  <footer class="sf-footer">
-    <div class="sf-container">
-      <div class="sf-footer-grid">
-        
-        <div class="sf-footer-brand">
-          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" style="height: 144px; width: auto; filter: invert(1); display: block;">
-          <p>We are the creators of our wildest, weirdest dreams.</p>
-        </div>
-        
-        <div>
-          <div class="sf-footer-title">Studio Services</div>
-          <ul class="sf-footer-links">
-            <li><a href="studio.html">The Shop</a></li>
-            <li><a href="gear.html">Gear Rental</a></li>
-            <li><a href="coverage.html">Script Coverage</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <div class="sf-footer-title">Company</div>
-          <ul class="sf-footer-links">
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li><a href="info.html">About Us</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <div class="sf-footer-title">Social Media</div>
-          <ul class="sf-footer-links">
-            <li><a href="https://www.facebook.com/sweetflyfilm/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" style="width: 14px;"></i> Facebook</a></li>
-            <li><a href="https://www.instagram.com/sweetflyfilm/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" style="width: 14px;"></i> Instagram</a></li>
-            <li><a href="https://www.linkedin.com/company/sweetflyfilm" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" style="width: 14px;"></i> Linkedin</a></li>
-          </ul>
-        </div>
-
-        <div class="sf-footer-graphic-box">
-          <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/695c3670e2e4598f194f639a_sf%20butterfly%20logo%20new_blk.png" alt="SF Logo Mark" class="sf-footer-butterfly">
-          <div class="sf-butterfly-caption">we fly</div>
-        </div>
-
-      </div>
-      
-      <div class="sf-footer-bottom">
-        <div>&copy; 2026 SWEET FLYPAPER. ALL RIGHTS RESERVED.</div>
-        <div>DENVER &bull; AURORA &bull; BELIZE</div>
-      </div>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
 </div>
 
 <script>
+  // ── INJECT GLOBAL COMPONENTS ──
+  async function loadGlobals() {
+    const navResponse = await fetch('/nav.html');
+    const navData = await navResponse.text();
+    document.getElementById('nav-placeholder').innerHTML = navData;
+
+    const footerResponse = await fetch('/footer.html');
+    const footerData = await footerResponse.text();
+    document.getElementById('footer-placeholder').innerHTML = footerData;
+  }
+  loadGlobals();
+
   // Scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
