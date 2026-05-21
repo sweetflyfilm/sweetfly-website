@@ -24,10 +24,9 @@
     --blue-contrast: 0, 110, 255;   /* Deep Electric Blue */
   }
 
-  /* --- PAGE-SPECIFIC UTILITIES --- */
+  /* --- PAGE-SPECIFIC STRUCTURES --- */
   .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
   .section-padding { padding: 6rem 0; }
-  .label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; display: block; }
 
   /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
   #sf-embed .sf-hero { 
@@ -136,7 +135,7 @@
   .spec-details h4 { font-family: 'Geist Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; color: var(--text-main); }
   .spec-details p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
 
-  /* --- PRICING --- */
+  /* --- PRICING RESTORED RESTORATION --- */
   .pricing-section { padding: 5rem 0; border-bottom: 1px solid var(--border-color); position: relative; z-index: 10; }
   .pricing-header { margin-bottom: 3rem; }
   .pricing-header h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
@@ -144,14 +143,12 @@
   .pricing-card { background: var(--bg-panel); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 0.5rem; transition: background 0.2s; }
   .pricing-card:hover { background: var(--bg-card); }
   .pricing-tier { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-  
   .pricing-rate { display: flex; align-items: flex-start; font-size: 3.5rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin: 0.5rem 0; color: var(--text-main); }
   .pricing-currency { font-size: 1.25rem; font-weight: 400; color: var(--text-muted); margin-top: 0.4rem; margin-right: 0.2rem; }
-  
   .pricing-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.5rem; }
   .pricing-note { margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
 
-  /* --- BOOKING CTA STRETCH ALIGNMENT --- */
+  /* --- BOOKING CTA RESTORED RESTORATION --- */
   .booking-section { padding: 8rem 0; background: var(--bg-panel); border-top: 1px solid var(--border-color); position: relative; z-index: 10; }
   .booking-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
   .booking-text h2 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin-bottom: 1rem; line-height: 1.05; }
@@ -189,7 +186,7 @@
 
     <div class="sf-hero-content">
       <div class="sf-container">
-        <span class="label">Location | Aurora</span>
+        <span class="sf-label">Location | Aurora</span>
         <h1 style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.05; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.04em;">The Shop</h1>
         <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 550px; line-height: 1.6; margin-bottom: 2rem;">An intimate, private studio space built specifically for independent creators. Whether you are shooting a documentary interview, a music video, or recording a podcast, our space is ready to go.</p>
         <div>
@@ -201,7 +198,7 @@
 
   <div class="usecase-strip">
     <div class="container">
-      <span class="label" style="color: var(--text-muted); margin-bottom: 0.5rem; display: block;">Perfect For</span>
+      <span class="sf-label" style="color: var(--text-muted); margin-bottom: 0.5rem; display: block;">Perfect For</span>
       <div class="usecase-wrap" id="usecaseSlider">
         <div class="usecase-item active" data-usecase="0">Documentary Interviews</div>
         <div class="usecase-item" data-usecase="1">Music Videos</div>
@@ -218,7 +215,7 @@
     
     <div class="feature-row">
       <div class="feature-text reveal">
-        <span class="label">Production</span>
+        <span class="sf-label">Production</span>
         <h2>The Main Stage</h2>
         <p>Whether you need a clean, infinite white backdrop for a corporate interview, or a haze-filled, dramatic lighting setup for a music video, the main floor is highly adaptable.</p>
         <p>It’s an intimate but powerful footprint designed to give directors total control over their environment without the massive overhead of a commercial warehouse.</p>
@@ -230,7 +227,7 @@
 
     <div class="feature-row reverse">
       <div class="feature-text reveal">
-        <span class="label">Flexibility</span>
+        <span class="sf-label">Flexibility</span>
         <h2>Built for Crews</h2>
         <p>We know how a set operates. The space is equipped with heavy-duty C-stands, backdrop systems, and enough room for a dedicated camera crew and talent to work comfortably.</p>
         <p>Need extra gear? Because our rental inventory is housed right here, you can add cinema cameras, Aputure lighting, or grip gear directly to your studio booking.</p>
@@ -242,7 +239,7 @@
 
     <div class="feature-row">
       <div class="feature-text reveal">
-        <span class="label">Photography</span>
+        <span class="sf-label">Photography</span>
         <h2>Portrait & Stills</h2>
         <p>Not shooting motion? The studio is perfectly dialed in for editorial and commercial photography. Control the ambient light completely and utilize our seamless paper backdrops and strobe modifiers to get the perfect shot.</p>
       </div>
@@ -253,7 +250,7 @@
 
     <div class="feature-row reverse">
       <div class="feature-text reveal">
-        <span class="label">Post-Production</span>
+        <span class="sf-label">Post-Production</span>
         <h2>The Editing & Audio Suite</h2>
         <p>The work doesn't stop when the camera cuts. Our dedicated post-production suite is sound-treated and equipped for high-end editing, color grading, and audio recording.</p>
         <p>From laying down voiceovers and podcast tracks to cutting your final feature, it's a quiet, creative sanctuary.</p>
@@ -268,7 +265,7 @@
   <section class="specs-section section-padding">
     <div class="container">
       <div class="reveal" style="text-align: center; margin-bottom: 3rem;">
-        <span class="label">The Details</span>
+        <span class="sf-label">The Details</span>
         <h2>Studio Amenities</h2>
       </div>
       
@@ -327,7 +324,7 @@
   <section id="pricing" class="pricing-section">
     <div class="container">
       <div class="pricing-header reveal">
-        <span class="label">Rates</span>
+        <span class="sf-label">Rates</span>
         <h2>Studio Pricing</h2>
       </div>
       <div class="pricing-grid reveal">
@@ -356,7 +353,7 @@
       <div class="booking-inner reveal">
         
         <div class="booking-text">
-          <span class="label">Reserve the Space</span>
+          <span class="sf-label">Reserve the Space</span>
           <h2>Two Ways<br>to Book</h2>
           <p>Sharegrid handles scheduling and payment automatically — fastest way to lock in a date. Prefer to work with us directly? Fill out our booking form and we'll confirm availability within 24 hours.</p>
         </div>
