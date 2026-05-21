@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love, Pills, & A Pistol | Sweet Flypaper Film</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/styles.css">
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<style>
+  /* BREADCRUMB SPECIFIC OVERRIDES */
+  #sf-embed .breadcrumb {
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-panel);
+    padding: 0.85rem 0;
+  }
+  #sf-embed .breadcrumb-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+  }
+  #sf-embed .breadcrumb-inner a { color: var(--text-muted); }
+  #sf-embed .breadcrumb-inner a:hover { color: var(--text-main); }
+  #sf-embed .breadcrumb-sep { opacity: 0.4; }
+  #sf-embed .breadcrumb-current { color: var(--text-main); }
+
+  /* PROJECT HERO SPECIFIC OVERRIDES */
+  #sf-embed .project-hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  #sf-embed .project-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(10%);
+    transition: transform 8s ease;
+  }
+  #sf-embed .project-hero:hover .project-hero-img { transform: scale(1.03); }
+  #sf-embed .project-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.1) 0%,
+      rgba(10,10,10,0.3) 40%,
+      rgba(10,10,10,0.85) 75%,
+      rgba(10,10,10,1) 100%
+    );
+    z-index: 1;
+  }
+  #sf-embed .project-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 4rem 0 3rem;
+  }
+  #sf-embed .project-type-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    background: rgba(10,10,10,0.6);
+    padding: 0.4rem 0.85rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+  }
+  #sf-embed .project-hero h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+
+  /* META ROW SPECIFIC OVERRIDES */
+  #sf-embed .project-meta-row {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .project-meta-cell {
+    flex: 1;
+    padding: 2rem 2rem;
+    border-right: 1px solid var(--border-color);
+  }
+  #sf-embed .project-meta-cell:last-child { border-right: none; }
+  #sf-embed .project-meta-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  #sf-embed .project-meta-value {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  #sf-embed .project-meta-award {
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* SHARE ICONS SPECIFIC OVERRIDES */
+  #sf-embed .share-icons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  #sf-embed .share-icon {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border-color);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+  }
+  #sf-embed .share-icon:hover { border-color: var(--text-main); color: var(--text-main); }
+
+  /* CONTENT BODY SPECIFIC OVERRIDES */
+  #sf-embed .project-body {
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .project-body-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  #sf-embed .project-body-text h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 2rem;
+  }
+  
+  /* POEM SPECIFIC OVERRIDES */
+  #sf-embed .project-poem {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  /* SPONSOR BLOCK SPECIFIC OVERRIDES */
+  #sf-embed .project-sponsors {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  #sf-embed .sponsor-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  #sf-embed .sponsor-grid {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* DETAILS SIDEBAR SPECIFIC OVERRIDES */
+  #sf-embed .project-details-sidebar {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  #sf-embed .sidebar-item {
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  #sf-embed .sidebar-item:last-child { border-bottom: none; }
+  #sf-embed .sidebar-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  #sf-embed .sidebar-value {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  #sf-embed .sidebar-gold { color: var(--gold); }
+
+  /* CAROUSEL GALLERY SPECIFIC OVERRIDES */
+  #sf-embed .media-showcase {
+    border-bottom: 1px solid var(--border-color);
+    padding: 5rem 0;
+    background: var(--bg-dark);
+  }
+  #sf-embed .media-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+  #sf-embed .media-frame {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    min-height: 500px;
+    max-height: 800px;
+    background: #050505;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #sf-embed .media-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    pointer-events: none;
+  }
+  #sf-embed .media-slide.active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+  }
+  #sf-embed .media-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+  }
+  #sf-embed .media-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  #sf-embed .media-dot {
+    width: 40px;
+    height: 2px;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #sf-embed .media-dot.active {
+    background: var(--accent);
+  }
+
+  /* PREV/NEXT NAVIGATION MODULES */
+  #sf-embed .project-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border-color);
+  }
+  #sf-embed .project-nav-item {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+  }
+  #sf-embed .project-nav-item:last-child { border-right: none; text-align: right; align-items: flex-end; }
+  #sf-embed .project-nav-item:hover { background: var(--bg-panel); }
+  #sf-embed .project-nav-dir {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  #sf-embed .project-nav-item:last-child .project-nav-dir { justify-content: flex-end; }
+  #sf-embed .project-nav-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+  }
+
+  /* RESPONSIVE RESPONSIVITY OVERRIDES */
+  @media (max-width: 900px) {
+    #sf-embed .project-hero { min-height: 60vh; }
+    #sf-embed .project-meta-row { flex-direction: column; }
+    #sf-embed .project-meta-cell { border-right: none; border-bottom: 1px solid var(--border-color); padding: 1.5rem; }
+    #sf-embed .project-meta-cell:last-child { border-bottom: none; }
+
+    #sf-embed .project-body { padding: 4rem 0; }
+    #sf-embed .project-body-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    #sf-embed .media-frame { height: 50vh; min-height: 400px; }
+
+    #sf-embed .project-nav { grid-template-columns: 1fr; }
+    #sf-embed .project-nav-item { border-right: none; border-bottom: 1px solid var(--border-color); text-align: left; align-items: flex-start; }
+    #sf-embed .project-nav-item:last-child { border-bottom: none; }
+    #sf-embed .project-nav-item:last-child .project-nav-dir { justify-content: flex-start; }
+  }
+  @media (max-width: 480px) {
+    #sf-embed .media-frame { height: 40vh; min-height: 350px; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="sf-embed">
+
+  <div id="nav-placeholder"></div>
+
+  <div class="breadcrumb">
+    <div class="sf-container breadcrumb-inner">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="/projects.html">Projects</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Love, Pills, &amp; A Pistol</span>
+    </div>
+  </div>
+
+  <section class="project-hero">
+    <img
+      src="/projects/lpp/images/lpp.png"
+      alt="Love Pills and a Pistol"
+      class="project-hero-img"
+      onerror="this.src='https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg'"
+    >
+    <div class="project-hero-overlay" aria-hidden="true"></div>
+    <div class="project-hero-content">
+      <div class="sf-container">
+        <div class="project-type-pill reveal">
+          <i class="fa-solid fa-film" style="font-size:0.6rem;"></i> Short Film &nbsp;·&nbsp; 2026
+        </div>
+        <h1 class="reveal reveal-d1">Love, Pills,<br>&amp; A Pistol</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="project-meta-row">
+    <div class="project-meta-cell">
+      <span class="project-meta-label">Starring</span>
+      <div class="project-meta-value">Charlize Delenn &amp; Rich Richardson III</div>
+    </div>
+    <div class="project-meta-cell">
+      <span class="project-meta-label">Created By</span>
+      <div class="project-meta-value">Terrell Lamont &amp; Grant Hughes</div>
+    </div>
+    <div class="project-meta-cell">
+      <span class="project-meta-label">Awards</span>
+      <div class="project-meta-value project-meta-award">
+        <i class="fa-solid fa-award" style="font-size:0.85rem;"></i>
+        Film Shortage 2025 — Selection
+      </div>
+    </div>
+    <div class="project-meta-cell">
+      <span class="project-meta-label">Share On</span>
+      <div class="share-icons">
+        <a href="#" class="share-icon" aria-label="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="share-icon" aria-label="Share on Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="share-icon" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <section class="project-body">
+    <div class="sf-container">
+      <div class="project-body-grid">
+
+        <div class="project-body-text reveal">
+          <h2>Is love<br>enough?</h2>
+          
+          <p class="project-poem">
+            As the wind persuades the tree to dance<br>
+            The tree doesn’t resist<br>
+            But the wind can push too hard<br>
+            Ending the love affair<br>
+            Because wind, can only be wind.
+          </p>
+
+          <p style="margin-top: 2.5rem;">
+            <a href="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/video/lpp-trailer.mp4" target="_blank" class="sf-btn sf-btn-ghost">Watch the Trailer <i class="fa-solid fa-play" style="font-size:0.75rem;"></i></a>
+          </p>
+          
+          <div class="project-sponsors">
+            <span class="sponsor-label">Supported By</span>
+            <div class="sponsor-grid">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="project-details-sidebar reveal reveal-d1">
+          <div class="sidebar-item">
+            <span class="sidebar-label">Type</span>
+            <span class="sidebar-value">Short Film</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Year</span>
+            <span class="sidebar-value">2026</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Written By</span>
+            <span class="sidebar-value">Terrell Lamont &amp; Grant Hughes</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Directed By</span>
+            <span class="sidebar-value">Terrell Lamont</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Filmed At</span>
+            <span class="sidebar-value">The Shop — Aurora, CO</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Camera</span>
+            <span class="sidebar-value">Blackmagic 6K</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Recognition</span>
+            <span class="sidebar-value sidebar-gold"><i class="fa-solid fa-award" style="font-size:0.8rem; margin-right:0.4rem;"></i>Film Shortage 2025</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="media-showcase">
+    <div class="sf-container">
+      
+      <div class="media-header reveal">
+        <div>
+          <span class="sf-label">Gallery</span>
+          <h3 style="font-size: 1.5rem;">Posters &amp; Stills</h3>
+        </div>
+      </div>
+
+      <div class="media-frame reveal reveal-d1" id="mediaCarousel">
+        
+        <div class="media-slide active" data-slide="0">
+          <img src="/projects/lpp/images/poster-long.jpg" onerror="this.style.display='none'" alt="Official Poster Long">
+        </div>
+
+        <div class="media-slide" data-slide="1">
+          <img src="/projects/lpp/images/poster-wide.jpg" onerror="this.style.display='none'" alt="Official Poster Wide">
+        </div>
+
+        <div class="media-slide" data-slide="2">
+          <img src="/projects/lpp/images/jay.jpg" onerror="this.style.display='none'" alt="Production Still 1">
+        </div>
+        
+        <div class="media-slide" data-slide="3">
+          <img src="/projects/lpp/images/jay2.jpg" onerror="this.style.display='none'" alt="Production Still 2">
+        </div>
+
+      </div>
+
+      <div class="media-controls reveal reveal-d2" id="mediaDots">
+        <div class="media-dot active" onclick="sfGoToMediaSlide(0)"></div>
+        <div class="media-dot" onclick="sfGoToMediaSlide(1)"></div>
+        <div class="media-dot" onclick="sfGoToMediaSlide(2)"></div>
+        <div class="media-dot" onclick="sfGoToMediaSlide(3)"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <nav class="project-nav" aria-label="Project navigation">
+    <a href="/projects/bb/bb.html" class="project-nav-item">
+      <span class="project-nav-dir"><i class="fa-solid fa-arrow-left"></i> Prev Work</span>
+      <span class="project-nav-title">Broke Boys</span>
+    </a>
+    <a href="/projects/b4ts/b4ts.html" class="project-nav-item">
+      <span class="project-nav-dir">Next Work <i class="fa-solid fa-arrow-right"></i></span>
+      <span class="project-nav-title">Before The Sun</span>
+    </a>
+  </nav>
+
+  <div id="footer-placeholder"></div>
+
+</div>
+
+<script src="/script.js"></script>
+
+<script>
+  // Single Frame Carousel Logic
+  (function() {
+    const slides = document.querySelectorAll('.media-slide');
+    const dots = document.querySelectorAll('.media-dot');
+    const dotContainer = document.getElementById('mediaDots');
+    let currentSlide = 0;
+    
+    let validSlides = 0;
+    slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      if(img && img.getAttribute('src') !== '') validSlides++;
+    });
+
+    if(validSlides <= 1 && dotContainer) {
+      dotContainer.style.display = 'none';
+    }
+
+    window.sfGoToMediaSlide = function(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      
+      if(slides[index]) slides[index].classList.add('active');
+      if(dots[index]) dots[index].classList.add('active');
+      
+      currentSlide = index;
+    };
+  })();
+</script>
+
+</body>
+</html>
