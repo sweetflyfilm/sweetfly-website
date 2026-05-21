@@ -9,20 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/styles.css">
 
 <script async src="https://tally.so/widgets/embed.js"></script>
+<script src="/script.js" defer></script>
 
 <style>
   :root {
-    --bg-dark: #0a0a0a;
-    --bg-panel: #141414;
-    --bg-card: #111111;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: #27272a;
-    --accent: #ffffff;
-    --accent-hover: #e2e8f0;
-
     /* Continuous Ombre Palette - Studio Page Spectrum */
     --studio-orange: 210, 75, 15;   /* Burnt Orange */
     --studio-green: 40, 70, 45;     /* Moody Olive Green */
@@ -31,34 +24,12 @@
     --blue-contrast: 0, 110, 255;   /* Deep Electric Blue */
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  /* THE INTENTIONAL WHITE BORDER FRAME */
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-dark);
-    border: 8px solid #ffffff; 
-    min-height: 100vh;
-    box-sizing: border-box;
-    color: var(--text-main);
-    font-family: 'Geist', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, h4 { font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main); }
-  p { color: var(--text-muted); }
-  a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-  img { max-width: 100%; height: auto; display: block; }
-
-  /* --- UTILITY --- */
+  /* --- PAGE-SPECIFIC UTILITIES --- */
   .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; } 
   .section-padding { padding: 6rem 0; }
   .label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; display: block; }
 
-  /* --- BUTTONS --- */
+  /* --- LOCAL BUTTON ARCHITECTURE EXTENSIONS --- */
   .btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
   .btn-primary { background-color: var(--accent); color: var(--bg-dark); border: 1px solid var(--accent); }
   .btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark); }
@@ -197,25 +168,12 @@
   .booking-divider { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0.5rem 0; }
   .booking-divider::before, .booking-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
 
-  /* --- FILM GRAIN --- */
-  #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
-
-  /* --- SCROLL REVEAL --- */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-d1 { transition-delay: 0.1s; }
-  .reveal-d2 { transition-delay: 0.2s; }
-
-  /* --- MOBILE BREAKPOINTS --- */
+  /* --- STUDIO MOBILE BREAKPOINTS --- */
   @media (max-width: 900px) {
     .section-padding { padding: 4rem 0; }
-    
-    #sf-embed .sf-hero { min-height: 65vh; }
-    
     .feature-row, .feature-row.reverse { grid-template-columns: 1fr; gap: 2.5rem; direction: ltr; padding: 4rem 0; }
     .feature-visual { grid-row: 1; padding: 1.5rem; }
     .feature-text { grid-row: 2; }
-    
     .specs-grid { grid-template-columns: 1fr; gap: 2rem; }
     .pricing-grid { grid-template-columns: 1fr; }
     .booking-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -232,11 +190,8 @@
   <img src="/images/studio.jpg" class="hero-bg-img" alt="Production soundstage lighting setup">
     
     <div class="pulse-base"></div>
-    
     <div class="blue-perimeter"></div>
-    
     <div class="radar-ring"></div>
-
     <div class="sf-hero-veil"></div>
 
     <div class="sf-hero-content">
@@ -432,31 +387,7 @@
 </div>
 
 <script>
-  // ── INJECT GLOBAL COMPONENTS ──
-  async function loadGlobals() {
-    const navResponse = await fetch('/nav.html');
-    const navData = await navResponse.text();
-    document.getElementById('nav-placeholder').innerHTML = navData;
-
-    const footerResponse = await fetch('/footer.html');
-    const footerData = await footerResponse.text();
-    document.getElementById('footer-placeholder').innerHTML = footerData;
-  }
-  loadGlobals();
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => observer.observe(el));
-
-  // Use Case Fading Slider Logic
+  // Use Case Fading Slider Logic (Page-specific logic handles slider states seamlessly)
   let currentUsecase = 0;
   const usecases = document.querySelectorAll('.usecase-item');
   const totalUsecases = usecases.length;
@@ -467,9 +398,9 @@
       currentUsecase = (currentUsecase + 1) % totalUsecases;
       
       setTimeout(() => {
-        usecases[currentUsecase].classList.add('active');
-      }, 50); // Kept ultra-short to prevent section jarring height shifts
-    }, 3000); // Transitions to next project type every 3 seconds
+        usecases[currentUsecase].add ? usecases[currentUsecase].classList.add('active') : usecases[currentUsecase].classList.add('active');
+      }, 50);
+    }, 3000);
   }
 </script>
 
