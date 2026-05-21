@@ -14,7 +14,7 @@
 <script async src="https://tally.so/widgets/embed.js"></script>
 
 <style>
-  /* BREADCRUMB */
+  /* BREADCRUMB SPECIFIC OVERRIDES */
   #sf-embed .breadcrumb {
     border-bottom: 1px solid var(--border-color);
     background: var(--bg-panel);
@@ -35,7 +35,7 @@
   #sf-embed .breadcrumb-sep { opacity: 0.4; }
   #sf-embed .breadcrumb-current { color: var(--text-main); }
 
-  /* PROJECT HERO */
+  /* PROJECT HERO SPECIFIC OVERRIDES */
   #sf-embed .project-hero {
     position: relative;
     width: 100%;
@@ -97,7 +97,7 @@
     color: var(--text-main);
   }
 
-  /* META ROW */
+  /* META ROW SPECIFIC OVERRIDES */
   #sf-embed .project-meta-row {
     display: flex;
     gap: 0;
@@ -132,7 +132,7 @@
     font-size: 0.9rem;
   }
 
-  /* SHARE ICONS */
+  /* SHARE ICONS SPECIFIC OVERRIDES */
   #sf-embed .share-icons {
     display: flex;
     gap: 0.75rem;
@@ -149,7 +149,7 @@
   }
   #sf-embed .share-icon:hover { border-color: var(--text-main); color: var(--text-main); }
 
-  /* CONTENT BODY */
+  /* CONTENT BODY SPECIFIC OVERRIDES */
   #sf-embed .project-body {
     padding: 6rem 0;
     border-bottom: 1px solid var(--border-color);
@@ -167,7 +167,7 @@
     margin-bottom: 2rem;
   }
   
-  /* POEM STYLING */
+  /* POEM SPECIFIC OVERRIDES */
   #sf-embed .project-poem {
     font-size: 1.15rem;
     line-height: 2;
@@ -176,7 +176,7 @@
     font-style: italic;
   }
 
-  /* SPONSOR TEMPLATE BLOCK */
+  /* SPONSOR BLOCK SPECIFIC OVERRIDES */
   #sf-embed .project-sponsors {
     margin-top: 4rem;
     padding-top: 3rem;
@@ -198,7 +198,7 @@
     flex-wrap: wrap;
   }
 
-  /* DETAILS SIDEBAR */
+  /* DETAILS SIDEBAR SPECIFIC OVERRIDES */
   #sf-embed .project-details-sidebar {
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -226,7 +226,7 @@
   }
   #sf-embed .sidebar-gold { color: var(--gold); }
 
-  /* --- SINGLE FRAME CAROUSEL (POSTERS & STILLS) --- */
+  /* CAROUSEL GALLERY SPECIFIC OVERRIDES */
   #sf-embed .media-showcase {
     border-bottom: 1px solid var(--border-color);
     padding: 5rem 0;
@@ -291,7 +291,7 @@
     background: var(--accent);
   }
 
-  /* PREV/NEXT NAV */
+  /* PREV/NEXT NAVIGATION MODULES */
   #sf-embed .project-nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -325,7 +325,7 @@
     color: var(--text-main);
   }
 
-  /* MOBILE */
+  /* RESPONSIVE RESPONSIVITY OVERRIDES */
   @media (max-width: 900px) {
     #sf-embed .project-hero { min-height: 60vh; }
     #sf-embed .project-meta-row { flex-direction: column; }
@@ -365,7 +365,7 @@
 
   <section class="project-hero">
     <img
-      src="/images/lpp.png"
+      src="/projects/lpp/images/lpp.png"
       alt="Love Pills and a Pistol"
       class="project-hero-img"
       onerror="this.src='https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg'"
@@ -482,19 +482,19 @@
       <div class="media-frame reveal reveal-d1" id="mediaCarousel">
         
         <div class="media-slide active" data-slide="0">
-          <img src="/images/poster-long.jpg" onerror="this.style.display='none'" alt="Official Poster Long">
+          <img src="/projects/lpp/images/poster-long.jpg" onerror="this.style.display='none'" alt="Official Poster Long">
         </div>
 
         <div class="media-slide" data-slide="1">
-          <img src="/images/poster-wide.jpg" onerror="this.style.display='none'" alt="Official Poster Wide">
+          <img src="/projects/lpp/images/poster-wide.jpg" onerror="this.style.display='none'" alt="Official Poster Wide">
         </div>
 
         <div class="media-slide" data-slide="2">
-          <img src="/images/jay.jpg" onerror="this.style.display='none'" alt="Production Still 1">
+          <img src="/projects/lpp/images/jay.jpg" onerror="this.style.display='none'" alt="Production Still 1">
         </div>
         
         <div class="media-slide" data-slide="3">
-          <img src="/images/jay2.jpg" onerror="this.style.display='none'" alt="Production Still 2">
+          <img src="/projects/lpp/images/jay2.jpg" onerror="this.style.display='none'" alt="Production Still 2">
         </div>
 
       </div>
