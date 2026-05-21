@@ -4,289 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projects | Sweet Flypaper Film</title>
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+<link rel="stylesheet" href="/styles.css">
+ 
 <script async src="https://tally.so/widgets/embed.js"></script>
-
+ 
 <style>
-  /* THE INTENTIONAL WHITE BORDER FRAME */
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #0a0a0a;
-    border: 8px solid #ffffff; 
-    min-height: 100vh;
-    box-sizing: border-box;
-  }
-
+  /* PAGE-SPECIFIC: Projects page color palette */
   #sf-embed {
-    --bg-dark: #0a0a0a;
-    --bg-panel: #141414;
-    --text-main: #ffffff;
-    --text-muted: #94a3b8;
-    --border-color: #27272a;
-    --accent: #ffffff;
-    --accent-hover: #e2e8f0;
-    --gold: #D4AF37;
-    
-    /* Continuous Ombre Palette - Projects Page Spectrum */
-    --proj-blue: 15, 65, 115;      /* Deep Ocean Blue */
-    --proj-purple: 75, 20, 140;    /* Deep Purple */
-    
-    /* Scattered Contrast Accent */
-    --proj-contrast: 0, 255, 180;  /* Electric Mint Contrast */
-
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: 'Geist', sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    display: block;
+    --proj-blue: 15, 65, 115;
+    --proj-purple: 75, 20, 140;
+    --proj-contrast: 0, 255, 180;
   }
-  
-  #sf-embed * { box-sizing: border-box; margin: 0; padding: 0; }
-  
-  #sf-embed h1, #sf-embed h2, #sf-embed h3, #sf-embed h4 {
-    font-family: 'Geist', sans-serif; font-weight: 500; letter-spacing: -0.02em; color: var(--text-main) !important;
-  }
-  #sf-embed p { color: var(--text-muted); }
-  #sf-embed a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-  #sf-embed img { max-width: 100%; height: auto; display: block; }
-
-  #sf-embed .sf-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-  #sf-embed .sf-section-padding { padding: 6rem 0; }
-  #sf-embed .sf-label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted) !important; margin-bottom: 1rem; display: block; }
-
-  /* NAVIGATION & STICKY WRAPPER FIX */
-  #nav-placeholder { position: sticky; top: 0; z-index: 10000; }
-  #sf-embed .sf-navbar { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 0.75rem 0; }
-  #sf-embed .sf-nav-inner { display: flex; justify-content: space-between; align-items: center; }
-  #sf-embed .sf-nav-logo { display: flex; align-items: center; }
-  #sf-embed .sf-nav-text-logo { height: 72px; width: auto; object-fit: contain; filter: invert(1); transition: height 0.2s ease; }
-
-  #sf-embed .sf-nav-menu { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
-  #sf-embed .sf-nav-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
-  #sf-embed .sf-nav-link:hover { color: var(--text-muted); }
-  #sf-embed .sf-nav-link i { font-size: 0.85rem; color: var(--text-muted); }
-
-  /* FLOATING CONTACT TRIGGER BUTTON */
-  #sf-embed .sf-floating-contact { position: fixed; bottom: 2rem; right: 2rem; z-index: 99999; background-color: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-color); padding: 0.75rem 1.25rem; font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.6rem; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: all 0.2s ease; }
-  #sf-embed .sf-floating-contact:hover { border-color: var(--text-main); background-color: var(--text-main); color: var(--bg-dark) !important; }
-  #sf-embed .sf-floating-contact i { font-size: 0.85rem; color: var(--text-muted); transition: color 0.2s ease; }
-  #sf-embed .sf-floating-contact:hover i { color: var(--bg-dark); }
-
-  /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
-  #sf-embed .sf-hero { 
-    position: relative; 
-    width: 100%; 
-    min-height: 80vh; 
-    display: flex; 
-    align-items: flex-end; 
-    overflow: hidden; 
-    border-bottom: 1px solid var(--border-color); 
-    background-color: #050505; 
-  }
-  
+ 
+  /* PAGE-SPECIFIC: Hero layers */
+  #sf-embed .sf-hero { position: relative; width: 100%; min-height: 80vh; display: flex; align-items: flex-end; overflow: hidden; border-bottom: 1px solid var(--border-color); background-color: #050505; }
   #sf-embed .sf-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
   #sf-embed .sf-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
-
-  /* LAYER 1: BASE GRAPHIC PHOTOGRAPH SYSTEM */
-  .hero-bg-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain; 
-    object-position: center;
-    z-index: 1; 
-    filter: grayscale(100%) contrast(1.2); 
-    opacity: 0.55; 
-    pointer-events: none;
-    transition: transform 10s ease;
-  }
+ 
+  .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; z-index: 1; filter: grayscale(100%) contrast(1.2); opacity: 0.55; pointer-events: none; transition: transform 10s ease; }
   #sf-embed .sf-hero:hover .hero-bg-img { transform: scale(1.04); }
-
-  /* LAYER 2: THE AMBIENT BLUE/PURPLE LIGHT GEL SHEET */
-  .pulse-base {
-    position: absolute; 
-    inset: -50px; 
-    z-index: 2; 
-    background-image: 
-      radial-gradient(circle at 20% 45%, rgba(var(--proj-blue), 0.85) 0%, transparent 70%),
-      radial-gradient(circle at 80% 45%, rgba(var(--proj-purple), 0.75) 0%, transparent 70%);
-    mix-blend-mode: overlay;
-    animation: baseBreathe 6s ease-in-out infinite alternate;
-  }
-  @keyframes baseBreathe {
-    0%   { transform: scale(0.96); opacity: 0.75; }
-    100% { transform: scale(1.04); opacity: 1; }
-  }
-
-  /* LAYER 3: CONTRAST MINT PERIMETER COMPLEMENTARY LIGHT */
-  .contrast-perimeter {
-    position: absolute;
-    inset: -20px;
-    z-index: 3;
-    background-image: 
-      radial-gradient(circle at 0% 0%, rgba(var(--proj-contrast), 0.45) 0%, transparent 55%),
-      radial-gradient(circle at 100% 100%, rgba(var(--proj-contrast), 0.42) 0%, transparent 55%),
-      radial-gradient(circle at 100% 10%, rgba(var(--proj-contrast), 0.38) 0%, transparent 50%);
-    mix-blend-mode: screen;
-    animation: contrastBreathe 4.5s ease-in-out infinite alternate;
-  }
-  @keyframes contrastBreathe {
-    0%   { opacity: 0.55; }
-    100% { opacity: 1; }
-  }
-
-  /* LAYER 4: RADAR SHOCKWAVE SYSTEM SIGNAL PING */
-  .radar-ring { 
-    position: absolute; top: 45%; left: 50%; 
-    width: 150px; height: 150px; 
-    border-radius: 50%; 
-    z-index: 4; 
-    pointer-events: none; 
-    border: 3px solid rgba(var(--proj-contrast), 0.65);
-    box-shadow: inset 0 0 60px rgba(var(--proj-contrast), 0.45), 0 0 60px rgba(var(--proj-contrast), 0.45);
-    animation: deepRadar 8s linear infinite; 
-  }
-  @keyframes deepRadar { 
-    0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 
-    15% { opacity: 0.85; }
-    100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } 
-  }
-
-  /* --- TWO-ROW FILTER & SEARCH BAR --- */
+ 
+  .pulse-base { position: absolute; inset: -50px; z-index: 2; background-image: radial-gradient(circle at 20% 45%, rgba(var(--proj-blue), 0.85) 0%, transparent 70%), radial-gradient(circle at 80% 45%, rgba(var(--proj-purple), 0.75) 0%, transparent 70%); mix-blend-mode: overlay; animation: baseBreathe 6s ease-in-out infinite alternate; }
+  @keyframes baseBreathe { 0% { transform: scale(0.96); opacity: 0.75; } 100% { transform: scale(1.04); opacity: 1; } }
+ 
+  .contrast-perimeter { position: absolute; inset: -20px; z-index: 3; background-image: radial-gradient(circle at 0% 0%, rgba(var(--proj-contrast), 0.45) 0%, transparent 55%), radial-gradient(circle at 100% 100%, rgba(var(--proj-contrast), 0.42) 0%, transparent 55%), radial-gradient(circle at 100% 10%, rgba(var(--proj-contrast), 0.38) 0%, transparent 50%); mix-blend-mode: screen; animation: contrastBreathe 4.5s ease-in-out infinite alternate; }
+  @keyframes contrastBreathe { 0% { opacity: 0.55; } 100% { opacity: 1; } }
+ 
+  .radar-ring { position: absolute; top: 45%; left: 50%; width: 150px; height: 150px; border-radius: 50%; z-index: 4; pointer-events: none; border: 3px solid rgba(var(--proj-contrast), 0.65); box-shadow: inset 0 0 60px rgba(var(--proj-contrast), 0.45), 0 0 60px rgba(var(--proj-contrast), 0.45); animation: deepRadar 8s linear infinite; }
+  @keyframes deepRadar { 0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 15% { opacity: 0.85; } 100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } }
+ 
+  /* PAGE-SPECIFIC: Filter & search bar */
   #sf-embed .sf-filter-bar { position: sticky; top: 96px; z-index: 999; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; margin-bottom: 4rem; transition: all 0.3s ease; }
-  
   #sf-embed .sf-filter-top-row { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-  
   #sf-embed .sf-filter-list { display: flex; gap: 2rem; list-style: none; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   #sf-embed .sf-filter-list::-webkit-scrollbar { display: none; }
   #sf-embed .sf-filter-btn { background: none; border: none; font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); cursor: pointer; padding-bottom: 0.25rem; border-bottom: 1px solid transparent; transition: all 0.2s ease; white-space: nowrap; }
   #sf-embed .sf-filter-btn:hover { color: var(--text-main); }
   #sf-embed .sf-filter-btn.active { color: var(--text-main); border-bottom-color: var(--accent); }
-
-  /* SORT DROPDOWN */
   #sf-embed .sf-sort-dropdown { background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.65rem 1rem; border-radius: 4px; outline: none; cursor: pointer; transition: border-color 0.3s; }
   #sf-embed .sf-sort-dropdown:focus { border-color: var(--text-muted); }
-
-  /* SEARCH BOX (BOTTOM ROW) */
   #sf-embed .sf-filter-bottom-row { width: 100%; display: flex; }
   #sf-embed .sf-search-box { display: flex; align-items: center; background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 4px; padding: 0.8rem 1rem; width: 100%; transition: border-color 0.3s; }
   #sf-embed .sf-search-box:focus-within { border-color: var(--text-muted); }
   #sf-embed .sf-search-box i { color: var(--text-muted); font-size: 0.9rem; }
   #sf-embed .sf-search-box input { background: transparent; border: none; color: var(--text-main); font-family: 'Geist Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; width: 100%; margin-left: 0.75rem; outline: none; }
   #sf-embed .sf-search-box input::placeholder { color: #52525b; }
-
-  /* --- PROJECTS STACK (ALTERNATING ROWS) --- */
+ 
+  /* PAGE-SPECIFIC: Project cards */
   #sf-embed .sf-projects-stack { display: flex; flex-direction: column; gap: 4rem; padding-bottom: 6rem; }
-  
   #sf-embed .sf-project-card { display: flex; background-color: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; transition: border-color 0.3s ease, transform 0.3s ease; text-decoration: none; cursor: pointer; }
   #sf-embed .sf-project-card:hover { border-color: var(--text-muted); transform: translateY(-4px); }
   #sf-embed .sf-project-card.sf-hidden { display: none !important; }
-
-  /* The JS engine will apply inline flex-direction (row or row-reverse) to alternate these automatically */
-  
   #sf-embed .sf-project-img-wrap { width: 50%; position: relative; overflow: hidden; flex-shrink: 0; background-color: var(--bg-dark); }
   #sf-embed .sf-project-img-wrap img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; filter: grayscale(20%); transition: transform 0.6s ease, filter 0.6s ease; }
   #sf-embed .sf-project-card:hover .sf-project-img-wrap img { transform: scale(1.03); filter: grayscale(0%); }
-
   #sf-embed .sf-project-info { width: 50%; padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; }
-  
-  /* METADATA & GOLD DOT */
   #sf-embed .sf-project-meta { display: flex; align-items: center; gap: 0.75rem; font-family: 'Geist Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; }
   #sf-embed .sf-gold-dot { width: 6px; height: 6px; background-color: var(--gold); border-radius: 50%; box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); flex-shrink: 0; }
-  
   #sf-embed .sf-project-title { font-size: clamp(1.8rem, 3vw, 2.8rem); margin-bottom: 0.75rem; line-height: 1.1; }
   #sf-embed .sf-project-desc { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem; }
-
-  /* RESTORED SPECS/INFO BULLETS */
   #sf-embed .sf-project-specs { list-style: none; margin: 0 0 2rem 0; font-size: 0.95rem; padding: 0; }
   #sf-embed .sf-project-specs li { margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.75rem; color: var(--text-muted); }
   #sf-embed .sf-project-specs li i { color: var(--text-main); font-size: 0.9em; width: 16px; text-align: center; display: inline-block; flex-shrink: 0; }
   #sf-embed .sf-bullet { color: var(--text-main); font-size: 0.75rem; width: 16px; text-align: center; flex-shrink: 0; line-height: 1; }
-
   #sf-embed .sf-project-link { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); display: inline-flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.2rem; align-self: flex-start; transition: border-color 0.2s ease; }
   #sf-embed .sf-project-card:hover .sf-project-link { border-color: var(--accent); }
-
-  /* NO RESULTS STATE */
   #sf-embed .sf-no-results { text-align: center; padding: 4rem 0; font-family: 'Geist Mono', monospace; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: none; }
-
-  /* FOOTER */
-  #sf-embed .sf-footer { background-color: var(--bg-panel); border-top: 1px solid var(--border-color); padding: 5rem 0 3rem 0; color: var(--text-muted); font-size: 0.9rem; }
-  #sf-embed .sf-footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr) 1.2fr; gap: 3rem; align-items: start; }
-  #sf-embed .sf-footer-brand p { max-width: 320px; color: var(--text-muted) !important; font-size: 0.85rem; line-height: 1.5; margin-top: 1.25rem; }
-  #sf-embed .sf-footer-title { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main) !important; margin-bottom: 1.25rem; }
-  #sf-embed .sf-footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-  #sf-embed .sf-footer-links a { color: var(--text-muted) !important; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; }
-  #sf-embed .sf-footer-links a:hover { color: var(--text-main) !important; }
-  
-  #sf-embed .sf-footer-graphic-box { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
-  #sf-embed .sf-footer-butterfly { height: 64px; width: 64px; object-fit: cover; filter: invert(1); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 2px; transition: border-color 0.3s; }
-  #sf-embed .sf-footer-graphic-box:hover .sf-footer-butterfly { border-color: rgba(255, 255, 255, 0.4); }
-  #sf-embed .sf-butterfly-caption { font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; color: var(--text-main); text-transform: lowercase; margin-top: 0.65rem; padding-right: 0.1em; opacity: 0.5; }
-  #sf-embed .sf-footer-bottom { border-top: 1px solid var(--border-color); margin-top: 4rem; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'Geist Mono', monospace; font-size: 0.7rem; letter-spacing: 0.02em; }
-
-  /* OVERLAYS & NOISE EFFECT LAYER */
-  #sf-embed::after { content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); opacity: 0.12; }
-
-  /* RESPONSIVE RESPONSES */
+ 
+  /* PAGE-SPECIFIC: Mobile overrides */
   @media (max-width: 900px) {
-    #sf-embed .sf-section-padding { padding: 4rem 0; }
-    
-    #sf-embed .sf-navbar { padding: 1rem 0; }
-    #sf-embed .sf-nav-text-logo { height: 48px; }
-    #sf-embed .sf-nav-inner { flex-direction: column; gap: 1.25rem; text-align: center; }
-    #sf-embed .sf-nav-menu { width: 100%; justify-content: center; gap: 1rem; flex-wrap: nowrap; }
-    #sf-embed .sf-nav-link span { display: none; }
-    #sf-embed .sf-nav-link i { font-size: 1.25rem; color: var(--text-main); }
-    #sf-embed .sf-floating-contact { bottom: 1.5rem; right: 1.5rem; padding: 0.65rem 1rem; font-size: 0.75rem; }
-    
     #sf-embed .sf-hero { min-height: 65vh; }
-    
-    /* MOBILE DOUBLE STICKY FIX & FILTER BAR ADJUSTMENTS */
     #sf-embed .sf-filter-bar { position: relative; top: 0; padding: 1rem 0; margin-bottom: 2rem; }
     #sf-embed .sf-filter-top-row { flex-direction: column; align-items: stretch; gap: 1.5rem; margin-bottom: 1.5rem; }
     #sf-embed .sf-filter-list { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; }
-    
-    /* MOBILE STACK FORCE: Instantly snaps all rows to standard Image top, Text bottom */
     #sf-embed .sf-project-card { flex-direction: column !important; }
-    #sf-embed .sf-project-img-wrap, 
-    #sf-embed .sf-project-info { width: 100%; }
+    #sf-embed .sf-project-img-wrap, #sf-embed .sf-project-info { width: 100%; }
     #sf-embed .sf-project-info { padding: 2.5rem 2rem; }
-    
     #sf-embed .sf-projects-stack { gap: 3rem; }
-    
-    #sf-embed .sf-footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    #sf-embed .sf-footer-graphic-box { align-items: center; text-align: center; margin-top: 1rem; }
-    #sf-embed .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-    
-    #sf-embed::after { display: none; } /* Disable noise on mobile for performance */
   }
 </style>
 </head>
 <body>
-
+ 
 <div id="sf-embed">
-
+ 
   <div id="nav-placeholder"></div>
-
+ 
   <section class="sf-hero">
     <img src="/images/projectsstrip.png" class="hero-bg-img" alt="Projects Strip">
-
     <div class="pulse-base"></div>
-    
     <div class="contrast-perimeter"></div>
-    
     <div class="radar-ring"></div>
-
     <div class="sf-hero-veil"></div>
-
     <div class="sf-hero-content">
       <div class="sf-container">
         <div class="sf-inner-hero-text reveal">
@@ -297,10 +111,9 @@
       </div>
     </div>
   </section>
-
+ 
   <div class="sf-filter-bar">
     <div class="sf-container">
-      
       <div class="sf-filter-top-row">
         <ul class="sf-filter-list">
           <li><button class="sf-filter-btn active" data-filter="all">All</button></li>
@@ -308,7 +121,6 @@
           <li><button class="sf-filter-btn" data-filter="shorts">Short Films</button></li>
           <li><button class="sf-filter-btn" data-filter="series">Series</button></li>
         </ul>
-
         <select id="projectSort" class="sf-sort-dropdown">
           <option value="default">Sort By...</option>
           <option value="date-new">Newest First</option>
@@ -317,180 +129,127 @@
           <option value="name-desc">Name (Z-A)</option>
         </select>
       </div>
-
       <div class="sf-filter-bottom-row">
         <div class="sf-search-box">
           <i class="fa-solid fa-search"></i>
           <input type="text" id="projectSearch" placeholder="Search title, year, etc...">
         </div>
       </div>
-
     </div>
   </div>
-
+ 
   <section class="sf-container">
     <div class="sf-projects-stack" id="projectsGrid">
-
+ 
       <a href="/projects/lpp/lpp.html" class="sf-project-card reveal" data-cat="shorts" data-title="Love, Pills, & A Pistol" data-year="2026" data-index="0">
         <div class="sf-project-img-wrap">
           <img src="/projects/lpp/images/jayfree.jpg" alt="Love, Pills, & A Pistol">
         </div>
         <div class="sf-project-info">
-          <div class="sf-project-meta">
-            <span class="sf-gold-dot"></span>
-            <span>Short Film &middot; 2026</span>
-          </div>
+          <div class="sf-project-meta"><span class="sf-gold-dot"></span><span>Short Film &middot; 2026</span></div>
           <h2 class="sf-project-title">Love, Pills, &amp; A Pistol</h2>
           <p class="sf-project-desc">Is love ever enough? An exploration of addiction, relationships, and the breaking point.</p>
-          
           <ul class="sf-project-specs">
             <li><i class="fa-solid fa-award" style="color: var(--gold) !important;"></i> <span class="sf-bullet">–</span> <span style="color: var(--gold) !important; font-weight: 500;">Film Shortage 2025 Selection</span></li>
             <li><i class="fa-solid fa-building"></i> <span class="sf-bullet">–</span> Filmed at The Shop</li>
             <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2026</li>
           </ul>
-
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
-
+ 
       <a href="/projects/blu/blu.html" class="sf-project-card reveal reveal-d1" data-cat="features" data-title="Blu Has a Gun" data-year="2028" data-index="1">
         <div class="sf-project-img-wrap">
           <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/6a0a1469b67f2e3d62d72ed6_blu%20-%20temp%20-%20poster%20-%20cover%20-image.jpg" alt="Blu Has a Gun">
         </div>
         <div class="sf-project-info">
-          <div class="sf-project-meta">
-            <span class="sf-gold-dot"></span>
-            <span>Feature Film &middot; 2028</span>
-          </div>
+          <div class="sf-project-meta"><span class="sf-gold-dot"></span><span>Feature Film &middot; 2028</span></div>
           <h2 class="sf-project-title">Blu Has a Gun</h2>
           <p class="sf-project-desc">When the world treats you wrong, how far will you go to make it right.</p>
-          
           <ul class="sf-project-specs">
             <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> Created by Terrell Lamont</li>
             <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2028</li>
             <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> Gear: Aputure LS 600D, LS 300 Mark II, Storm 80c</li>
           </ul>
-
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
-
+ 
       <a href="/projects/b4ts/b4ts.html" class="sf-project-card reveal reveal-d2" data-cat="shorts" data-title="Before The Sun" data-year="2028" data-index="2">
         <div class="sf-project-img-wrap">
           <img src="/projects/b4ts/images/b4ts.png" alt="Before The Sun">
         </div>
         <div class="sf-project-info">
-          <div class="sf-project-meta">
-            <span class="sf-gold-dot"></span>
-            <span>Short Film &middot; 2028</span>
-          </div>
+          <div class="sf-project-meta"><span class="sf-gold-dot"></span><span>Short Film &middot; 2028</span></div>
           <h2 class="sf-project-title">Before The Sun</h2>
           <p class="sf-project-desc">You are enough for me. An intimate narrative drama from the team.</p>
-          
           <ul class="sf-project-specs">
             <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> Created by Devin Hill</li>
             <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2028</li>
             <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> Gear: Shot on Blackmagic 6K</li>
           </ul>
-
           <span class="sf-project-link">View Project <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
-
+ 
       <a href="/projects/bb/bb.html" class="sf-project-card reveal" data-cat="series" data-title="Broke Boys" data-year="2027" data-index="3">
         <div class="sf-project-img-wrap">
           <img src="/projects/bb/images/bb.png" alt="Broke Boys">
         </div>
         <div class="sf-project-info">
-          <div class="sf-project-meta">
-            <span class="sf-gold-dot"></span>
-            <span>TV Series &middot; 2027</span>
-          </div>
+          <div class="sf-project-meta"><span class="sf-gold-dot"></span><span>TV Series &middot; 2027</span></div>
           <h2 class="sf-project-title">Broke Boys</h2>
           <p class="sf-project-desc">How much does a dream cost?</p>
-          
           <ul class="sf-project-specs">
             <li><i class="fa-solid fa-award" style="color: var(--gold) !important;"></i> <span class="sf-bullet">–</span> <span style="color: var(--gold) !important; font-weight: 500;">Awards: SeriesFest, Catalyst, Stareable</span></li>
             <li><i class="fa-solid fa-clapperboard"></i> <span class="sf-bullet">–</span> Created by Terrell Lamont and MJ Alhabeeb Jr.</li>
             <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2027</li>
           </ul>
-
           <span class="sf-project-link">Coming Soon <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
-
-       <a href="/projects/hmg/hmg.html" class="sf-project-card reveal" data-cat="features" data-title="Hush Money Gray" data-year="2028" data-index="4">
+ 
+      <a href="/projects/hmg/hmg.html" class="sf-project-card reveal" data-cat="features" data-title="Hush Money Gray" data-year="2028" data-index="4">
         <div class="sf-project-img-wrap">
           <img src="/projects/hmg/images/hmg.jpg" alt="Hush Money Gray">
         </div>
         <div class="sf-project-info">
-          <div class="sf-project-meta">
-            <span class="sf-gold-dot"></span>
-            <span>Feature Film &middot; Coming Soon</span>
-          </div>
+          <div class="sf-project-meta"><span class="sf-gold-dot"></span><span>Feature Film &middot; Coming Soon</span></div>
           <h2 class="sf-project-title">Hush Money Gray</h2>
           <p class="sf-project-desc">The Mancinni's ain't playin.</p>
-          
           <ul class="sf-project-specs">
             <li><i class="fa-solid fa-headphones"></i> <span class="sf-bullet">–</span> Mixed at The Shop</li>
             <li><i class="fa-solid fa-video"></i> <span class="sf-bullet">–</span> Shot on RED Dragon</li>
             <li><i class="fa-solid fa-calendar-days"></i> <span class="sf-bullet">–</span> Release 2028</li>
           </ul>
-
           <span class="sf-project-link">Coming Soon <i class="fa-solid fa-arrow-right"></i></span>
         </div>
       </a>
-
+ 
     </div>
-    
     <div id="noResultsMsg" class="sf-no-results">No projects match your criteria.</div>
   </section>
-
+ 
   <div id="footer-placeholder"></div>
-
+ 
 </div>
-
+ 
+<script src="/scripts.js"></script>
 <script>
-  // ── INJECT GLOBAL COMPONENTS ──
-  async function loadGlobals() {
-    const navResponse = await fetch('/nav.html');
-    const navData = await navResponse.text();
-    document.getElementById('nav-placeholder').innerHTML = navData;
-
-    const footerResponse = await fetch('/footer.html');
-    const footerData = await footerResponse.text();
-    document.getElementById('footer-placeholder').innerHTML = footerData;
-  }
-  loadGlobals();
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => observer.observe(el));
-
-  // Category Filter, Sort, & Real-time Search Engine
+  /* PAGE-SPECIFIC: Filter, sort, and search */
   const filterBtns = document.querySelectorAll('#sf-embed .sf-filter-btn');
   const searchInput = document.getElementById('projectSearch');
   const sortSelect = document.getElementById('projectSort');
   const noResultsMsg = document.getElementById('noResultsMsg');
   const projectsGrid = document.getElementById('projectsGrid');
-
+ 
   function updateProjectBoard() {
     const activeFilter = document.querySelector('#sf-embed .sf-filter-btn.active').dataset.filter;
     const searchTerm = searchInput.value.toLowerCase();
     const sortValue = sortSelect.value;
-    
-    // Grab all project cards into an array to sort them
+ 
     let cardsArray = Array.from(document.querySelectorAll('#sf-embed .sf-project-card'));
-    
-    // 1. Sort the array
+ 
     if (sortValue !== 'default') {
       cardsArray.sort((a, b) => {
         if (sortValue === 'name-asc') return a.dataset.title.localeCompare(b.dataset.title);
@@ -500,52 +259,30 @@
         return 0;
       });
     } else {
-      // Revert to original order based on data-index
       cardsArray.sort((a, b) => parseInt(a.dataset.index) - parseInt(b.dataset.index));
     }
-
-    // 2. Re-append to DOM in sorted order
+ 
     cardsArray.forEach(card => projectsGrid.appendChild(card));
-    
-    // 3. Filter & Apply Alternating Layout
+ 
     let visibleCount = 0;
     const isDesktop = window.innerWidth > 900;
-
+ 
     cardsArray.forEach(card => {
-      const textContent = card.innerText.toLowerCase();
       const matchesFilter = (activeFilter === 'all' || card.dataset.cat === activeFilter);
-      const matchesSearch = textContent.includes(searchTerm);
-
+      const matchesSearch = card.innerText.toLowerCase().includes(searchTerm);
+ 
       if (matchesFilter && matchesSearch) {
         card.classList.remove('sf-hidden');
-        
-        // Alternating logic applied only to visible cards on Desktop
-        if (isDesktop) {
-          if (visibleCount % 2 !== 0) {
-            card.style.flexDirection = 'row-reverse';
-          } else {
-            card.style.flexDirection = 'row';
-          }
-        } else {
-          // Force standard column stack on mobile
-          card.style.flexDirection = 'column';
-        }
-        
+        card.style.flexDirection = isDesktop ? (visibleCount % 2 !== 0 ? 'row-reverse' : 'row') : 'column';
         visibleCount++;
       } else {
         card.classList.add('sf-hidden');
       }
     });
-
-    // Toggle Empty State Message
-    if(visibleCount === 0) {
-      noResultsMsg.style.display = 'block';
-    } else {
-      noResultsMsg.style.display = 'none';
-    }
+ 
+    noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
   }
-
-  // Bind Buttons & Inputs
+ 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -553,17 +290,12 @@
       updateProjectBoard();
     });
   });
-
+ 
   searchInput.addEventListener('input', updateProjectBoard);
   sortSelect.addEventListener('change', updateProjectBoard);
-  
-  // Re-calculate layout if the user resizes the browser window
   window.addEventListener('resize', updateProjectBoard);
-
-  // Run engine on load
   updateProjectBoard();
-
 </script>
-
+ 
 </body>
 </html>
