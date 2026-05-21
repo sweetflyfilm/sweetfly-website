@@ -2,9 +2,6 @@
 <html lang="en">
 <head>
  
-<!-- ============================================================
-     SWEET FLYPAPER — SHARED HEAD SNIPPET
-     ============================================================ -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gear & Rentals | Sweet Flypaper Film</title>
@@ -18,9 +15,6 @@
 <script async src="https://tally.so/widgets/embed.js"></script>
 <script src="/script.js" defer></script>
  
-<!-- ============================================================
-     GEAR PAGE — PAGE-SPECIFIC STYLES
-     ============================================================ -->
 <style>
  
   /* Gear-specific design tokens (extend shared #sf-embed vars) */
@@ -218,10 +212,12 @@
     
     <div class="sf-hero-content">
       <div class="sf-container">
-        <span class="sf-label">Rentals &middot; Denver | Aurora | The Springs | Boulder</span>
-        <h1 style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.05; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.04em;">Gear</h1>
-        <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 550px; line-height: 1.6; margin-bottom: 2rem;">Cinema-grade gear for independent creators. Pick up in Denver, book securely through Sharegrid.</p>
-        <div>
+        <div class="reveal">
+          <span class="sf-label">Rentals &middot; Denver | Aurora | The Springs | Boulder</span>
+        </div>
+        <h1 class="reveal reveal-d1" style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.05; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.04em;">Gear</h1>
+        <p class="reveal reveal-d2" style="font-size: 1.15rem; color: var(--text-muted); max-width: 550px; line-height: 1.6; margin-bottom: 2rem;">Cinema-grade gear for independent creators. Pick up in Denver, book securely through Sharegrid.</p>
+        <div class="reveal reveal-d3">
           <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-btn sf-btn-primary">
             View Full Inventory on Sharegrid <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
@@ -231,7 +227,7 @@
   </section>
  
   <div class="sf-testimonial-strip">
-    <div class="sf-container">
+    <div class="sf-container reveal">
       <div class="sf-testimonial-wrap" id="testimonialSlider">
         
         <div class="sf-testimonial-item active" data-test="0">
@@ -264,22 +260,22 @@
  
   <div class="sf-how-strip">
     <div class="sf-container">
-      <div class="sf-how-header">
+      <div class="sf-how-header reveal">
         <span class="sf-label">Process</span>
         <h2>How Renting Works</h2>
       </div>
       <div class="sf-how-steps">
-        <div class="sf-how-step">
+        <div class="sf-how-step reveal">
           <div class="sf-how-num">Step 01</div>
           <h3>Browse the Inventory</h3>
           <p>Our full gear list lives on Sharegrid — a trusted marketplace for film equipment. Filter by category, check availability, and build your package.</p>
         </div>
-        <div class="sf-how-step">
+        <div class="sf-how-step reveal reveal-d1">
           <div class="sf-how-num">Step 02</div>
           <h3>Book &amp; Pay Securely</h3>
           <p>Reserve through Sharegrid's checkout. Payment is held securely until the rental period begins. Weekend and weekly discounts apply automatically.</p>
         </div>
-        <div class="sf-how-step">
+        <div class="sf-how-step reveal reveal-d2">
           <div class="sf-how-num">Step 03</div>
           <h3>Pick Up in Denver</h3>
           <p>Coordinate a pickup time in Aurora / Denver. Gear ships out clean and tested. Questions before your shoot? <a data-tally-open="ODPpg7" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">Contact Us</a>.</p>
@@ -291,13 +287,13 @@
   <section class="sf-gear-section">
     <div class="sf-container">
  
-      <div style="margin-bottom: 3rem;">
+      <div class="reveal" style="margin-bottom: 3rem;">
         <span class="sf-label">Inventory</span>
         <h2>Build Your Package</h2>
         <p style="color: var(--text-muted); max-width: 600px; margin-top: 0.5rem; font-size: 0.95rem;">Meticulously maintained, cinema-ready equipment available for same-day pickup in Denver.</p>
       </div>
  
-      <div class="sf-gear-filters">
+      <div class="sf-gear-filters reveal reveal-d1">
         <button class="sf-filter-btn active" data-filter="all">All</button>
         <button class="sf-filter-btn" data-filter="camera">Camera</button>
         <button class="sf-filter-btn" data-filter="lighting">Lighting</button>
@@ -306,7 +302,7 @@
  
       <div class="sf-gear-grid">
  
-        <div class="sf-gear-card" data-cat="camera" id="gear-bm">
+        <div class="sf-gear-card reveal" data-cat="camera" id="gear-bm">
           <div class="sf-gear-img-wrap">
             <img src="/images/bm.svg" alt="Blackmagic 6K Kit">
           </div>
@@ -340,7 +336,7 @@
           </div>
         </div>
  
-        <div class="sf-gear-card" data-cat="camera" id="gear-red">
+        <div class="sf-gear-card reveal reveal-d1" data-cat="camera" id="gear-red">
           <div class="sf-gear-img-wrap">
             <img src="/images/red.svg" alt="RED Camera">
           </div>
@@ -376,7 +372,7 @@
           </div>
         </div>
  
-        <div class="sf-gear-card" data-cat="lighting" id="gear-gvm">
+        <div class="sf-gear-card reveal reveal-d2" data-cat="lighting" id="gear-gvm">
           <div class="sf-gear-img-wrap">
             <img src="/images/gvm.svg" alt="GVM Light Kit">
           </div>
@@ -409,7 +405,7 @@
           </div>
         </div>
  
-        <div class="sf-gear-card" data-cat="lighting" id="gear-ls300">
+        <div class="sf-gear-card reveal" data-cat="lighting" id="gear-ls300">
           <div class="sf-gear-img-wrap">
             <img src="/images/300.svg" alt="Aputure LS 300d">
           </div>
@@ -433,7 +429,7 @@
           </div>
         </div>
  
-        <div class="sf-gear-card" data-cat="lighting" id="gear-ls600">
+        <div class="sf-gear-card reveal reveal-d1" data-cat="lighting" id="gear-ls600">
           <div class="sf-gear-img-wrap">
             <img src="/images/600.svg" alt="Aputure LS 600d Pro">
           </div>
@@ -457,7 +453,7 @@
           </div>
         </div>
  
-        <div class="sf-gear-card" data-cat="lighting" id="gear-storm80">
+        <div class="sf-gear-card reveal reveal-d2" data-cat="lighting" id="gear-storm80">
           <div class="sf-gear-img-wrap">
             <img src="/images/80.svg" alt="Aputure Storm 80c">
           </div>
@@ -481,7 +477,7 @@
           </div>
         </div>
  
-        <div class="sf-gear-card" data-cat="grip" id="gear-danadolly">
+        <div class="sf-gear-card reveal" data-cat="grip" id="gear-danadolly">
           <div class="sf-gear-img-wrap">
             <img src="/images/dana.svg" alt="Dana Dolly Kit">
           </div>
@@ -505,7 +501,7 @@
           </div>
         </div>
  
-        <div class="sf-gear-card" data-cat="grip" id="gear-hollyland">
+        <div class="sf-gear-card reveal reveal-d1" data-cat="grip" id="gear-hollyland">
           <div class="sf-gear-img-wrap">
             <img src="/images/holly.svg" alt="Hollyland Pyro S">
           </div>
@@ -538,7 +534,7 @@
  
       </div>
  
-      <div class="sf-inventory-cta">
+      <div class="sf-inventory-cta reveal">
         <div class="sf-inventory-cta-text">
           <h3>Build Your Custom Package</h3>
           <p>Need specialized configurations or prolonged production multi-day timelines? We create modified structural agreements built for set demands.</p>
