@@ -499,11 +499,15 @@
 </div>
 
 <script>
+ document.addEventListener('DOMContentLoaded', () => {
+
   // Load Navigation
   fetch('/nav.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('nav-placeholder').innerHTML = data;
+      // Re-initialize Tally after nav injects the button
+      if (window.Tally) window.Tally.loadEmbeds();
     });
 
   // Load Footer
@@ -512,6 +516,8 @@
     .then(data => {
       document.getElementById('footer-placeholder').innerHTML = data;
     });
+
+});
 
   // Intersection scroll reveal configurations
   const revealEls = document.querySelectorAll('#sf-embed .reveal');
