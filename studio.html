@@ -29,13 +29,6 @@
   .section-padding { padding: 6rem 0; }
   .label { font-family: 'Geist Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 1rem; display: block; }
 
-  /* --- LOCAL BUTTON ARCHITECTURE EXTENSIONS --- */
-  .btn { font-family: 'Geist Mono', monospace; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.02em; border-radius: 2px; transition: all 0.2s ease; cursor: pointer; border: none; }
-  .btn-primary { background-color: var(--accent); color: var(--bg-dark); border: 1px solid var(--accent); }
-  .btn-primary:hover { background-color: var(--accent-hover); color: var(--bg-dark); }
-  .btn-ghost { background-color: transparent; color: var(--text-main); border: 1px solid rgba(255,255,255,0.5); }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
   /* ── DYNAMIC EXTRA-DEPTH HERO BACKGROUND ARCHITECTURE ── */
   #sf-embed .sf-hero { 
     position: relative; 
@@ -158,13 +151,13 @@
   .pricing-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.5rem; }
   .pricing-note { margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
 
-  /* --- BOOKING CTA --- */
+  /* --- BOOKING CTA STRETCH ALIGNMENT --- */
   .booking-section { padding: 8rem 0; background: var(--bg-panel); border-top: 1px solid var(--border-color); position: relative; z-index: 10; }
   .booking-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
   .booking-text h2 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin-bottom: 1rem; line-height: 1.05; }
   .booking-text p { color: var(--text-muted); font-size: 1rem; line-height: 1.75; }
   .booking-actions { display: flex; flex-direction: column; gap: 1rem; }
-  .booking-actions .btn { justify-content: space-between; padding: 1.1rem 1.75rem; font-size: 0.88rem; }
+  .booking-actions .sf-btn { justify-content: space-between; padding: 1.1rem 1.75rem; font-size: 0.88rem; width: 100%; }
   .booking-divider { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); font-family: 'Geist Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; margin: 0.5rem 0; }
   .booking-divider::before, .booking-divider::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
 
@@ -200,7 +193,7 @@
         <h1 style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.05; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.04em;">The Shop</h1>
         <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 550px; line-height: 1.6; margin-bottom: 2rem;">An intimate, private studio space built specifically for independent creators. Whether you are shooting a documentary interview, a music video, or recording a podcast, our space is ready to go.</p>
         <div>
-          <a href="#pricing" class="btn btn-primary">Check Pricing <i class="fa-solid fa-arrow-down"></i></a>
+          <a href="#pricing" class="sf-btn sf-btn-primary">Check Pricing <i class="fa-solid fa-arrow-down"></i></a>
         </div>
       </div>
     </div>
@@ -369,11 +362,11 @@
         </div>
         
         <div class="booking-actions">
-          <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <a href="https://www.sharegrid.com/p/sweetfly" target="_blank" rel="noopener noreferrer" class="sf-btn sf-btn-primary">
             Book on Sharegrid <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
           <div class="booking-divider">or</div>
-          <a href="#" class="btn btn-ghost" data-tally-open="KYWv6V" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">
+          <a href="#" class="sf-btn sf-btn-ghost" data-tally-open="KYWv6V" data-tally-hide-title="1" data-tally-emoji-text="👋🏾" data-tally-emoji-animation="wave">
             Book Directly <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
@@ -387,7 +380,7 @@
 </div>
 
 <script>
-  // Use Case Fading Slider Logic (Page-specific logic handles slider states seamlessly)
+  // Use Case Fading Slider Logic
   let currentUsecase = 0;
   const usecases = document.querySelectorAll('.usecase-item');
   const totalUsecases = usecases.length;
@@ -398,7 +391,7 @@
       currentUsecase = (currentUsecase + 1) % totalUsecases;
       
       setTimeout(() => {
-        usecases[currentUsecase].add ? usecases[currentUsecase].classList.add('active') : usecases[currentUsecase].classList.add('active');
+        usecases[currentUsecase].classList.add('active');
       }, 50);
     }, 3000);
   }
