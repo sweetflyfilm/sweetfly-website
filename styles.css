@@ -121,8 +121,9 @@ body {
   #sf-embed .sf-footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
  
   #sf-embed::after { display: none; }
+} /* <-- THIS IS THE CLOSING BRACE THAT WAS MISSING */
 
-   /* ============================================================
+/* ============================================================
    DIRECT BOOKING SPLASH CARD
    ============================================================ */
 .sf-splash-card {
@@ -213,5 +214,4 @@ body {
     width: 90%;
     transform: translateY(-150%);
   }
-}
 }
