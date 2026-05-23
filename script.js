@@ -43,8 +43,8 @@ function initSplashCard() {
     <div class="sf-splash-card" id="sfSplashCard">
       <button class="sf-splash-close" onclick="closeSplashCard()"><i class="fa-solid fa-xmark"></i></button>
       <div class="sf-splash-content">
-        <h4><i class="fa-solid fa-ticket"></i> Save By Booking Directly With Us</h4>
-        <p>Skip the third-party platform fees. Build your custom studio and gear package securely through our site to save.</p>
+        <h6><i class="fa-solid fa-ticket"></i> Save By Booking Directly With Us</h4>
+      
         <a href="/booking.html" class="sf-btn">Book Now</a>
       </div>
     </div>
