@@ -178,6 +178,7 @@
   /* ── INLINE FREE LENS MODAL ── */
   #sf-embed .free-lens-banner { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 4px; padding: 30px; margin: 30px 0; display: none; animation: fadeIn 0.4s ease; text-align: center; }
   #sf-embed .free-lens-banner h3 { color: var(--text-main) !important; margin: 0 0 10px 0; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  #sf-embed .free-lens-banner p { color: var(--text-muted) !important;}
 
   /* ── MISC UTILS ── */
   #sf-embed .mode-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-bottom: 30px; }
@@ -185,33 +186,10 @@
   #sf-embed .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-subtle); }
   #sf-embed .form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); padding: 15px; border-radius: 6px; font-family: 'Geist', sans-serif; font-size: 1rem; outline: none; appearance: none; -webkit-appearance: none; margin-bottom: 15px;}
   #sf-embed .form-input:focus { border-color: var(--text-main); }
-  #sf-embed .form-textarea { resize: vertical; min-height: 120px; }
 
   /* Fix for buttons inside booking tool to use the specific accent */
   #sf-embed .sf-btn-primary { background-color: var(--booking-accent); color: var(--bg-dark) !important; border: 1px solid var(--booking-accent); }
   #sf-embed .sf-btn-outline { color: var(--text-main) !important; border-color: var(--border-color); }
-
-  /* ── CHECKOUT STEP (STEP 4) ── */
-  #sf-embed .checkout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; max-width: 1000px; margin: 0 auto;}
-  #sf-embed .checkout-form-panel { background: var(--bg-panel); padding: 40px; border-radius: 6px; border: 1px solid var(--border-color); }
-  #sf-embed .checkout-form-panel h3 { margin-bottom: 25px; font-size: 1.5rem; }
-  #sf-embed .checkout-receipt-panel { background: var(--bg-dark); padding: 40px; border-radius: 6px; border: 1px solid var(--border-color); position: sticky; top: 100px;}
-  #sf-embed .checkout-receipt-panel h3 { margin-bottom: 25px; font-size: 1.5rem; }
-  #sf-embed .receipt-row { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-subtle); }
-  #sf-embed .receipt-row:last-child { border-bottom: none; }
-  #sf-embed .receipt-label { color: var(--text-muted); font-size: 0.9rem; }
-  #sf-embed .receipt-value { color: var(--text-main); font-weight: 500; font-size: 0.95rem; text-align: right; max-width: 60%;}
-  #sf-embed .receipt-total-row { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); }
-  #sf-embed .receipt-total-row .receipt-label { font-size: 1.2rem; font-weight: 600; color: var(--text-main); }
-  #sf-embed .receipt-total-row .receipt-value { font-size: 2rem; font-weight: 700; color: var(--booking-accent); }
-  
-  #sf-embed .checkout-actions { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 30px; }
-  #sf-embed .checkout-actions .sf-btn { padding: 18px; width: 100%; font-size: 0.95rem;}
-
-  @media(max-width: 900px) {
-      #sf-embed .checkout-grid { grid-template-columns: 1fr; }
-      #sf-embed .checkout-receipt-panel { position: static; order: -1; margin-bottom: 20px;}
-  }
 </style>
 </head>
 <body>
@@ -238,7 +216,7 @@
                       <button class="sf-btn sf-btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
                       <button class="sf-btn sf-btn-text" style="padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
                   </div>
-                  <span style="font-family: 'Geist Mono'; color: var(--text-muted); font-size: 0.85rem; font-weight:600; letter-spacing:1px;" id="stepIndicator">Step 1 of 4</span>
+                  <span style="font-family: 'Geist Mono'; color: var(--text-muted); font-size: 0.85rem; font-weight:600; letter-spacing:1px;" id="stepIndicator">Step 1 of 3</span>
                   <div style="width: 150px;"></div>
               </div>
 
@@ -375,71 +353,6 @@
                                   <p style="font-size: 0.75rem; color: var(--text-muted) !important; margin-top: 8px;"><i class="fa-solid fa-circle-info"></i> Standard studio weekends & holidays subject to availability.</p>
                               </div>
                           </div>
-                      </div>
-                  </div>
-
-                  <div class="wizard-step" id="step-checkout">
-                      <div class="step-header">
-                          <h1 class="step-title">Checkout</h1>
-                          <p class="step-desc">Review your details and submit your booking request.</p>
-                      </div>
-
-                      <div class="checkout-grid">
-                          
-                          <div class="checkout-form-panel">
-                              <h3>Your Details</h3>
-                              
-                              <form id="internalBookingForm" action="YOUR_WEBHOOK_URL_HERE" method="POST">
-                                  
-                                  <input type="text" name="name" class="form-input" placeholder="Full Name" required>
-                                  <input type="email" name="email" class="form-input" placeholder="Email Address" required>
-                                  <input type="tel" name="phone" class="form-input" placeholder="Phone Number" required>
-                                  <textarea name="project_details" class="form-input form-textarea" placeholder="Tell us briefly about the shoot..." required></textarea>
-
-                                  <input type="hidden" name="cart_total" id="formInputTotal">
-                                  <input type="hidden" name="cart_duration" id="formInputDuration">
-                                  <input type="hidden" name="cart_start_date" id="formInputDate">
-                                  <input type="hidden" name="cart_studio" id="formInputStudio">
-                                  <input type="hidden" name="cart_gear" id="formInputGear">
-                                  <input type="hidden" name="payment_intent" id="formInputIntent">
-
-                                  <div class="checkout-actions">
-                                      <button type="button" class="sf-btn sf-btn-primary" onclick="submitBooking('pay_now')">Pay Deposit Now (Via Stripe)</button>
-                                      <button type="button" class="sf-btn sf-btn-outline" onclick="submitBooking('pay_later')">Submit Request & Pay Later</button>
-                                      <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
-                                          *If you select Pay Deposit Now, you will be redirected to our secure Stripe portal.
-                                      </p>
-                                  </div>
-
-                              </form>
-                          </div>
-
-                          <div class="checkout-receipt-panel">
-                              <h3>Order Summary</h3>
-                              
-                              <div class="receipt-row">
-                                  <div class="receipt-label">Start Date</div>
-                                  <div class="receipt-value" id="receiptDate">--</div>
-                              </div>
-                              <div class="receipt-row">
-                                  <div class="receipt-label">Duration</div>
-                                  <div class="receipt-value" id="receiptDuration">--</div>
-                              </div>
-                              <div class="receipt-row">
-                                  <div class="receipt-label">Studio Space</div>
-                                  <div class="receipt-value" id="receiptStudio">--</div>
-                              </div>
-                              <div class="receipt-row">
-                                  <div class="receipt-label">Equipment</div>
-                                  <div class="receipt-value" id="receiptGear" style="font-size: 0.85rem; line-height: 1.4;">--</div>
-                              </div>
-                              
-                              <div class="receipt-total-row">
-                                  <div class="receipt-label">Estimated Total</div>
-                                  <div class="receipt-value" id="receiptTotal">$0</div>
-                              </div>
-                          </div>
-
                       </div>
                   </div>
 
@@ -586,14 +499,12 @@
       if(currentStep === 'studio') stepText.innerText = 'Step 1: Space';
       if(currentStep === 'gear-mode' || currentStep === 'alacarte' || currentStep === 'kits') stepText.innerText = 'Step 2: Gear';
       if(currentStep === 'review') stepText.innerText = 'Step 3: Dates';
-      if(currentStep === 'checkout') stepText.innerText = 'Step 4: Checkout';
 
       const sidebar = document.getElementById('sidebarCart');
       const appContainer = document.getElementById('appContainer');
       const mobileToggle = document.getElementById('mobileCartToggle');
 
-      // Hide sidebar on the Gateway AND on the new Checkout screen
-      if(currentStep !== 'gateway' && currentStep !== 'checkout') {
+      if(currentStep !== 'gateway') {
           sidebar.classList.add('active');
           appContainer.classList.add('sidebar-active');
           if(window.innerWidth <= 1024) mobileToggle.style.display = 'flex';
@@ -607,7 +518,6 @@
       if(currentStep === 'studio') renderStudio();
       if(currentStep === 'alacarte') renderAlacarte();
       if(currentStep === 'kits') renderKits();
-      if(currentStep === 'checkout') populateCheckoutReceipt();
       
       updateCart();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -645,7 +555,7 @@
           navigateTo('review');
       }
       else if(currentStep === 'review') {
-          navigateTo('checkout');
+          requestBooking();
       }
   }
 
@@ -659,6 +569,42 @@
       cart.items.clear();
       historyTracker.pop();
       navigateTo('alacarte');
+  }
+
+  // --- TALLY FORM INTEGRATION ---
+  function requestBooking() {
+      const baseUrl = "https://tally.so/r/b56lO7"; 
+      
+      const params = new URLSearchParams();
+      params.append('total', document.getElementById('cartTotalUs').innerText.replace('$',''));
+      params.append('days', document.getElementById('shootDays').options[document.getElementById('shootDays').selectedIndex].text);
+      
+      const dateVal = document.getElementById('shootDate').value;
+      if (dateVal) {
+          params.append('date', dateVal);
+      }
+
+      const s = studios.find(x => x.id === cart.studio);
+      params.append('studio', s ? s.name : 'None');
+      
+      let gearList = [];
+      if(cart.activePackage) {
+          const pkg = packages.find(p => p.id === cart.activePackage);
+          gearList.push("Package: " + pkg.name);
+      }
+      
+      let customGear = [];
+      cart.items.forEach(id => {
+          const item = allItemsData.find(x => x.id === id);
+          if(item) customGear.push(item.name);
+      });
+
+      if(customGear.length > 0) gearList.push("Items: " + customGear.join(', '));
+      
+      params.append('gear', gearList.join(' | ') || 'None');
+
+      // Go to Tally Link
+      window.location.href = baseUrl + "?" + params.toString();
   }
 
   // --- VIEW RENDERERS ---
@@ -910,15 +856,15 @@
           else btnNext.innerText = "Continue to Gear";
       } else if (currentStep === 'review') {
           btnNext.disabled = false;
-          btnNext.innerText = "Continue to Checkout";
+          btnNext.innerText = "Request Booking";
       }
 
       if(!cart.studio && cart.items.size === 0 && !cart.activePackage) {
-          sBody.innerHTML = '<div style="text-align:center; color: var(--text-muted); margin-top: 40px; font-style: italic;">Your cart is empty.</div>';
+          sBody.innerHTML = '<div style="text-align:center; margin-top: 40px; font-style: italic; color: var(--text-muted);">Your cart is empty.</div>';
           document.getElementById('cartTotalUs').innerText = '$0';
           document.getElementById('sgSavingsText').innerHTML = '';
           document.getElementById('mobileCartTotal').innerText = '$0';
-          document.getElementById('discountTracker').innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="display:block; color:var(--text-main);">Build Your Bundle</strong><span style="color:var(--text-muted);">Add 5 items for 20% off gear.</span></div>`;
+          document.getElementById('discountTracker').innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted);">Add 5 items for 20% off.</span></div>`;
           return;
       }
 
@@ -1016,9 +962,9 @@
       let discountedDailyGear = dailyGear;
       
       if (isFullService) {
-          tracker.innerHTML = `<i class="fa-solid fa-check-circle" style="color:var(--color-success);"></i> <div style="line-height:1.3;"><strong style="display:block; color:var(--text-main);">Maximum Value</strong><span style="color:var(--text-muted);">Gear closet unlocked.</span></div>`;
+          tracker.innerHTML = `<i class="fa-solid fa-check-circle" style="color:var(--color-success);"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Maximum Value</strong><span style="color:var(--text-muted);">Gear closet unlocked.</span></div>`;
       } else if (cart.activePackage) {
-          tracker.innerHTML = `<i class="fa-solid fa-box-open"></i> <div style="line-height:1.3;"><strong style="display:block; color:var(--text-main);">Kit Discount Applied</strong><span style="color:var(--text-muted);">Bundles are pre-discounted.</span></div>`;
+          tracker.innerHTML = `<i class="fa-solid fa-box-open"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Kit Discount Applied</strong><span style="color:var(--text-muted);">Bundles are pre-discounted.</span></div>`;
       } else {
           let bundlePct = 0;
           if(gearCount >= 5) bundlePct = 20;
@@ -1035,10 +981,10 @@
               
               const discount = Math.round(gearSubtotal * (bundlePct/100));
               discountedDailyGear -= discount;
-              tracker.innerHTML = `<i class="fa-solid fa-tag"></i> <div style="line-height:1.3;"><strong style="color:var(--color-success); display:block;">${bundlePct}% Gear Discount Applied!</strong><span>You built a custom bundle.</span></div>`;
+              tracker.innerHTML = `<i class="fa-solid fa-tag"></i> <div style="line-height:1.3;"><strong style="color:var(--color-success); display:block;">${bundlePct}% Gear Discount Applied!</strong><span style="color:var(--text-muted);">You built a custom bundle.</span></div>`;
           } else {
               const needed = 2 - gearCount;
-              tracker.innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="display:block; color:var(--text-main);">Build Your Bundle</strong><span style="color:var(--text-muted);">Add ${needed > 0 ? needed : ''} more items for 5% off.</span></div>`;
+              tracker.innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted);">Add ${needed > 0 ? needed : ''} more items for 5% off.</span></div>`;
           }
       }
 
@@ -1057,79 +1003,6 @@
       } else {
           document.getElementById('sgSavingsText').innerHTML = '';
       }
-  }
-
-  // --- POPULATE CHECKOUT RECEIPT ---
-  function populateCheckoutReceipt() {
-      const rDate = document.getElementById('receiptDate');
-      const rDuration = document.getElementById('receiptDuration');
-      const rStudio = document.getElementById('receiptStudio');
-      const rGear = document.getElementById('receiptGear');
-      const rTotal = document.getElementById('receiptTotal');
-
-      const fTotal = document.getElementById('formInputTotal');
-      const fDuration = document.getElementById('formInputDuration');
-      const fDate = document.getElementById('formInputDate');
-      const fStudio = document.getElementById('formInputStudio');
-      const fGear = document.getElementById('formInputGear');
-
-      // 1. Date
-      const dateVal = document.getElementById('shootDate').value;
-      rDate.innerText = dateVal || "TBD";
-      fDate.value = dateVal || "TBD";
-
-      // 2. Duration
-      const selectBox = document.getElementById('shootDays');
-      const durationText = selectBox.options[selectBox.selectedIndex].text;
-      rDuration.innerText = durationText;
-      fDuration.value = durationText;
-
-      // 3. Studio Space
-      const s = studios.find(x => x.id === cart.studio);
-      const studioText = s ? s.name : "None";
-      rStudio.innerText = studioText;
-      fStudio.value = studioText;
-
-      // 4. Gear
-      let gearString = "";
-      if (cart.studio === 'stu_srv' || cart.studio === 'stu_srv_comm') {
-          gearString = "All-Access Gear Included";
-      } else if (cart.activePackage) {
-          const pkg = packages.find(p => p.id === cart.activePackage);
-          gearString = `Package: ${pkg.name}`;
-          let addons = [];
-          cart.items.forEach(id => {
-              if(!pkg.items.includes(id) && id !== 'cam_bmpcc') {
-                  addons.push(allItemsData.find(x => x.id === id).name);
-              }
-          });
-          if(addons.length > 0) gearString += `<br><span style="color:var(--text-muted)">+ ${addons.join(', ')}</span>`;
-      } else {
-          let customGear = [];
-          cart.items.forEach(id => {
-              const item = allItemsData.find(x => x.id === id);
-              if(item) customGear.push(item.name);
-          });
-          gearString = customGear.length > 0 ? customGear.join('<br>') : "None";
-      }
-      rGear.innerHTML = gearString;
-      fGear.value = gearString.replace(/<br>/g, ', ').replace(/<span.*?>/g, '').replace(/<\/span>/g, '');
-
-      // 5. Total
-      const totalText = document.getElementById('cartTotalUs').innerText;
-      rTotal.innerText = totalText;
-      fTotal.value = totalText;
-  }
-
-  // --- SUBMIT FORM ACTION ---
-  function submitBooking(intent) {
-      const form = document.getElementById('internalBookingForm');
-      if (!form.reportValidity()) return;
-
-      document.getElementById('formInputIntent').value = intent;
-      
-      alert("This form is currently simulating a submission! Hook it up to Make.com or Formspree when ready.");
-      // form.submit();
   }
 
 </script>
