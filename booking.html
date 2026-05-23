@@ -28,7 +28,7 @@
   #sf-booking-app p { color: var(--text-muted) !important; font-size: 1rem; }
   #sf-booking-app h1, #sf-booking-app h2, #sf-booking-app h3, #sf-booking-app h4 { color: var(--text-main) !important; font-family: 'Geist', sans-serif;}
 
-  /* ── LIGHT GREY SONAR HERO WITH IMAGE & PULSE ── */
+  /* ── LIGHT GREY SONAR HERO ── */
   #sf-embed .checkout-hero { 
     position: relative; 
     padding: 100px 20px 80px; 
@@ -41,7 +41,7 @@
     justify-content: center; 
     min-height: 40vh;
   }
-
+  
   #sf-embed .checkout-hero-bg {
     position: absolute;
     inset: 0;
@@ -124,10 +124,19 @@
       
       #sf-embed .main-content { padding: 40px 20px 120px; }
       
+      /* New Mobile Action Bar */
       #sf-embed .mobile-cart-toggle { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(10px); border-top: 1px solid var(--border-color); padding: 15px 20px; justify-content: space-between; align-items: center; z-index: 10000; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
-      #sf-embed .mct-info { display: flex; flex-direction: column; }
+      #sf-embed .mct-info { display: flex; flex-direction: column; cursor: pointer; }
       #sf-embed .mct-total { font-size: 1.4rem; font-weight: 700; color: var(--text-main); }
-      #sf-embed .mct-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+      #sf-embed .mct-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;}
+  }
+
+  /* Responsive Nav Header Fix */
+  @media(max-width: 600px) {
+      #sf-embed .nav-header { flex-wrap: wrap; justify-content: center; text-align: center; gap: 10px;}
+      #sf-embed .nav-header > div:first-child { order: 2; width: 100%; justify-content: center; margin-top: 10px;}
+      #sf-embed #stepIndicator { order: 1; width: 100%; text-align: center; display: block; }
+      #sf-embed .nav-header > div:last-child { display: none; }
   }
 
   /* ── WIZARD PANELS ── */
@@ -212,7 +221,12 @@
   #sf-embed .form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); padding: 15px; border-radius: 6px; font-family: 'Geist', sans-serif; font-size: 1rem; outline: none; appearance: none; -webkit-appearance: none; margin-bottom: 15px;}
   #sf-embed .form-input:focus { border-color: var(--text-main); }
 
-  /* ── EXPLICIT BUTTON STYLES (Requested by User) ── */
+  /* EXPLICIT BUTTON STYLING */
+  #sf-embed .header-btn-muted { background-color: #0a0a0a !important; color: #ffffff !important; border: 1px solid #94a3b8 !important; }
+  #sf-embed .header-btn-muted:hover { border-color: #ffffff !important; }
+  #sf-embed .header-btn-text-muted { background-color: transparent !important; color: #ffffff !important; border: 1px solid #94a3b8 !important; }
+  #sf-embed .header-btn-text-muted:hover { background: rgba(255,255,255,0.05) !important; }
+
   #sf-embed .btn-standard-checkout {
       background-color: #0a0a0a !important;
       color: #ffffff !important;
@@ -261,8 +275,8 @@
               
               <div class="nav-header" id="navHeader" style="display:none;">
                   <div style="display:flex; gap: 10px;">
-                      <button class="sf-btn" style="background-color: #0a0a0a; color: #ffffff; border: 1px solid #94a3b8; padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                      <button class="sf-btn" style="background-color: #0a0a0a; color: #ffffff; border: 1px solid #94a3b8; padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
+                      <button class="sf-btn header-btn-muted" style="padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                      <button class="sf-btn header-btn-text-muted" style="padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
                   </div>
                   <span style="font-family: 'Geist Mono'; color: var(--text-muted); font-size: 0.85rem; font-weight:600; letter-spacing:1px;" id="stepIndicator">Step 1 of 3</span>
                   <div style="width: 150px;"></div>
@@ -298,7 +312,7 @@
                       </div>
 
                       <div style="text-align: center; margin-top: 20px;">
-                          <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8; padding: 10px 15px; border-radius: 6px; text-transform: none; font-size: 0.85rem;" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
+                          <button class="sf-btn header-btn-text-muted" style="padding: 10px 15px; border-radius: 6px; text-transform: none; font-size: 0.85rem;" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
                       </div>
                   </div>
 
@@ -358,17 +372,13 @@
                           <div class="alc-header"><div class="alc-number">2</div><h2>Specialty Lens Add-ons</h2></div>
                           <p style="color: var(--text-muted) !important; margin-bottom: 20px;">Your 3-Lens Kit is already included. Need extra focal lengths?</p>
                           <div class="rich-grid" id="grid-alc-lens"></div>
-                          <div style="text-align: right; margin-top: 25px;">
-                              <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8;" onclick="unlockSection('alc-sec-light')">Continue to Lighting <i class="fa-solid fa-arrow-down"></i></button>
-                          </div>
+                          <div style="text-align: right; margin-top: 25px;"><button class="sf-btn header-btn-muted" style="padding: 10px 20px;" onclick="unlockSection('alc-sec-light')">Continue to Lighting <i class="fa-solid fa-arrow-down"></i></button></div>
                       </div>
 
                       <div class="alc-section dimmed" id="alc-sec-light">
                           <div class="alc-header"><div class="alc-number">3</div><h2>Lighting</h2></div>
                           <div class="rich-grid" id="grid-alc-light"></div>
-                          <div style="text-align: right; margin-top: 25px;">
-                              <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8;" onclick="unlockSection('alc-sec-grip')">Continue to Support & Grip <i class="fa-solid fa-arrow-down"></i></button>
-                          </div>
+                          <div style="text-align: right; margin-top: 25px;"><button class="sf-btn header-btn-muted" style="padding: 10px 20px;" onclick="unlockSection('alc-sec-grip')">Continue to Support & Grip <i class="fa-solid fa-arrow-down"></i></button></div>
                       </div>
 
                       <div class="alc-section dimmed" id="alc-sec-grip">
@@ -443,11 +453,11 @@
           </div>
 
           <div class="mobile-cart-toggle" id="mobileCartToggle">
-              <div class="mct-info">
-                  <div class="mct-label">Cart Total</div>
+              <div class="mct-info" onclick="document.getElementById('sidebarCart').classList.add('mobile-open')" style="cursor: pointer; display: flex; flex-direction: column; justify-content: center;">
+                  <div class="mct-label">Cart Total <i class="fa-solid fa-chevron-up" style="margin-left: 4px; font-size: 10px;"></i></div>
                   <div class="mct-total" id="mobileCartTotal">$0</div>
               </div>
-              <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8;" onclick="document.getElementById('sidebarCart').classList.add('mobile-open')"><i class="fa-solid fa-cart-shopping"></i> View Cart</button>
+              <button class="sf-btn btn-standard-checkout" id="btnMobileNext" style="padding: 10px 20px;" onclick="navNext()">Select Space</button>
           </div>
 
       </div>
@@ -714,9 +724,9 @@
           let upgradeHtml = '';
           if (pkg.items.includes('cam_bmpcc')) {
               if (cart.items.has('cam_red')) {
-                  upgradeHtml = `<button class="sf-btn" style="background-color: transparent; color: #81c784; border: 1px solid #81c784; width:100%; margin: 10px 0; pointer-events:none;"><i class="fa-solid fa-check"></i> RED Dragon Upgrade Added</button>`;
+                  upgradeHtml = `<button class="sf-btn header-btn-muted" style="width:100%; margin: 10px 0; border-color:var(--color-success) !important; color:var(--color-success) !important; pointer-events:none;"><i class="fa-solid fa-check"></i> RED Dragon Upgrade Added</button>`;
               } else {
-                  upgradeHtml = `<button onclick="upgradeKitToRED(event)" class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8; width:100%; margin: 10px 0;"><i class="fa-solid fa-arrow-trend-up"></i> Upgrade to RED (+ $99)</button>`;
+                  upgradeHtml = `<button onclick="upgradeKitToRED(event)" class="sf-btn header-btn-muted" style="width:100%; margin: 10px 0;"><i class="fa-solid fa-arrow-trend-up"></i> Upgrade to RED (+ $99)</button>`;
               }
           }
 
@@ -728,7 +738,7 @@
           ];
           commonAddons.forEach(addon => {
               if (!pkg.items.includes(addon.id) && !cart.items.has(addon.id)) {
-                  addonsHtml += `<button onclick="addKitAddon('${addon.id}', event)" class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8; width:100%; text-align:left; padding: 10px 15px; margin-bottom:5px; text-transform:none; font-size: 0.85rem;">${addon.label}</button>`;
+                  addonsHtml += `<button onclick="addKitAddon('${addon.id}', event)" class="sf-btn header-btn-muted" style="width:100%; text-align:left; padding: 10px 15px; margin-bottom:5px; text-transform:none; font-size: 0.85rem;">${addon.label}</button>`;
               } else if (cart.items.has(addon.id) && !pkg.items.includes(addon.id)) {
                   addonsHtml += `<div style="color:var(--color-success); font-size:0.85rem; margin: 8px 0; padding-left: 10px;"><i class="fa-solid fa-check"></i> ${addon.label.split(' Add-on')[0]} added</div>`;
               }
@@ -895,10 +905,12 @@
   function updateCart() {
       const sBody = document.getElementById('cartItems');
       const btnNext = document.getElementById('btnSidebarNext');
+      const btnMobileNext = document.getElementById('btnMobileNext');
       
       let durVal = parseInt(document.getElementById('shootDays').value);
       cart.days = isNaN(durVal) ? 1 : durVal;
 
+      // Update button state based on Step
       if(currentStep === 'studio') {
           btnNext.disabled = !cart.studio;
           const isFullService = cart.studio === 'stu_srv' || cart.studio === 'stu_srv_comm';
@@ -906,21 +918,23 @@
           if (!cart.studio) btnNext.innerText = "Select Space to Continue";
           else if (isFullService || cart.isSpaceOnly) btnNext.innerText = "Continue to Checkout";
           else btnNext.innerText = "Continue to Gear";
-
-          btnNext.classList.remove('gold-checkout-btn');
-          btnNext.classList.add('btn-standard-checkout');
+          
+          btnNext.className = "sf-btn btn-standard-checkout";
       } else if (currentStep === 'review') {
           btnNext.disabled = false;
           btnNext.innerText = "Request Booking";
-
-          btnNext.classList.remove('btn-standard-checkout');
-          btnNext.classList.add('gold-checkout-btn');
+          btnNext.className = "sf-btn gold-checkout-btn"; // Applies the Gold UI
       } else {
           btnNext.disabled = false;
           btnNext.innerText = "Continue to Checkout";
+          btnNext.className = "sf-btn btn-standard-checkout";
+      }
 
-          btnNext.classList.remove('gold-checkout-btn');
-          btnNext.classList.add('btn-standard-checkout');
+      // Sync Mobile Button
+      if(btnMobileNext) {
+          btnMobileNext.disabled = btnNext.disabled;
+          btnMobileNext.innerText = btnNext.innerText;
+          btnMobileNext.className = btnNext.className;
       }
 
       if(!cart.studio && cart.items.size === 0 && !cart.activePackage) {
