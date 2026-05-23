@@ -23,13 +23,12 @@
   #sf-embed {
     --color-success: #81c784;
     --booking-accent: #ffffff; 
-    --gold: #D4AF37;
   }
 
   #sf-booking-app p { color: var(--text-muted) !important; font-size: 1rem; }
   #sf-booking-app h1, #sf-booking-app h2, #sf-booking-app h3, #sf-booking-app h4 { color: var(--text-main) !important; font-family: 'Geist', sans-serif;}
 
-  /* ── LIGHT GREY SONAR HERO ── */
+  /* ── LIGHT GREY SONAR HERO WITH IMAGE & PULSE ── */
   #sf-embed .checkout-hero { 
     position: relative; 
     padding: 100px 20px 80px; 
@@ -42,7 +41,7 @@
     justify-content: center; 
     min-height: 40vh;
   }
-  
+
   #sf-embed .checkout-hero-bg {
     position: absolute;
     inset: 0;
@@ -56,20 +55,20 @@
   }
 
   @keyframes pulseGlow {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-      100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+      100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
   }
 
   #sf-embed .checkout-hero-glow { 
     position: absolute; 
     width: 1000px; 
     height: 1000px; 
-    background: radial-gradient(circle, rgba(200, 200, 200, 0.06) 0%, transparent 60%); 
+    background: radial-gradient(circle, rgba(200, 200, 200, 0.08) 0%, transparent 60%); 
     top: 50%; left: 50%; 
     transform: translate(-50%, -50%); 
     z-index: 1; 
     pointer-events: none; 
-    animation: pulseGlow 6s ease-in-out infinite alternate;
+    animation: pulseGlow 5s ease-in-out infinite alternate;
   }
 
   #sf-embed .checkout-hero-overlay {
@@ -89,22 +88,7 @@
   #sf-embed .main-content { flex: 1; padding: 60px 40px 120px; max-width: 1100px; margin: 0 auto; width: 100%; transition: all 0.3s ease; }
   
   /* Sidebar Cart */
-  #sf-embed .sidebar { 
-    width: 400px; 
-    background: var(--bg-panel); 
-    border-left: 1px solid var(--border-color); 
-    display: flex; 
-    flex-direction: column; 
-    position: fixed; 
-    right: 8px; 
-    top: 85px; /* Clears the Nav Bar */
-    height: calc(100vh - 95px); /* Keeps it from extending off screen */
-    transform: translateX(110%); 
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
-    z-index: 10001; 
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5); 
-    border-radius: 6px;
-  }
+  #sf-embed .sidebar { width: 400px; background: var(--bg-panel); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; position: fixed; right: 8px; top: 85px; bottom: 8px; transform: translateX(110%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10001; box-shadow: -10px 0 30px rgba(0,0,0,0.5); border-radius: 6px; }
   #sf-embed .sidebar.active { transform: translateX(0); }
   #sf-embed .sidebar-header { padding: 30px 30px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;}
   #sf-embed .sidebar-header h2 { margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
@@ -140,9 +124,9 @@
       
       #sf-embed .main-content { padding: 40px 20px 120px; }
       
-      #sf-embed .mobile-cart-toggle { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(10px); border-top: 1px solid var(--booking-accent); padding: 15px 20px; justify-content: space-between; align-items: center; z-index: 10000; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
+      #sf-embed .mobile-cart-toggle { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(10px); border-top: 1px solid var(--border-color); padding: 15px 20px; justify-content: space-between; align-items: center; z-index: 10000; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
       #sf-embed .mct-info { display: flex; flex-direction: column; }
-      #sf-embed .mct-total { font-size: 1.4rem; font-weight: 700; color: var(--booking-accent); }
+      #sf-embed .mct-total { font-size: 1.4rem; font-weight: 700; color: var(--text-main); }
       #sf-embed .mct-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
   }
 
@@ -228,26 +212,27 @@
   #sf-embed .form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); padding: 15px; border-radius: 6px; font-family: 'Geist', sans-serif; font-size: 1rem; outline: none; appearance: none; -webkit-appearance: none; margin-bottom: 15px;}
   #sf-embed .form-input:focus { border-color: var(--text-main); }
 
-  /* ── Muted Header Buttons ── */
-  #sf-embed .header-btn-muted { border-color: var(--border-color) !important; color: var(--text-muted) !important; }
-  #sf-embed .header-btn-muted:hover { border-color: var(--text-main) !important; color: var(--text-main) !important; }
-  #sf-embed .header-btn-text-muted { color: var(--text-muted) !important; }
-  #sf-embed .header-btn-text-muted:hover { color: #ffffff !important; background: var(--border-color); }
-
-  /* Fix for buttons inside booking tool */
-  #sf-embed .sf-btn-primary { background-color: var(--booking-accent); color: var(--bg-dark) !important; border: 1px solid var(--booking-accent); }
+  /* ── EXPLICIT BUTTON STYLES (Requested by User) ── */
+  #sf-embed .btn-standard-checkout {
+      background-color: #0a0a0a !important;
+      color: #ffffff !important;
+      border: 1px solid #94a3b8 !important;
+  }
+  #sf-embed .btn-standard-checkout:hover {
+      background-color: #141414 !important;
+      border-color: #ffffff !important;
+  }
   
-  /* ── DYNAMIC GOLD CHECKOUT BUTTON ── */
   #sf-embed .gold-checkout-btn {
-    background-color: #0a0a0a !important;
-    color: var(--gold) !important;
-    border: 2px solid var(--gold) !important;
-    transition: all 0.3s ease;
+      background-color: #0a0a0a !important;
+      color: #D4AF37 !important;
+      border: 2px solid #D4AF37 !important;
+      transition: all 0.3s ease;
   }
   #sf-embed .gold-checkout-btn:hover {
-    background-color: var(--gold) !important;
-    color: #0a0a0a !important;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3) !important;
+      background-color: #D4AF37 !important;
+      color: #0a0a0a !important;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.3) !important;
   }
 </style>
 </head>
@@ -276,8 +261,8 @@
               
               <div class="nav-header" id="navHeader" style="display:none;">
                   <div style="display:flex; gap: 10px;">
-                      <button class="sf-btn sf-btn-outline header-btn-muted" style="padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                      <button class="sf-btn sf-btn-text header-btn-text-muted" style="padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
+                      <button class="sf-btn" style="background-color: #0a0a0a; color: #ffffff; border: 1px solid #94a3b8; padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                      <button class="sf-btn" style="background-color: #0a0a0a; color: #ffffff; border: 1px solid #94a3b8; padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
                   </div>
                   <span style="font-family: 'Geist Mono'; color: var(--text-muted); font-size: 0.85rem; font-weight:600; letter-spacing:1px;" id="stepIndicator">Step 1 of 3</span>
                   <div style="width: 150px;"></div>
@@ -313,7 +298,7 @@
                       </div>
 
                       <div style="text-align: center; margin-top: 20px;">
-                          <button class="sf-btn sf-btn-text header-btn-text-muted" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
+                          <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8; padding: 10px 15px; border-radius: 6px; text-transform: none; font-size: 0.85rem;" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
                       </div>
                   </div>
 
@@ -373,13 +358,17 @@
                           <div class="alc-header"><div class="alc-number">2</div><h2>Specialty Lens Add-ons</h2></div>
                           <p style="color: var(--text-muted) !important; margin-bottom: 20px;">Your 3-Lens Kit is already included. Need extra focal lengths?</p>
                           <div class="rich-grid" id="grid-alc-lens"></div>
-                          <div style="text-align: right; margin-top: 25px;"><button class="sf-btn sf-btn-outline" onclick="unlockSection('alc-sec-light')">Continue to Lighting <i class="fa-solid fa-arrow-down"></i></button></div>
+                          <div style="text-align: right; margin-top: 25px;">
+                              <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8;" onclick="unlockSection('alc-sec-light')">Continue to Lighting <i class="fa-solid fa-arrow-down"></i></button>
+                          </div>
                       </div>
 
                       <div class="alc-section dimmed" id="alc-sec-light">
                           <div class="alc-header"><div class="alc-number">3</div><h2>Lighting</h2></div>
                           <div class="rich-grid" id="grid-alc-light"></div>
-                          <div style="text-align: right; margin-top: 25px;"><button class="sf-btn sf-btn-outline" onclick="unlockSection('alc-sec-grip')">Continue to Support & Grip <i class="fa-solid fa-arrow-down"></i></button></div>
+                          <div style="text-align: right; margin-top: 25px;">
+                              <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8;" onclick="unlockSection('alc-sec-grip')">Continue to Support & Grip <i class="fa-solid fa-arrow-down"></i></button>
+                          </div>
                       </div>
 
                       <div class="alc-section dimmed" id="alc-sec-grip">
@@ -449,7 +438,7 @@
                       <div class="cart-sg-savings" id="sgSavingsText">You saved an estimated $0 by booking direct</div>
                   </div>
                   
-                  <button class="sf-btn sf-btn-primary" id="btnSidebarNext" style="width: 100%; padding: 18px;" onclick="navNext()">Select Space to Continue</button>
+                  <button class="sf-btn btn-standard-checkout" id="btnSidebarNext" style="width: 100%; padding: 18px;" onclick="navNext()">Select Space to Continue</button>
               </div>
           </div>
 
@@ -458,7 +447,7 @@
                   <div class="mct-label">Cart Total</div>
                   <div class="mct-total" id="mobileCartTotal">$0</div>
               </div>
-              <button class="sf-btn sf-btn-outline" onclick="document.getElementById('sidebarCart').classList.add('mobile-open')"><i class="fa-solid fa-cart-shopping"></i> View Cart</button>
+              <button class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8;" onclick="document.getElementById('sidebarCart').classList.add('mobile-open')"><i class="fa-solid fa-cart-shopping"></i> View Cart</button>
           </div>
 
       </div>
@@ -725,9 +714,9 @@
           let upgradeHtml = '';
           if (pkg.items.includes('cam_bmpcc')) {
               if (cart.items.has('cam_red')) {
-                  upgradeHtml = `<button class="sf-btn sf-btn-outline" style="width:100%; margin: 10px 0; border-color:var(--color-success); color:var(--color-success); pointer-events:none;"><i class="fa-solid fa-check"></i> RED Dragon Upgrade Added</button>`;
+                  upgradeHtml = `<button class="sf-btn" style="background-color: transparent; color: #81c784; border: 1px solid #81c784; width:100%; margin: 10px 0; pointer-events:none;"><i class="fa-solid fa-check"></i> RED Dragon Upgrade Added</button>`;
               } else {
-                  upgradeHtml = `<button onclick="upgradeKitToRED(event)" class="sf-btn sf-btn-outline" style="width:100%; margin: 10px 0; border-color:var(--text-main); color:var(--text-main);"><i class="fa-solid fa-arrow-trend-up"></i> Upgrade to RED (+ $99)</button>`;
+                  upgradeHtml = `<button onclick="upgradeKitToRED(event)" class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8; width:100%; margin: 10px 0;"><i class="fa-solid fa-arrow-trend-up"></i> Upgrade to RED (+ $99)</button>`;
               }
           }
 
@@ -739,7 +728,7 @@
           ];
           commonAddons.forEach(addon => {
               if (!pkg.items.includes(addon.id) && !cart.items.has(addon.id)) {
-                  addonsHtml += `<button onclick="addKitAddon('${addon.id}', event)" class="sf-btn sf-btn-text" style="width:100%; text-align:left; padding: 10px 15px; margin-bottom:5px; border-color:var(--border-color);">${addon.label}</button>`;
+                  addonsHtml += `<button onclick="addKitAddon('${addon.id}', event)" class="sf-btn" style="background-color: transparent; color: #ffffff; border: 1px solid #94a3b8; width:100%; text-align:left; padding: 10px 15px; margin-bottom:5px; text-transform:none; font-size: 0.85rem;">${addon.label}</button>`;
               } else if (cart.items.has(addon.id) && !pkg.items.includes(addon.id)) {
                   addonsHtml += `<div style="color:var(--color-success); font-size:0.85rem; margin: 8px 0; padding-left: 10px;"><i class="fa-solid fa-check"></i> ${addon.label.split(' Add-on')[0]} added</div>`;
               }
@@ -917,16 +906,21 @@
           if (!cart.studio) btnNext.innerText = "Select Space to Continue";
           else if (isFullService || cart.isSpaceOnly) btnNext.innerText = "Continue to Checkout";
           else btnNext.innerText = "Continue to Gear";
-          
+
           btnNext.classList.remove('gold-checkout-btn');
+          btnNext.classList.add('btn-standard-checkout');
       } else if (currentStep === 'review') {
           btnNext.disabled = false;
           btnNext.innerText = "Request Booking";
+
+          btnNext.classList.remove('btn-standard-checkout');
           btnNext.classList.add('gold-checkout-btn');
       } else {
           btnNext.disabled = false;
           btnNext.innerText = "Continue to Checkout";
+
           btnNext.classList.remove('gold-checkout-btn');
+          btnNext.classList.add('btn-standard-checkout');
       }
 
       if(!cart.studio && cart.items.size === 0 && !cart.activePackage) {
