@@ -9,27 +9,30 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/styles.css">
 
-<link rel="stylesheet" href="styles.css">
+<script src="/script.js" defer></script>
 
 <style>
   /* ============================================================
-     BOOKING ENGINE SPECIFIC STYLES
-     (Only affects the elements inside this specific app)
+     BOOKING ENGINE SPECIFIC STYLES ONLY
+     Extends the #sf-embed rules defined in styles.css
      ============================================================ */
-  
-  /* Make sure the booking engine variables exist if missing from global */
-  #sf-booking-app {
-    --color-info: #006eff;
+
+  #sf-embed {
+    /* Define any local variables for the booking tool here */
     --color-success: #81c784;
-    --color-success-bg: rgba(76, 175, 80, 0.1);
-    --booking-accent: #ffffff; /* Forces the white accent for this tool */
+    --booking-accent: #ffffff; 
   }
 
+  /* Force standard text styling within the booking tool to inherit properly */
+  #sf-booking-app p { color: var(--text-muted) !important; font-size: 1rem; }
+  #sf-booking-app h1, #sf-booking-app h2, #sf-booking-app h3, #sf-booking-app h4 { color: var(--text-main) !important; font-family: 'Geist', sans-serif;}
+  
   /* ── LIGHT GREY SONAR HERO ── */
-  .checkout-hero { 
+  #sf-booking-app .checkout-hero { 
     position: relative; 
-    padding: 80px 20px; 
+    padding: 100px 20px 80px; 
     text-align: center; 
     overflow: hidden; 
     border-bottom: 1px solid var(--border-color); 
@@ -39,391 +42,375 @@
     justify-content: center; 
     min-height: 40vh;
   }
-  .checkout-hero-bg { 
-    position: absolute; 
-    inset: 0; 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    opacity: 0.25; 
-    filter: grayscale(100%) contrast(1.2); 
-    pointer-events: none; 
-    z-index: 0; 
-  }
-  .checkout-hero-overlay { 
-    position: absolute; 
-    inset: 0; 
-    background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.95)); 
-    z-index: 1; 
-  }
-  .checkout-hero::after { 
+  
+  #sf-booking-app .checkout-hero::after { 
     content: ''; 
     position: absolute; 
     width: 800px; 
     height: 800px; 
-    background: radial-gradient(circle, rgba(200, 200, 200, 0.08) 0%, transparent 60%); 
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%); 
     top: 50%; left: 50%; 
     transform: translate(-50%, -50%); 
     z-index: 2; 
     pointer-events: none; 
   }
-  .checkout-hero-content { position: relative; z-index: 3; }
-  .checkout-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0 0 10px; font-weight: 700; letter-spacing: -0.02em; color: var(--text-main); }
-  .checkout-hero p { color: var(--text-muted); margin: 0; font-size: 1.1rem; }
+  
+  #sf-booking-app .checkout-hero-content { position: relative; z-index: 3; }
+  #sf-booking-app .checkout-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0 0 10px; font-weight: 700; letter-spacing: -0.02em; }
+  #sf-booking-app .checkout-hero p { margin: 0; font-size: 1.1rem; }
 
   /* ── LAYOUT ARCHITECTURE ── */
-  .app-container { display: flex; min-height: 80vh; transition: padding-right 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
-  .app-container.sidebar-active { padding-right: 400px; }
-  .main-content { flex: 1; padding: 60px 40px 120px; max-width: 1100px; margin: 0 auto; width: 100%; transition: all 0.3s ease; }
+  #sf-booking-app .app-container { display: flex; min-height: 80vh; transition: padding-right 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+  #sf-booking-app .app-container.sidebar-active { padding-right: 400px; }
+  #sf-booking-app .main-content { flex: 1; padding: 60px 40px 120px; max-width: 1100px; margin: 0 auto; width: 100%; transition: all 0.3s ease; }
   
   /* Sidebar Cart */
-  .sidebar { width: 400px; background: var(--bg-panel); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; position: fixed; right: 8px; top: 8px; bottom: 8px; transform: translateX(110%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10001; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
-  .sidebar.active { transform: translateX(0); }
-  .sidebar-header { padding: 30px 30px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;}
-  .sidebar-header h2 { margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-  .sidebar-body { flex: 1; overflow-y: auto; padding: 20px 30px; }
+  #sf-booking-app .sidebar { width: 400px; background: var(--bg-panel); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; position: fixed; right: 8px; top: 8px; bottom: 8px; transform: translateX(110%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10001; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
+  #sf-booking-app .sidebar.active { transform: translateX(0); }
+  #sf-booking-app .sidebar-header { padding: 30px 30px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;}
+  #sf-booking-app .sidebar-header h2 { margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+  #sf-booking-app .sidebar-body { flex: 1; overflow-y: auto; padding: 20px 30px; }
   
-  .cart-item { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-subtle); animation: fadeIn 0.3s ease; }
-  .cart-item-info h4 { margin: 0 0 4px 0; font-size: 0.95rem; color: var(--text-main); line-height: 1.2;}
-  .cart-item-info p { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
-  .cart-item-info ul { margin: 5px 0 0 0; padding-left: 15px; font-size: 0.75rem; color: var(--text-muted); }
-  .cart-item-price { font-weight: 600; font-size: 0.95rem; text-align: right; }
-  .cart-item-price.free { color: var(--color-success); }
-  .cart-item-price .strikethrough { text-decoration: line-through; color: var(--text-muted); font-size: 0.8rem; font-weight: normal; display: block; }
+  #sf-booking-app .cart-item { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-subtle); animation: fadeIn 0.3s ease; }
+  #sf-booking-app .cart-item-info h4 { margin: 0 0 4px 0; font-size: 0.95rem; line-height: 1.2;}
+  #sf-booking-app .cart-item-info p { margin: 0; font-size: 0.8rem; }
+  #sf-booking-app .cart-item-info ul { margin: 5px 0 0 0; padding-left: 15px; font-size: 0.75rem; color: var(--text-muted); list-style-type: disc;}
+  #sf-booking-app .cart-item-price { font-weight: 600; font-size: 0.95rem; text-align: right; color: var(--text-main); }
+  #sf-booking-app .cart-item-price.free { color: var(--color-success); }
+  #sf-booking-app .cart-item-price .strikethrough { text-decoration: line-through; color: var(--text-muted); font-size: 0.8rem; font-weight: normal; display: block; }
   
-  .sidebar-footer { padding: 20px 30px 30px; background: var(--bg-dark); border-top: 1px solid var(--border-color); }
-  .discount-tracker { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 4px; margin-bottom: 20px; font-size: 0.85rem; display: flex; gap: 10px; align-items: center; }
-  .discount-tracker i { color: var(--booking-accent); font-size: 1.2rem; }
+  #sf-booking-app .sidebar-footer { padding: 20px 30px 30px; background: var(--bg-dark); border-top: 1px solid var(--border-color); }
+  #sf-booking-app .discount-tracker { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 4px; margin-bottom: 20px; font-size: 0.85rem; display: flex; gap: 10px; align-items: center; }
+  #sf-booking-app .discount-tracker i { color: var(--booking-accent); font-size: 1.2rem; }
   
   /* Subtotal & Savings Area */
-  .cart-totals-area { margin-bottom: 20px; text-align: right; }
-  .cart-total-us { font-size: 2rem; font-weight: 700; color: var(--booking-accent); line-height: 1; margin-bottom: 5px;}
-  .cart-sg-savings { font-size: 0.8rem; color: var(--color-success); font-weight: 600; }
-  .cart-sg-savings i { margin-right: 4px; }
+  #sf-booking-app .cart-totals-area { margin-bottom: 20px; text-align: right; }
+  #sf-booking-app .cart-total-us { font-size: 2rem; font-weight: 700; color: var(--booking-accent); line-height: 1; margin-bottom: 5px;}
+  #sf-booking-app .cart-sg-savings { font-size: 0.8rem; color: var(--color-success); font-weight: 600; }
+  #sf-booking-app .cart-sg-savings i { margin-right: 4px; }
 
   /* Mobile Cart Elements */
-  .mobile-cart-toggle { display: none; }
-  .close-sidebar-btn { display: none; background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+  #sf-booking-app .mobile-cart-toggle { display: none; }
+  #sf-booking-app .close-sidebar-btn { display: none; background: transparent; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
 
   @media(max-width: 1024px) {
-      .app-container.sidebar-active { padding-right: 0; }
-      .sidebar { width: 100%; height: 85vh; position: fixed; bottom: 0; left: 0; right: 0; top: auto; transform: translateY(110%); border-radius: 20px 20px 0 0; z-index: 10002;}
-      .sidebar.mobile-open { transform: translateY(0); }
-      .sidebar.active { transform: translateY(110%); }
-      .close-sidebar-btn { display: block; }
+      #sf-booking-app .app-container.sidebar-active { padding-right: 0; }
+      #sf-booking-app .sidebar { width: 100%; height: 85vh; position: fixed; bottom: 0; left: 0; right: 0; top: auto; transform: translateY(110%); border-radius: 20px 20px 0 0; z-index: 10002;}
+      #sf-booking-app .sidebar.mobile-open { transform: translateY(0); }
+      #sf-booking-app .sidebar.active { transform: translateY(110%); }
+      #sf-booking-app .close-sidebar-btn { display: block; }
       
-      .main-content { padding: 40px 20px 120px; }
+      #sf-booking-app .main-content { padding: 40px 20px 120px; }
       
-      .mobile-cart-toggle { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(10px); border-top: 1px solid var(--booking-accent); padding: 15px 20px; justify-content: space-between; align-items: center; z-index: 10000; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
-      .mct-info { display: flex; flex-direction: column; }
-      .mct-total { font-size: 1.4rem; font-weight: 700; color: var(--booking-accent); }
-      .mct-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+      #sf-booking-app .mobile-cart-toggle { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(10px); border-top: 1px solid var(--booking-accent); padding: 15px 20px; justify-content: space-between; align-items: center; z-index: 10000; box-shadow: 0 -10px 20px rgba(0,0,0,0.5); }
+      #sf-booking-app .mct-info { display: flex; flex-direction: column; }
+      #sf-booking-app .mct-total { font-size: 1.4rem; font-weight: 700; color: var(--booking-accent); }
+      #sf-booking-app .mct-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
   }
 
   /* ── WIZARD PANELS ── */
-  .wizard-step { display: none; animation: fadeIn 0.4s ease; }
-  .wizard-step.active { display: block; }
+  #sf-booking-app .wizard-step { display: none; animation: fadeIn 0.4s ease; }
+  #sf-booking-app .wizard-step.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  .step-header { text-align: center; margin-bottom: 3rem; }
-  .step-title { font-size: 2.5rem; margin: 0 0 10px; font-weight: 600; letter-spacing: -0.02em; }
-  .step-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+  #sf-booking-app .step-header { text-align: center; margin-bottom: 3rem; }
+  #sf-booking-app .step-title { font-size: 2.5rem; margin: 0 0 10px; font-weight: 600; letter-spacing: -0.02em; }
+  #sf-booking-app .step-desc { max-width: 650px; margin: 0 auto; }
 
   /* ── LEAN STUDIO CARDS ── */
-  .lean-studio-grid { display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto; }
-  .lean-studio-card { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 6px; padding: 20px 25px; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-  .lean-studio-card:hover { border-color: var(--text-muted); transform: translateY(-2px); }
-  .lean-studio-card.selected { border-color: var(--booking-accent); background: rgba(255, 255, 255, 0.03); }
+  #sf-booking-app .lean-studio-grid { display: flex; flex-direction: column; gap: 15px; max-width: 800px; margin: 0 auto; }
+  #sf-booking-app .lean-studio-card { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 6px; padding: 20px 25px; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  #sf-booking-app .lean-studio-card:hover { border-color: var(--text-muted); transform: translateY(-2px); }
+  #sf-booking-app .lean-studio-card.selected { border-color: var(--booking-accent); background: rgba(255, 255, 255, 0.03); }
   
-  .lsc-left { display: flex; align-items: flex-start; gap: 20px; flex: 1;}
-  .lsc-radio { margin-top: 2px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
-  .lean-studio-card.selected .lsc-radio { border-color: var(--booking-accent); background: var(--booking-accent); }
-  .lean-studio-card.selected .lsc-radio::after { content: ''; width: 8px; height: 8px; background: var(--bg-dark); border-radius: 50%; }
+  #sf-booking-app .lsc-left { display: flex; align-items: flex-start; gap: 20px; flex: 1;}
+  #sf-booking-app .lsc-radio { margin-top: 2px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+  #sf-booking-app .lean-studio-card.selected .lsc-radio { border-color: var(--booking-accent); background: var(--booking-accent); }
+  #sf-booking-app .lean-studio-card.selected .lsc-radio::after { content: ''; width: 8px; height: 8px; background: var(--bg-dark); border-radius: 50%; }
   
-  .lsc-info h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
-  .lsc-bullets { list-style: none; padding: 0; margin: 0; }
-  .lsc-bullets li { font-size: 0.85rem; color: var(--text-muted); position: relative; padding-left: 12px; margin-bottom: 4px; }
-  .lsc-bullets li::before { content: '•'; position: absolute; left: 0; color: var(--booking-accent); }
+  #sf-booking-app .lsc-info h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; }
+  #sf-booking-app .lsc-bullets { list-style: none; padding: 0; margin: 0; }
+  #sf-booking-app .lsc-bullets li { font-size: 0.85rem; color: var(--text-muted) !important; position: relative; padding-left: 12px; margin-bottom: 4px; }
+  #sf-booking-app .lsc-bullets li::before { content: '•'; position: absolute; left: 0; color: var(--booking-accent); }
   
-  .lsc-price { font-size: 1.5rem; font-weight: 700; color: var(--booking-accent); white-space: nowrap; }
+  #sf-booking-app .lsc-price { font-size: 1.5rem; font-weight: 700; color: var(--booking-accent); white-space: nowrap; }
 
   @media(max-width: 600px) {
-      .lean-studio-card { flex-direction: column; align-items: flex-start; }
-      .lsc-price { align-self: flex-end; font-size: 1.25rem; margin-top: -10px; }
+      #sf-booking-app .lean-studio-card { flex-direction: column; align-items: flex-start; }
+      #sf-booking-app .lsc-price { align-self: flex-end; font-size: 1.25rem; margin-top: -10px; }
   }
 
   /* ── RICH SALES CARDS (GEAR & KITS) ── */
-  .alc-section { margin-bottom: 60px; transition: opacity 0.3s; }
-  .alc-section.dimmed { opacity: 0.3; pointer-events: none; filter: grayscale(50%); }
-  .alc-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; }
-  .alc-number { width: 30px; height: 30px; background: var(--text-main); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
-  .alc-header h2 { margin: 0; font-size: 1.5rem; font-weight: 600; }
+  #sf-booking-app .alc-section { margin-bottom: 60px; transition: opacity 0.3s; }
+  #sf-booking-app .alc-section.dimmed { opacity: 0.3; pointer-events: none; filter: grayscale(50%); }
+  #sf-booking-app .alc-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; }
+  #sf-booking-app .alc-number { width: 30px; height: 30px; background: var(--text-main); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+  #sf-booking-app .alc-header h2 { margin: 0; font-size: 1.5rem; font-weight: 600; }
 
-  .rich-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  #sf-booking-app .rich-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
   
-  .rich-card { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer; transition: all 0.2s ease; position: relative; display: flex; flex-direction: column; overflow: hidden; }
-  .rich-card:hover { border-color: var(--text-muted); transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-  .rich-card.selected { border-color: var(--booking-accent); background: rgba(255, 255, 255, 0.03); }
+  #sf-booking-app .rich-card { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 6px; cursor: pointer; transition: all 0.2s ease; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+  #sf-booking-app .rich-card:hover { border-color: var(--text-muted); transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+  #sf-booking-app .rich-card.selected { border-color: var(--booking-accent); background: rgba(255, 255, 255, 0.03); }
   
-  .rc-img-wrap { width: 100%; aspect-ratio: 16/10; background: radial-gradient(circle at center, #3a3a42 0%, #111113 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border-bottom: 1px solid var(--border-color); }
-  .rc-img-wrap img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); transition: transform 0.5s ease; }
-  .rich-card:hover .rc-img-wrap img { transform: scale(1.05); }
-  .rc-badge { position: absolute; top: 15px; right: 15px; background: var(--text-main); color: var(--bg-dark); font-family: 'Geist Mono', monospace; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.05em; z-index: 2; }
+  #sf-booking-app .rc-img-wrap { width: 100%; aspect-ratio: 16/10; background: radial-gradient(circle at center, #3a3a42 0%, #111113 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; border-bottom: 1px solid var(--border-color); }
+  #sf-booking-app .rc-img-wrap img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); transition: transform 0.5s ease; }
+  #sf-booking-app .rich-card:hover .rc-img-wrap img { transform: scale(1.05); }
+  #sf-booking-app .rc-badge { position: absolute; top: 15px; right: 15px; background: var(--text-main); color: var(--bg-dark); font-family: 'Geist Mono', monospace; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 2px; letter-spacing: 0.05em; z-index: 2; }
   
-  .rc-info { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-  .rc-info h3 { font-family: 'Geist Mono', monospace; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; line-height: 1.4; color: var(--text-main); }
-  .rc-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;}
-  .rc-meta strong { color: var(--text-main); }
+  #sf-booking-app .rc-info { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+  #sf-booking-app .rc-info h3 { font-family: 'Geist Mono', monospace; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; line-height: 1.4; }
+  #sf-booking-app .rc-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;}
+  #sf-booking-app .rc-meta strong { color: var(--text-main); }
   
-  .card-details { display: none; animation: fadeIn 0.3s ease; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; margin-top: 10px;}
-  .rich-card.selected .card-details { display: block; }
-  .contents-list { list-style: none; padding: 0; margin: 0; text-align: left; }
-  .contents-list li { font-size: 0.85rem; color: var(--text-muted); position: relative; padding-left: 15px; margin-bottom: 6px; line-height: 1.4; }
-  .contents-list li::before { content: '•'; position: absolute; left: 0; color: var(--text-main); font-weight: bold; top: -1px; }
+  #sf-booking-app .card-details { display: none; animation: fadeIn 0.3s ease; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; margin-top: 10px;}
+  #sf-booking-app .rich-card.selected .card-details { display: block; }
+  #sf-booking-app .contents-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+  #sf-booking-app .contents-list li { font-size: 0.85rem; color: var(--text-muted) !important; position: relative; padding-left: 15px; margin-bottom: 6px; line-height: 1.4; }
+  #sf-booking-app .contents-list li::before { content: '•'; position: absolute; left: 0; color: var(--text-main); font-weight: bold; top: -1px; }
 
   /* Selection Indicator */
-  .select-circle { position: absolute; top: 15px; left: 15px; width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: all 0.2s; opacity: 0; z-index: 2; background: rgba(0,0,0,0.6);}
-  .rich-card.selected .select-circle { background: var(--text-main); border-color: var(--text-main); opacity: 1;}
-  .rich-card.selected .select-circle i { color: #000; font-size: 12px;}
+  #sf-booking-app .select-circle { position: absolute; top: 15px; left: 15px; width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; transition: all 0.2s; opacity: 0; z-index: 2; background: rgba(0,0,0,0.6);}
+  #sf-booking-app .rich-card.selected .select-circle { background: var(--text-main); border-color: var(--text-main); opacity: 1;}
+  #sf-booking-app .rich-card.selected .select-circle i { color: #000; font-size: 12px;}
 
   /* Bridge Card */
-  .bridge-card { background: transparent; border: 1px dashed var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; height: 100%; min-height: 250px;}
-  .bridge-card:hover { border-color: var(--text-main); background: rgba(255,255,255,0.02); transform: translateY(-4px); }
+  #sf-booking-app .bridge-card { background: transparent; border: 1px dashed var(--border-color); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; height: 100%; min-height: 250px;}
+  #sf-booking-app .bridge-card:hover { border-color: var(--text-main); background: rgba(255,255,255,0.02); transform: translateY(-4px); }
 
   /* ── INLINE FREE LENS MODAL ── */
-  .free-lens-banner { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 4px; padding: 30px; margin: 30px 0; display: none; animation: fadeIn 0.4s ease; text-align: center; }
-  .free-lens-banner h3 { color: var(--text-main); margin: 0 0 10px 0; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  #sf-booking-app .free-lens-banner { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 4px; padding: 30px; margin: 30px 0; display: none; animation: fadeIn 0.4s ease; text-align: center; }
+  #sf-booking-app .free-lens-banner h3 { margin: 0 0 10px 0; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
   /* ── MISC UTILS ── */
-  .mode-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-bottom: 30px; }
-  .mode-cards .rich-card { border-radius: 6px; padding: 40px;} 
-  .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-subtle); }
-  .form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); padding: 15px; border-radius: 6px; font-family: 'Geist', sans-serif; font-size: 1rem; outline: none; appearance: none; -webkit-appearance: none;}
+  #sf-booking-app .mode-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; margin-bottom: 30px; }
+  #sf-booking-app .mode-cards .rich-card { border-radius: 6px; padding: 40px;} 
+  #sf-booking-app .nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-subtle); }
+  #sf-booking-app .form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); padding: 15px; border-radius: 6px; font-family: 'Geist', sans-serif; font-size: 1rem; outline: none; appearance: none; -webkit-appearance: none;}
 
-  /* Button overrides for booking specific layout */
+  /* Fix for buttons inside booking tool to use the specific accent */
   #sf-booking-app .sf-btn-primary { background-color: var(--booking-accent); color: var(--bg-dark) !important; border: 1px solid var(--booking-accent); }
+  #sf-booking-app .sf-btn-outline { color: var(--text-main) !important; border-color: var(--border-color); }
 </style>
 </head>
 <body>
 
 <div id="nav-placeholder"></div>
 
-<div id="sf-booking-app">
-    <div class="checkout-hero">
-        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2056&auto=format&fit=crop" class="checkout-hero-bg" alt="Production Studio Setup">
-        <div class="checkout-hero-overlay"></div>
+<div id="sf-embed">
+  <div id="sf-booking-app">
 
-        <div class="checkout-hero-content">
-            <h1>Book Now.</h1>
-            <p>Bypass the middleman. Claim your space and build your gear package direct.</p>
-        </div>
-    </div>
+      <div class="checkout-hero">
+          <div class="checkout-hero-content">
+              <h1>Book Now.</h1>
+              <p>Bypass the middleman. Claim your space and build your gear package direct.</p>
+          </div>
+      </div>
 
-    <div class="app-container" id="appContainer">
+      <div class="app-container" id="appContainer">
 
-        <div class="main-content">
-            
-            <div class="nav-header" id="navHeader" style="display:none;">
-                <div style="display:flex; gap: 10px;">
-                    <button class="sf-btn sf-btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                    <button class="sf-btn sf-btn-text" style="padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
-                </div>
-                <span style="font-family: 'Geist Mono'; color: var(--text-muted); font-size: 0.85rem; font-weight:600; letter-spacing:1px;" id="stepIndicator">Step 1 of 3</span>
-                <div style="width: 150px;"></div>
-            </div>
+          <div class="main-content">
+              
+              <div class="nav-header" id="navHeader" style="display:none;">
+                  <div style="display:flex; gap: 10px;">
+                      <button class="sf-btn sf-btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                      <button class="sf-btn sf-btn-text" style="padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
+                  </div>
+                  <span style="font-family: 'Geist Mono'; color: var(--text-muted); font-size: 0.85rem; font-weight:600; letter-spacing:1px;" id="stepIndicator">Step 1 of 3</span>
+                  <div style="width: 150px;"></div>
+              </div>
 
-            <div id="sf-embed">
+              <div id="booking-wizard">
 
-                <div class="wizard-step active" id="step-gateway">
-                    <div class="step-header">
-                        <span class="sf-label" style="text-align: center;">Sweet Flypaper Film</span>
-                        <h1 class="step-title">How do you want to build your shoot?</h1>
-                        <p class="step-desc">Select an option below to begin customizing your booking flow.</p>
-                    </div>
-                    
-                    <div class="mode-cards" style="max-width: 1000px; margin: 0 auto;">
-                        <div class="rich-card" onclick="startFlow('full')" style="text-align: center; align-items: center; padding: 40px;">
-                            <div style="background: rgba(255,255,255,0.05); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 15px;"><i class="fa-solid fa-film" style="font-size: 2rem;"></i></div>
-                            <h3 style="font-size: 1.3rem; margin-bottom: 10px;">I Need Space & Gear</h3>
-                            <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Book the studio and build a custom equipment package. The ultimate production experience.</p>
-                        </div>
-                        
-                        <div class="rich-card" onclick="startFlow('studio')" style="text-align: center; align-items: center; padding: 40px;">
-                            <div style="background: rgba(255,255,255,0.05); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 15px;"><i class="fa-solid fa-warehouse" style="font-size: 2rem;"></i></div>
-                            <h3 style="font-size: 1.3rem; margin-bottom: 10px;">I Just Need Space</h3>
-                            <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Secure a Half-Day, Full-Day, or Full Access studio block without building a gear list.</p>
-                        </div>
+                  <div class="wizard-step active" id="step-gateway">
+                      <div class="step-header">
+                          <span class="sf-label" style="text-align: center;">Sweet Flypaper Film</span>
+                          <h1 class="step-title">How do you want to build your shoot?</h1>
+                          <p class="step-desc">Select an option below to begin customizing your booking flow.</p>
+                      </div>
+                      
+                      <div class="mode-cards" style="max-width: 1000px; margin: 0 auto;">
+                          <div class="rich-card" onclick="startFlow('full')" style="text-align: center; align-items: center;">
+                              <div style="background: rgba(255,255,255,0.05); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 15px;"><i class="fa-solid fa-film" style="font-size: 2rem;"></i></div>
+                              <h3 style="font-size: 1.3rem; margin-bottom: 10px;">I Need Space & Gear</h3>
+                              <p style="margin: 0; font-size: 0.9rem;">Book the studio and build a custom equipment package. The ultimate production experience.</p>
+                          </div>
+                          
+                          <div class="rich-card" onclick="startFlow('studio')" style="text-align: center; align-items: center;">
+                              <div style="background: rgba(255,255,255,0.05); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 15px;"><i class="fa-solid fa-warehouse" style="font-size: 2rem;"></i></div>
+                              <h3 style="font-size: 1.3rem; margin-bottom: 10px;">I Just Need Space</h3>
+                              <p style="margin: 0; font-size: 0.9rem;">Secure a Half-Day, Full-Day, or Full Access studio block without building a gear list.</p>
+                          </div>
 
-                        <div class="rich-card" onclick="window.open('https://www.sharegrid.com/p/sweetfly', '_blank')" style="text-align: center; align-items: center; border-style: dashed;">
-                            <div style="background: rgba(255,255,255,0.02); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 15px;"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 2rem; color:var(--text-muted);"></i></div>
-                            <h3 style="font-size: 1.3rem; margin-bottom: 10px;">I Just Need Gear</h3>
-                            <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Taking our equipment off-site? Browse our entire inventory directly on Sharegrid.</p>
-                        </div>
-                    </div>
+                          <div class="rich-card" onclick="window.open('https://www.sharegrid.com/p/sweetfly', '_blank')" style="text-align: center; align-items: center; border-style: dashed;">
+                              <div style="background: rgba(255,255,255,0.02); width: 80px; height: 80px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 15px;"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 2rem; color:var(--text-muted);"></i></div>
+                              <h3 style="font-size: 1.3rem; margin-bottom: 10px;">I Just Need Gear</h3>
+                              <p style="margin: 0; font-size: 0.9rem;">Taking our equipment off-site? Browse our entire inventory directly on Sharegrid.</p>
+                          </div>
+                      </div>
 
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button class="sf-btn sf-btn-text" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>
+                      <div style="text-align: center; margin-top: 20px;">
+                          <button class="sf-btn sf-btn-text" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
+                      </div>
+                  </div>
 
-                <div class="wizard-step" id="step-studio">
-                    <div class="step-header">
-                        <h1 class="step-title">Pick Your Studio Block</h1>
-                        <p class="step-desc">All bookings include access to the main stage, sound-treated editing suite, and client area.</p>
-                    </div>
-                    
-                    <div class="lean-studio-grid" id="grid-studio">
-                        </div>
-                </div>
+                  <div class="wizard-step" id="step-studio">
+                      <div class="step-header">
+                          <h1 class="step-title">Pick Your Studio Block</h1>
+                          <p class="step-desc">All bookings include access to the main stage, sound-treated editing suite, and client area.</p>
+                      </div>
+                      
+                      <div class="lean-studio-grid" id="grid-studio">
+                          </div>
+                  </div>
 
-                <div class="wizard-step" id="step-gear-mode">
-                    <div class="step-header">
-                        <h1 class="step-title">How do you want to handle gear?</h1>
-                        <p class="step-desc">Pick a fast, pre-made bundle or hand-pick every item yourself.</p>
-                    </div>
-                    <div class="mode-cards" style="max-width: 800px; margin: 0 auto; grid-template-columns: 1fr 1fr;">
-                        <div class="rich-card" onclick="selectGearMode('kits')" style="align-items: center; text-align: center;">
-                            <i class="fa-solid fa-box-open" style="font-size: 3rem; margin-bottom: 15px; color: var(--text-main);"></i>
-                            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Curated Kits</h3>
-                            <p style="color: var(--text-muted); margin: 0;">Turn-key bundles ready to shoot.</p>
-                        </div>
-                        <div class="rich-card" onclick="selectGearMode('alacarte')" style="align-items: center; text-align: center;">
-                            <i class="fa-solid fa-screwdriver-wrench" style="font-size: 3rem; margin-bottom: 15px; color: var(--text-main);"></i>
-                            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Build A-La-Carte</h3>
-                            <p style="color: var(--text-muted); margin: 0;">Hand-pick exactly what you need.</p>
-                        </div>
-                    </div>
-                </div>
+                  <div class="wizard-step" id="step-gear-mode">
+                      <div class="step-header">
+                          <h1 class="step-title">How do you want to handle gear?</h1>
+                          <p class="step-desc">Pick a fast, pre-made bundle or hand-pick every item yourself.</p>
+                      </div>
+                      <div class="mode-cards" style="max-width: 800px; margin: 0 auto; grid-template-columns: 1fr 1fr;">
+                          <div class="rich-card" onclick="selectGearMode('kits')" style="align-items: center; text-align: center;">
+                              <i class="fa-solid fa-box-open" style="font-size: 3rem; margin-bottom: 15px; color: var(--text-main);"></i>
+                              <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Curated Kits</h3>
+                              <p style="margin: 0;">Turn-key bundles ready to shoot.</p>
+                          </div>
+                          <div class="rich-card" onclick="selectGearMode('alacarte')" style="align-items: center; text-align: center;">
+                              <i class="fa-solid fa-screwdriver-wrench" style="font-size: 3rem; margin-bottom: 15px; color: var(--text-main);"></i>
+                              <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Build A-La-Carte</h3>
+                              <p style="margin: 0;">Hand-pick exactly what you need.</p>
+                          </div>
+                      </div>
+                  </div>
 
-                <div class="wizard-step" id="step-kits">
-                    <div class="step-header">
-                        <h1 class="step-title">Select a Pre-Made Kit</h1>
-                        <p class="step-desc">Grab a curated bundle, or click the card at the end to build your own from scratch.</p>
-                    </div>
-                    <div class="rich-grid" id="grid-kits">
-                        </div>
-                </div>
+                  <div class="wizard-step" id="step-kits">
+                      <div class="step-header">
+                          <h1 class="step-title">Select a Pre-Made Kit</h1>
+                          <p class="step-desc">Grab a curated bundle, or click the card at the end to build your own from scratch.</p>
+                      </div>
+                      <div class="rich-grid" id="grid-kits">
+                          </div>
+                  </div>
 
-                <div class="wizard-step" id="step-alacarte">
-                    <div class="step-header" style="margin-bottom: 50px;">
-                        <h1 class="step-title">Build Your Setup</h1>
-                        <p class="step-desc">Let's craft the perfect rig. Start with your camera.</p>
-                    </div>
+                  <div class="wizard-step" id="step-alacarte">
+                      <div class="step-header" style="margin-bottom: 50px;">
+                          <h1 class="step-title">Build Your Setup</h1>
+                          <p class="step-desc">Let's craft the perfect rig. Start with your camera.</p>
+                      </div>
 
-                    <div class="alc-section active" id="alc-sec-cam">
-                        <div class="alc-header"><div class="alc-number">1</div><h2>Choose Your Camera</h2></div>
-                        <div class="rich-grid" id="grid-alc-cam"></div>
-                        
-                        <div class="free-lens-banner" id="free-lens-promo">
-                            <h3><i class="fa-solid fa-gift"></i> Boom. Rokinon 3-Lens Kit Added.</h3>
-                            <p style="margin:0; color: var(--text-muted);">Every camera body automatically includes our Rokinon Cine 3-Lens Kit (14mm, 24mm, 35mm) entirely for free.</p>
-                        </div>
-                    </div>
+                      <div class="alc-section active" id="alc-sec-cam">
+                          <div class="alc-header"><div class="alc-number">1</div><h2>Choose Your Camera</h2></div>
+                          <div class="rich-grid" id="grid-alc-cam"></div>
+                          
+                          <div class="free-lens-banner" id="free-lens-promo">
+                              <h3><i class="fa-solid fa-gift"></i> Boom. Rokinon 3-Lens Kit Added.</h3>
+                              <p style="margin:0;">Every camera body automatically includes our Rokinon Cine 3-Lens Kit (14mm, 24mm, 35mm) entirely for free.</p>
+                          </div>
+                      </div>
 
-                    <div class="alc-section dimmed" id="alc-sec-lens">
-                        <div class="alc-header"><div class="alc-number">2</div><h2>Specialty Lens Add-ons</h2></div>
-                        <p style="color: var(--text-muted); margin-bottom: 20px;">Your 3-Lens Kit is already included. Need extra focal lengths?</p>
-                        <div class="rich-grid" id="grid-alc-lens"></div>
-                        <div style="text-align: right; margin-top: 25px;"><button class="sf-btn sf-btn-outline" onclick="unlockSection('alc-sec-light')">Continue to Lighting <i class="fa-solid fa-arrow-down"></i></button></div>
-                    </div>
+                      <div class="alc-section dimmed" id="alc-sec-lens">
+                          <div class="alc-header"><div class="alc-number">2</div><h2>Specialty Lens Add-ons</h2></div>
+                          <p style="margin-bottom: 20px;">Your 3-Lens Kit is already included. Need extra focal lengths?</p>
+                          <div class="rich-grid" id="grid-alc-lens"></div>
+                          <div style="text-align: right; margin-top: 25px;"><button class="sf-btn sf-btn-outline" onclick="unlockSection('alc-sec-light')">Continue to Lighting <i class="fa-solid fa-arrow-down"></i></button></div>
+                      </div>
 
-                    <div class="alc-section dimmed" id="alc-sec-light">
-                        <div class="alc-header"><div class="alc-number">3</div><h2>Lighting</h2></div>
-                        <div class="rich-grid" id="grid-alc-light"></div>
-                        <div style="text-align: right; margin-top: 25px;"><button class="sf-btn sf-btn-outline" onclick="unlockSection('alc-sec-grip')">Continue to Support & Grip <i class="fa-solid fa-arrow-down"></i></button></div>
-                    </div>
+                      <div class="alc-section dimmed" id="alc-sec-light">
+                          <div class="alc-header"><div class="alc-number">3</div><h2>Lighting</h2></div>
+                          <div class="rich-grid" id="grid-alc-light"></div>
+                          <div style="text-align: right; margin-top: 25px;"><button class="sf-btn sf-btn-outline" onclick="unlockSection('alc-sec-grip')">Continue to Support & Grip <i class="fa-solid fa-arrow-down"></i></button></div>
+                      </div>
 
-                    <div class="alc-section dimmed" id="alc-sec-grip">
-                        <div class="alc-header"><div class="alc-number">4</div><h2>Support & Transmission</h2></div>
-                        <div class="rich-grid" id="grid-alc-grip"></div>
-                    </div>
-                </div>
+                      <div class="alc-section dimmed" id="alc-sec-grip">
+                          <div class="alc-header"><div class="alc-number">4</div><h2>Support & Transmission</h2></div>
+                          <div class="rich-grid" id="grid-alc-grip"></div>
+                      </div>
+                  </div>
 
-                <div class="wizard-step" id="step-review">
-                    <div class="step-header">
-                        <h1 class="step-title">Final Details</h1>
-                        <p class="step-desc">Enter your shoot dates below to finalize your booking request.</p>
-                    </div>
-                    
-                    <div style="background: var(--bg-panel); padding: 40px; border-radius: 6px; border: 1px solid var(--border-color); max-width: 600px; margin: 0 auto;">
-                        <div style="display: flex; gap: 20px; flex-direction: column;">
-                            <div>
-                                <label style="display:block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 600;">Start Date</label>
-                                <input type="date" id="shootDate" class="form-input">
-                            </div>
-                            <div>
-                                <label style="display:block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 600;">Duration</label>
-                                <select id="shootDays" class="form-input" onchange="updateCart()">
-                                    <option value="1">1 Day</option>
-                                    <option value="2">2 Days (5% Off Total)</option>
-                                    <option value="3">3 Days (10% Off Total)</option>
-                                    <option value="4">4 Days (15% Off Total)</option>
-                                    <option value="5">5 Days (4 Day Rate)</option>
-                                    <option value="7">1 Week (5 Day Rate)</option>
-                                    <option value="14">2 Weeks (5% Off Week Rate)</option>
-                                    <option value="21">3 Weeks (10% Off Week Rate)</option>
-                                    <option value="28">1 Month (20% Off Week Rate)</option>
-                                </select>
-                                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px;"><i class="fa-solid fa-circle-info"></i> Standard studio weekends & holidays subject to availability.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  <div class="wizard-step" id="step-review">
+                      <div class="step-header">
+                          <h1 class="step-title">Final Details</h1>
+                          <p class="step-desc">Enter your shoot dates below to finalize your booking request.</p>
+                      </div>
+                      
+                      <div style="background: var(--bg-panel); padding: 40px; border-radius: 6px; border: 1px solid var(--border-color); max-width: 600px; margin: 0 auto;">
+                          <div style="display: flex; gap: 20px; flex-direction: column;">
+                              <div>
+                                  <label style="display:block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 600;">Start Date</label>
+                                  <input type="date" id="shootDate" class="form-input">
+                              </div>
+                              <div>
+                                  <label style="display:block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; font-weight: 600;">Duration</label>
+                                  <select id="shootDays" class="form-input" onchange="updateCart()">
+                                      <option value="1">1 Day</option>
+                                      <option value="2">2 Days (5% Off Total)</option>
+                                      <option value="3">3 Days (10% Off Total)</option>
+                                      <option value="4">4 Days (15% Off Total)</option>
+                                      <option value="5">5 Days (4 Day Rate)</option>
+                                      <option value="7">1 Week (5 Day Rate)</option>
+                                      <option value="14">2 Weeks (5% Off Week Rate)</option>
+                                      <option value="21">3 Weeks (10% Off Week Rate)</option>
+                                      <option value="28">1 Month (20% Off Week Rate)</option>
+                                  </select>
+                                  <p style="font-size: 0.75rem; margin-top: 8px;"><i class="fa-solid fa-circle-info"></i> Standard studio weekends & holidays subject to availability.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
-            </div>
-        </div>
+              </div>
+          </div>
 
-        <div class="sidebar" id="sidebarCart">
-            <div class="sidebar-header">
-                <h2><i class="fa-solid fa-clipboard-list"></i> Your Shoot</h2>
-                <button class="close-sidebar-btn" onclick="document.getElementById('sidebarCart').classList.remove('mobile-open')"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div class="sidebar-body" id="cartItems">
-                <div style="text-align:center; color: var(--text-muted); margin-top: 40px; font-style: italic;">
-                    Your cart is empty.<br>Select a studio block to begin.
-                </div>
-            </div>
+          <div class="sidebar" id="sidebarCart">
+              <div class="sidebar-header">
+                  <h2><i class="fa-solid fa-clipboard-list"></i> Your Shoot</h2>
+                  <button class="close-sidebar-btn" onclick="document.getElementById('sidebarCart').classList.remove('mobile-open')"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              
+              <div class="sidebar-body" id="cartItems">
+                  <div style="text-align:center; color: var(--text-muted); margin-top: 40px; font-style: italic;">
+                      Your cart is empty.<br>Select a studio block to begin.
+                  </div>
+              </div>
 
-            <div class="sidebar-footer">
-                
-                <div class="discount-tracker" id="discountTracker">
-                    <i class="fa-solid fa-unlock-keyhole"></i>
-                    <div style="line-height: 1.3;">
-                        <strong style="color:var(--text-main); display:block;">Build Your Bundle</strong>
-                        <span style="color:var(--text-muted);">Add 5 items for 20% off gear.</span>
-                    </div>
-                </div>
+              <div class="sidebar-footer">
+                  
+                  <div class="discount-tracker" id="discountTracker">
+                      <i class="fa-solid fa-unlock-keyhole"></i>
+                      <div style="line-height: 1.3;">
+                          <strong style="color:var(--text-main); display:block;">Build Your Bundle</strong>
+                          <span style="color:var(--text-muted);">Add 5 items for 20% off gear.</span>
+                      </div>
+                  </div>
 
-                <div class="cart-totals-area">
-                    <div class="cart-total-us" id="cartTotalUs">$0</div>
-                    <div class="cart-sg-savings" id="sgSavingsText">You saved an estimated $0 by booking direct</div>
-                </div>
-                
-                <button class="sf-btn sf-btn-primary" id="btnSidebarNext" style="width: 100%; padding: 18px;" onclick="navNext()">Select Space to Continue</button>
-            </div>
-        </div>
+                  <div class="cart-totals-area">
+                      <div class="cart-total-us" id="cartTotalUs">$0</div>
+                      <div class="cart-sg-savings" id="sgSavingsText">You saved an estimated $0 by booking direct</div>
+                  </div>
+                  
+                  <button class="sf-btn sf-btn-primary" id="btnSidebarNext" style="width: 100%; padding: 18px;" onclick="navNext()">Select Space to Continue</button>
+              </div>
+          </div>
 
-        <div class="mobile-cart-toggle" id="mobileCartToggle">
-            <div class="mct-info">
-                <div class="mct-label">Cart Total</div>
-                <div class="mct-total" id="mobileCartTotal">$0</div>
-            </div>
-            <button class="sf-btn sf-btn-outline" onclick="document.getElementById('sidebarCart').classList.add('mobile-open')"><i class="fa-solid fa-cart-shopping"></i> View Cart</button>
-        </div>
+          <div class="mobile-cart-toggle" id="mobileCartToggle">
+              <div class="mct-info">
+                  <div class="mct-label">Cart Total</div>
+                  <div class="mct-total" id="mobileCartTotal">$0</div>
+              </div>
+              <button class="sf-btn sf-btn-outline" onclick="document.getElementById('sidebarCart').classList.add('mobile-open')"><i class="fa-solid fa-cart-shopping"></i> View Cart</button>
+          </div>
 
-    </div>
+      </div>
+  </div> 
 </div> <div id="footer-placeholder"></div>
-
-<script src="script.js"></script>
 
 <script>
   // --- BULLETED DATA MODELS ---
   const studios = [
-    { id: 'stu_half', name: 'Half-Day Block', price: 250, icon: 'fa-building', features: ['4 Hours of Studio Use', 'Bring Your Own Gear', 'Sound-Treated Edit Suite Included'] },
-    { id: 'stu_full', name: 'Full-Day Block', price: 400, icon: 'fa-warehouse', features: ['8 Hours of Studio Use', 'Bring Your Own Gear', 'Sound-Treated Edit Suite Included'] },
-    { id: 'stu_srv', name: 'The All-Access Pass (Indie)', price: 560, icon: 'fa-clipboard-user', features: ['8 Hours of Studio Use', 'All Studio Gear & Lighting Included', 'Blackmagic 6K Pro Included', 'Studio Manager On-site'] },
-    { id: 'stu_srv_comm', name: 'The All-Access Pass (Cinema)', price: 750, icon: 'fa-film', features: ['8 Hours of Studio Use', 'All Studio Gear & Lighting Included', 'RED Dragon 6K Included', 'Studio Manager On-site'] }
+    { id: 'stu_half', name: 'Half-Day Block', price: 250, features: ['4 Hours of Studio Use', 'Bring Your Own Gear', 'Sound-Treated Edit Suite Included'] },
+    { id: 'stu_full', name: 'Full-Day Block', price: 400, features: ['8 Hours of Studio Use', 'Bring Your Own Gear', 'Sound-Treated Edit Suite Included'] },
+    { id: 'stu_srv', name: 'The All-Access Pass (Indie)', price: 560, features: ['8 Hours of Studio Use', 'All Studio Gear & Lighting Included', 'Blackmagic 6K Pro Included', 'Studio Manager On-site'] },
+    { id: 'stu_srv_comm', name: 'The All-Access Pass (Cinema)', price: 750, features: ['8 Hours of Studio Use', 'All Studio Gear & Lighting Included', 'RED Dragon 6K Included', 'Studio Manager On-site'] }
   ];
 
   const packages = [
@@ -502,7 +489,7 @@
   }
 
   function renderCurrentStep() {
-      document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('#sf-booking-app .wizard-step').forEach(el => el.classList.remove('active'));
       document.getElementById(`step-${currentStep}`).classList.add('active');
 
       const navHeader = document.getElementById('navHeader');
@@ -699,7 +686,7 @@
               <div class="card-details">
                   <ul class="contents-list">${itemsList}</ul>
                   ${upgradeHtml}
-                  ${addonsHtml ? `<div style="margin-top:20px; font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:bold; margin-bottom: 10px; letter-spacing: 1px; text-align:left;">Suggested Add-ons</div>${addonsHtml}` : ''}
+                  ${addonsHtml ? `<div style="margin-top:20px; font-size:0.75rem; text-transform:uppercase; font-weight:bold; margin-bottom: 10px; letter-spacing: 1px; text-align:left;">Suggested Add-ons</div>${addonsHtml}` : ''}
               </div>
           `;
 
@@ -738,9 +725,9 @@
       const bridge = document.createElement('div');
       bridge.innerHTML = `
           <div class="bridge-card" onclick="switchToAlacarte()">
-              <i class="fa-solid fa-screwdriver-wrench" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 15px;"></i>
-              <h3 style="margin: 0 0 10px 0; color: var(--text-main);">Don't see what you want?</h3>
-              <p style="margin: 0; font-size: 0.9rem; color: var(--text-muted);">Build your setup A La Carte</p>
+              <i class="fa-solid fa-screwdriver-wrench" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
+              <h3 style="margin: 0 0 10px 0;">Don't see what you want?</h3>
+              <p style="margin: 0; font-size: 0.9rem;">Build your setup A La Carte</p>
           </div>
       `;
       grid.appendChild(bridge.firstElementChild);
@@ -876,11 +863,11 @@
       }
 
       if(!cart.studio && cart.items.size === 0 && !cart.activePackage) {
-          sBody.innerHTML = '<div style="text-align:center; color: var(--text-muted); margin-top: 40px; font-style: italic;">Your cart is empty.</div>';
+          sBody.innerHTML = '<div style="text-align:center; margin-top: 40px; font-style: italic;">Your cart is empty.</div>';
           document.getElementById('cartTotalUs').innerText = '$0';
           document.getElementById('sgSavingsText').innerHTML = '';
           document.getElementById('mobileCartTotal').innerText = '$0';
-          document.getElementById('discountTracker').innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted);">Add 5 items for 20% off gear.</span></div>`;
+          document.getElementById('discountTracker').innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="display:block;">Build Your Bundle</strong><span>Add 5 items for 20% off gear.</span></div>`;
           return;
       }
 
@@ -899,7 +886,7 @@
           html += `
               <div class="cart-item">
                   <div class="cart-item-info">
-                      <h4 style="color:var(--text-main);"><i class="fa-solid ${s.icon}"></i> ${s.name}</h4>
+                      <h4><i class="fa-solid ${s.icon}"></i> ${s.name}</h4>
                       <ul>${sBullets}</ul>
                   </div>
                   <div class="cart-item-price">$${s.price}</div>
@@ -910,7 +897,7 @@
       if(isFullService) {
           const includedCam = cart.studio === 'stu_srv_comm' ? "RED Dragon 6K" : "Blackmagic 6K Pro";
           html += `
-              <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin: 20px 0 10px;">All-Access Manifest</div>
+              <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 10px;">All-Access Manifest</div>
               <div class="cart-item" style="padding-bottom: 8px; border-bottom: none; margin-bottom: 0;"><div class="cart-item-info"><h4><i class="fa-solid fa-video"></i> ${includedCam}</h4></div><div class="cart-item-price free">INCLUDED</div></div>
               <div class="cart-item" style="padding-bottom: 8px; border-bottom: none; margin-bottom: 0;"><div class="cart-item-info"><h4><i class="fa-solid fa-layer-group"></i> Rokinon 3-Lens Kit</h4></div><div class="cart-item-price free">INCLUDED</div></div>
               <div class="cart-item" style="padding-bottom: 8px; border-bottom: none; margin-bottom: 0;"><div class="cart-item-info"><h4><i class="fa-solid fa-lightbulb"></i> All Studio Lighting</h4></div><div class="cart-item-price free">INCLUDED</div></div>
@@ -978,9 +965,9 @@
       let discountedDailyGear = dailyGear;
       
       if (isFullService) {
-          tracker.innerHTML = `<i class="fa-solid fa-check-circle" style="color:var(--color-success);"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Maximum Value</strong><span style="color:var(--text-muted);">Gear closet unlocked.</span></div>`;
+          tracker.innerHTML = `<i class="fa-solid fa-check-circle" style="color:var(--color-success);"></i> <div style="line-height:1.3;"><strong style="display:block;">Maximum Value</strong><span>Gear closet unlocked.</span></div>`;
       } else if (cart.activePackage) {
-          tracker.innerHTML = `<i class="fa-solid fa-box-open"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Kit Discount Applied</strong><span style="color:var(--text-muted);">Bundles are pre-discounted.</span></div>`;
+          tracker.innerHTML = `<i class="fa-solid fa-box-open"></i> <div style="line-height:1.3;"><strong style="display:block;">Kit Discount Applied</strong><span>Bundles are pre-discounted.</span></div>`;
       } else {
           let bundlePct = 0;
           if(gearCount >= 5) bundlePct = 20;
@@ -997,10 +984,10 @@
               
               const discount = Math.round(gearSubtotal * (bundlePct/100));
               discountedDailyGear -= discount;
-              tracker.innerHTML = `<i class="fa-solid fa-tag"></i> <div style="line-height:1.3;"><strong style="color:var(--color-success); display:block;">${bundlePct}% Gear Discount Applied!</strong><span style="color:var(--text-muted);">You built a custom bundle.</span></div>`;
+              tracker.innerHTML = `<i class="fa-solid fa-tag"></i> <div style="line-height:1.3;"><strong style="color:var(--color-success); display:block;">${bundlePct}% Gear Discount Applied!</strong><span>You built a custom bundle.</span></div>`;
           } else {
               const needed = 2 - gearCount;
-              tracker.innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted);">Add ${needed > 0 ? needed : ''} more items for 5% off.</span></div>`;
+              tracker.innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="display:block;">Build Your Bundle</strong><span>Add ${needed > 0 ? needed : ''} more items for 5% off.</span></div>`;
           }
       }
 
@@ -1024,3 +1011,4 @@
 </script>
 </body>
 </html>
+}
