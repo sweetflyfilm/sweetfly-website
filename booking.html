@@ -23,6 +23,7 @@
   #sf-embed {
     --color-success: #81c784;
     --booking-accent: #ffffff; 
+    --gold: #D4AF37;
   }
 
   #sf-booking-app p { color: var(--text-muted) !important; font-size: 1rem; }
@@ -42,16 +43,41 @@
     min-height: 40vh;
   }
   
-  #sf-embed .checkout-hero::after { 
-    content: ''; 
+  #sf-embed .checkout-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    filter: grayscale(100%) contrast(1.2);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes pulseGlow {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+      100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+  }
+
+  #sf-embed .checkout-hero-glow { 
     position: absolute; 
-    width: 800px; 
-    height: 800px; 
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%); 
+    width: 1000px; 
+    height: 1000px; 
+    background: radial-gradient(circle, rgba(200, 200, 200, 0.06) 0%, transparent 60%); 
     top: 50%; left: 50%; 
     transform: translate(-50%, -50%); 
-    z-index: 2; 
+    z-index: 1; 
     pointer-events: none; 
+    animation: pulseGlow 6s ease-in-out infinite alternate;
+  }
+
+  #sf-embed .checkout-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.3), rgba(10,10,10,0.95));
+      z-index: 2;
+      pointer-events: none;
   }
   
   #sf-embed .checkout-hero-content { position: relative; z-index: 3; }
@@ -63,7 +89,22 @@
   #sf-embed .main-content { flex: 1; padding: 60px 40px 120px; max-width: 1100px; margin: 0 auto; width: 100%; transition: all 0.3s ease; }
   
   /* Sidebar Cart */
-  #sf-embed .sidebar { width: 400px; background: var(--bg-panel); border-left: 1px solid var(--border-color); display: flex; flex-direction: column; position: fixed; right: 8px; top: 8px; bottom: 8px; transform: translateX(110%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 10001; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
+  #sf-embed .sidebar { 
+    width: 400px; 
+    background: var(--bg-panel); 
+    border-left: 1px solid var(--border-color); 
+    display: flex; 
+    flex-direction: column; 
+    position: fixed; 
+    right: 8px; 
+    top: 85px; /* Clears the Nav Bar */
+    height: calc(100vh - 95px); /* Keeps it from extending off screen */
+    transform: translateX(110%); 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+    z-index: 10001; 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5); 
+    border-radius: 6px;
+  }
   #sf-embed .sidebar.active { transform: translateX(0); }
   #sf-embed .sidebar-header { padding: 30px 30px 20px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center;}
   #sf-embed .sidebar-header h2 { margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
@@ -76,7 +117,7 @@
   #sf-embed .cart-item-price.free { color: var(--color-success); }
   #sf-embed .cart-item-price .strikethrough { text-decoration: line-through; color: var(--text-muted); font-size: 0.8rem; font-weight: normal; display: block; }
   
-  #sf-embed .sidebar-footer { padding: 20px 30px 30px; background: var(--bg-dark); border-top: 1px solid var(--border-color); }
+  #sf-embed .sidebar-footer { padding: 20px 30px 30px; background: var(--bg-dark); border-top: 1px solid var(--border-color); border-radius: 0 0 6px 6px;}
   #sf-embed .discount-tracker { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); padding: 15px; border-radius: 4px; margin-bottom: 20px; font-size: 0.85rem; display: flex; gap: 10px; align-items: center; }
   #sf-embed .discount-tracker i { color: var(--booking-accent); font-size: 1.2rem; }
   
@@ -187,9 +228,27 @@
   #sf-embed .form-input { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main); padding: 15px; border-radius: 6px; font-family: 'Geist', sans-serif; font-size: 1rem; outline: none; appearance: none; -webkit-appearance: none; margin-bottom: 15px;}
   #sf-embed .form-input:focus { border-color: var(--text-main); }
 
-  /* Fix for buttons inside booking tool to use the specific accent */
+  /* ── Muted Header Buttons ── */
+  #sf-embed .header-btn-muted { border-color: var(--border-color) !important; color: var(--text-muted) !important; }
+  #sf-embed .header-btn-muted:hover { border-color: var(--text-main) !important; color: var(--text-main) !important; }
+  #sf-embed .header-btn-text-muted { color: var(--text-muted) !important; }
+  #sf-embed .header-btn-text-muted:hover { color: #ffffff !important; background: var(--border-color); }
+
+  /* Fix for buttons inside booking tool */
   #sf-embed .sf-btn-primary { background-color: var(--booking-accent); color: var(--bg-dark) !important; border: 1px solid var(--booking-accent); }
-  #sf-embed .sf-btn-outline { color: var(--text-main) !important; border-color: var(--border-color); }
+  
+  /* ── DYNAMIC GOLD CHECKOUT BUTTON ── */
+  #sf-embed .gold-checkout-btn {
+    background-color: #0a0a0a !important;
+    color: var(--gold) !important;
+    border: 2px solid var(--gold) !important;
+    transition: all 0.3s ease;
+  }
+  #sf-embed .gold-checkout-btn:hover {
+    background-color: var(--gold) !important;
+    color: #0a0a0a !important;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3) !important;
+  }
 </style>
 </head>
 <body>
@@ -201,6 +260,10 @@
   <div id="sf-booking-app">
 
       <div class="checkout-hero">
+          <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=2056&auto=format&fit=crop" class="checkout-hero-bg" alt="Production Studio Setup">
+          <div class="checkout-hero-glow"></div>
+          <div class="checkout-hero-overlay"></div>
+
           <div class="checkout-hero-content">
               <h1>Book Now.</h1>
               <p>Bypass the middleman. Claim your space and build your gear package direct.</p>
@@ -213,8 +276,8 @@
               
               <div class="nav-header" id="navHeader" style="display:none;">
                   <div style="display:flex; gap: 10px;">
-                      <button class="sf-btn sf-btn-outline" style="padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                      <button class="sf-btn sf-btn-text" style="padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
+                      <button class="sf-btn sf-btn-outline header-btn-muted" style="padding: 8px 16px; font-size: 0.8rem;" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                      <button class="sf-btn sf-btn-text header-btn-text-muted" style="padding: 8px 16px; font-size: 0.8rem;" onclick="resetToGateway()"><i class="fa-solid fa-rotate-left"></i> Start Over</button>
                   </div>
                   <span style="font-family: 'Geist Mono'; color: var(--text-muted); font-size: 0.85rem; font-weight:600; letter-spacing:1px;" id="stepIndicator">Step 1 of 3</span>
                   <div style="width: 150px;"></div>
@@ -250,7 +313,7 @@
                       </div>
 
                       <div style="text-align: center; margin-top: 20px;">
-                          <button class="sf-btn sf-btn-text" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
+                          <button class="sf-btn sf-btn-text header-btn-text-muted" onclick="quickJumpToKits()">Pro? Jump straight to Pre-Made Kits <i class="fa-solid fa-arrow-right"></i></button>
                       </div>
                   </div>
 
@@ -854,17 +917,24 @@
           if (!cart.studio) btnNext.innerText = "Select Space to Continue";
           else if (isFullService || cart.isSpaceOnly) btnNext.innerText = "Continue to Checkout";
           else btnNext.innerText = "Continue to Gear";
+          
+          btnNext.classList.remove('gold-checkout-btn');
       } else if (currentStep === 'review') {
           btnNext.disabled = false;
           btnNext.innerText = "Request Booking";
+          btnNext.classList.add('gold-checkout-btn');
+      } else {
+          btnNext.disabled = false;
+          btnNext.innerText = "Continue to Checkout";
+          btnNext.classList.remove('gold-checkout-btn');
       }
 
       if(!cart.studio && cart.items.size === 0 && !cart.activePackage) {
-          sBody.innerHTML = '<div style="text-align:center; margin-top: 40px; font-style: italic; color: var(--text-muted);">Your cart is empty.</div>';
+          sBody.innerHTML = '<div style="text-align:center; color: var(--text-muted); margin-top: 40px; font-style: italic;">Your cart is empty.</div>';
           document.getElementById('cartTotalUs').innerText = '$0';
           document.getElementById('sgSavingsText').innerHTML = '';
           document.getElementById('mobileCartTotal').innerText = '$0';
-          document.getElementById('discountTracker').innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted);">Add 5 items for 20% off.</span></div>`;
+          document.getElementById('discountTracker').innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted) !important;">Add 5 items for 20% off gear.</span></div>`;
           return;
       }
 
@@ -962,9 +1032,9 @@
       let discountedDailyGear = dailyGear;
       
       if (isFullService) {
-          tracker.innerHTML = `<i class="fa-solid fa-check-circle" style="color:var(--color-success);"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Maximum Value</strong><span style="color:var(--text-muted);">Gear closet unlocked.</span></div>`;
+          tracker.innerHTML = `<i class="fa-solid fa-check-circle" style="color:var(--color-success);"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Maximum Value</strong><span style="color:var(--text-muted) !important;">Gear closet unlocked.</span></div>`;
       } else if (cart.activePackage) {
-          tracker.innerHTML = `<i class="fa-solid fa-box-open"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Kit Discount Applied</strong><span style="color:var(--text-muted);">Bundles are pre-discounted.</span></div>`;
+          tracker.innerHTML = `<i class="fa-solid fa-box-open"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Kit Discount Applied</strong><span style="color:var(--text-muted) !important;">Bundles are pre-discounted.</span></div>`;
       } else {
           let bundlePct = 0;
           if(gearCount >= 5) bundlePct = 20;
@@ -981,10 +1051,10 @@
               
               const discount = Math.round(gearSubtotal * (bundlePct/100));
               discountedDailyGear -= discount;
-              tracker.innerHTML = `<i class="fa-solid fa-tag"></i> <div style="line-height:1.3;"><strong style="color:var(--color-success); display:block;">${bundlePct}% Gear Discount Applied!</strong><span style="color:var(--text-muted);">You built a custom bundle.</span></div>`;
+              tracker.innerHTML = `<i class="fa-solid fa-tag"></i> <div style="line-height:1.3;"><strong style="color:var(--color-success); display:block;">${bundlePct}% Gear Discount Applied!</strong><span style="color:var(--text-muted) !important;">You built a custom bundle.</span></div>`;
           } else {
               const needed = 2 - gearCount;
-              tracker.innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted);">Add ${needed > 0 ? needed : ''} more items for 5% off.</span></div>`;
+              tracker.innerHTML = `<i class="fa-solid fa-unlock-keyhole"></i> <div style="line-height:1.3;"><strong style="color:var(--text-main); display:block;">Build Your Bundle</strong><span style="color:var(--text-muted) !important;">Add ${needed > 0 ? needed : ''} more items for 5% off.</span></div>`;
           }
       }
 
