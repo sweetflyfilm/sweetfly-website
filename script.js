@@ -43,19 +43,28 @@ function initSplashCard() {
     <div class="sf-splash-card" id="sfSplashCard">
       <button class="sf-splash-close" onclick="closeSplashCard()"><i class="fa-solid fa-xmark"></i></button>
       <div class="sf-splash-content">
-        <h4><i class="fa-solid fa-ticket"></i> Book Direct & Save</h4>
-        <p>Skip the third-party fees. Build your custom studio and gear package directly through us to save.</p>
+        <h4><i class="fa-solid fa-ticket"></i> Save By Booking Directly With Us</h4>
+        <p>Skip the third-party platform fees. Build your custom studio and gear package securely through our site to save.</p>
         <a href="/booking.html" class="sf-btn">Book Now</a>
       </div>
     </div>
   `;
 
-  document.body.insertAdjacentHTML('beforeend', splashHTML);
+  // Inject into the wrapper so it inherits base fonts properly
+  const wrapper = document.getElementById('sf-embed') || document.body;
+  wrapper.insertAdjacentHTML('beforeend', splashHTML);
 
   // Wait 5 seconds before sliding it in
   setTimeout(() => {
     const card = document.getElementById('sfSplashCard');
-    if (card) card.classList.add('show');
+    if (card) {
+      card.classList.add('show');
+      
+      // Auto-close the card after 12 seconds of being on screen
+      setTimeout(() => {
+        closeSplashCard();
+      }, 12000);
+    }
   }, 5000);
 }
 
@@ -64,7 +73,6 @@ window.closeSplashCard = function() {
   const card = document.getElementById('sfSplashCard');
   if (card) {
     card.classList.remove('show');
-    // Remember that they closed it for this browsing session
     sessionStorage.setItem('sf_splash_dismissed', 'true');
   }
 }
