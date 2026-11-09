@@ -3,6 +3,13 @@
    Runs on every page. Loads nav + footer and scroll reveal.
    ============================================================ */
  
+/* Metricool web tracking (same tag Metricool gives for "JavaScript tag") */
+function loadScript(a) {
+  var b = document.getElementsByTagName("head")[0], c = document.createElement("script");
+  c.type = "text/javascript", c.src = "https://tracker.metricool.com/resources/be.js", c.onreadystatechange = a, c.onload = a, b.appendChild(c);
+}
+loadScript(function () { beTracker.t({ hash: "81671013044c72132a63d7e1235e5785" }); });
+
 async function loadGlobals() {
   const [navData, footerData] = await Promise.all([
     fetch('/nav.html').then(r => r.text()),
