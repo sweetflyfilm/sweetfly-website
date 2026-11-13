@@ -10,10 +10,24 @@ function loadScript(a) {
 }
 loadScript(function () { beTracker.t({ hash: "81671013044c72132a63d7e1235e5785" }); });
 
+/* Contact Us (and any data-tally-open link) opens the Tally form as a popup on the
+   page. Runs first in the capture phase so Tally's own handler never opens it twice.
+   Without Tally loaded, the link falls back to its href. */
+window.addEventListener('click', function (e) {
+  var a = e.target.closest ? e.target.closest('[data-tally-open]') : null;
+  if (!a || !window.Tally || typeof window.Tally.openPopup !== 'function') return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  var opts = {};
+  if (a.dataset.tallyHideTitle === '1') opts.hideTitle = true;
+  if (a.dataset.tallyEmojiText) opts.emoji = { text: a.dataset.tallyEmojiText, animation: a.dataset.tallyEmojiAnimation || 'wave' };
+  window.Tally.openPopup(a.dataset.tallyOpen, opts);
+}, true);
+
 async function loadGlobals() {
   const [navData, footerData] = await Promise.all([
     fetch('/nav.html?v=20261108-discovery').then(r => r.text()),
-    fetch('/footer.html?v=20261024-watch').then(r => r.text())
+    fetch('/footer.html?v=20261113-email').then(r => r.text())
   ]);
   
   const navPlaceholder = document.getElementById('nav-placeholder');

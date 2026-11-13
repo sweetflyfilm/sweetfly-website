@@ -1,8 +1,8 @@
 /**
  * Hire Us "Our Story" typing animation.
- * Fast, human-ish sequence (about 13-15 s): per-character typing at 45-65 ms for
- * the opening and the key phrases, quick word bursts for the long middle, short
- * sentence pauses, two quick corrections and two brief "want to quit" hesitations.
+ * One steady per-character speed (42-58 ms) from first word to last, one quick
+ * correction, and two brief "want to quit" hesitations at the end. When done,
+ * the two .sf-story-key phrases get a gold underline sweep (CSS in services.html).
  * The finished copy is always the original markup (never rebuilt from a string).
  * Reduced motion shows the finished copy at once. A Replay button appears after
  * the animation completes.
@@ -39,6 +39,10 @@
     el.classList.remove('is-pending');
     el.classList.add('typing-complete');
     el.style.minHeight = '';
+    // Next frame, so the gold underline sweeps in instead of appearing.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { el.classList.add('is-revealed'); });
+    });
   }
 
   async function play() {
@@ -48,7 +52,7 @@
 
     // Hold the finished height so the page below never jumps while typing.
     el.style.minHeight = el.offsetHeight + 'px';
-    el.classList.remove('typing-complete', 'is-pending');
+    el.classList.remove('typing-complete', 'is-pending', 'is-revealed');
 
     var text = '';
     function draw() { el.textContent = text; }
@@ -69,19 +73,6 @@
           draw();
           await wait(60);
         }
-      }
-      return alive();
-    }
-
-    // Quick burst: whole words land together, with a beat after sentence ends.
-    async function burst(str, perWord) {
-      var parts = str.match(/\S+\s*/g) || [];
-      for (var i = 0; i < parts.length; i++) {
-        if (!alive()) return false;
-        text += parts[i];
-        draw();
-        var end = /[.?!)]\s*$/.test(parts[i]);
-        await wait(end ? rand(170, 290) : rand(perWord - 8, perWord + 12));
       }
       return alive();
     }
@@ -107,25 +98,26 @@
     if (!(await back(6, 30))) return;
     if (!(await type('crazy', 45, 65))) return;
 
-    var body = '. But crazy and the chaos it brings is what helps us make better art and develop deeper connections. ' +
+    // Same speed as the opening line, all the way through.
+    var body = '. But crazy, and the chaos it brings, is what helps us make better art and develop deeper connections. ' +
       'Crazy to try new things. Crazy to go at it as independent artists (just make it!). ' +
-      'Crazy to try and maintain friends, family, and your even crazier counterparts (does that make us normal?). ' +
-      'But we do it, man, with what we have and all we have. And in the end, we learn our crazy is just ';
-    if (!(await burst(body, 32))) return;
+      'Crazy to try to maintain friends, family, and your even crazier colleagues (does that make us normal?). ' +
+      'But we do it, man, with what we have and all we have. And in the end, we learn our crazy is ';
+    if (!(await type(body, 42, 58, 0.02))) return;
 
-    // hesitation 1: "just..." then bail
-    if (!(await type('just', 55, 65))) return;
+    // hesitation 1: "just..." then back off the dots
+    if (!(await type('just', 42, 58))) return;
     if (!(await type('...', 140, 160))) return;
     await wait(650);
-    if (!(await back(7, 32))) return;
+    if (!(await back(3, 32))) return;
 
     // hesitation 2: "beautiful..." then bail
-    if (!(await type('beautiful', 45, 60))) return;
+    if (!(await type(' beautiful', 42, 58))) return;
     if (!(await type('...', 140, 160))) return;
     await wait(700);
-    if (!(await back(12, 24))) return;
+    if (!(await back(13, 24))) return;
 
-    if (!(await type('beauty in progress.', 45, 60))) return;
+    if (!(await type(' beauty in progress.', 42, 58))) return;
     await wait(250);
     if (!alive()) return;
 

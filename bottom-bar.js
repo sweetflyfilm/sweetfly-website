@@ -8,7 +8,7 @@
   bar.setAttribute('aria-label', community ? 'Rent gear or post to the community' : 'Rent gear or contact Sweet Flypaper');
   bar.innerHTML = '<a class="sf-bottom-rent" href="https://rent.sweetflyfilm.com/">' +
     '<span>Rent <span class="sf-bottom-rent-detail">gear from </span><strong>SweetFly Shop</strong></span><span aria-hidden="true">↗</span></a>' +
-    '<a class="sf-bottom-contact" href="https://tally.so/r/ODPpg7" target="_blank" rel="noopener noreferrer">' +
+    '<a class="sf-bottom-contact" href="https://tally.so/r/ODPpg7" data-tally-open=\"ODPpg7\" data-tally-hide-title=\"1\" data-tally-emoji-text=\"👋🏾\" data-tally-emoji-animation=\"wave\" target="_blank" rel="noopener noreferrer">' +
     '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></svg>' +
     '<span>Contact Us</span></a>';
   if (community) {
