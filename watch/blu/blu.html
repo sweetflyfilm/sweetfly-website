@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blu Has a Gun | Sweet Flypaper Film</title>
+<meta name="description" content="Blu Has a Gun — a feature film by Sweet Flypaper Film.">
+<link rel="canonical" href="https://sweetflyfilm.com/watch/blu/blu.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/styles.css?v=20261101-header-search">
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<style>
+  /* BREADCRUMB SPECIFIC OVERRIDES */
+  #sf-embed .breadcrumb {
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-panel);
+    padding: 0.85rem 0;
+  }
+  #sf-embed .breadcrumb-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+  }
+  #sf-embed .breadcrumb-inner a { color: var(--text-muted); }
+  #sf-embed .breadcrumb-inner a:hover { color: var(--text-main); }
+  #sf-embed .breadcrumb-sep { opacity: 0.4; }
+  #sf-embed .breadcrumb-current { color: var(--text-main); }
+
+  /* PROJECT HERO SPECIFIC OVERRIDES */
+  #sf-embed .project-hero {
+    position: relative;
+    width: 100%;
+    min-height: min(66vh, 640px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  #sf-embed .project-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(10%);
+    transition: transform 8s ease;
+  }
+  #sf-embed .project-hero:hover .project-hero-img { transform: scale(1.03); }
+  #sf-embed .project-hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; opacity:0; transition:opacity .8s ease; z-index:0; }
+  #sf-embed .project-hero-video.is-playing { opacity:1; }
+  #sf-embed .project-body-text { display:flex; flex-direction:column; }
+  #sf-embed .project-body-text .project-sponsors { padding-bottom:0; }
+  #sf-embed .sf-hero-gold { background-color:#e9d49a; border:1px solid #e9d49a; color:var(--bg-dark) !important; }
+  #sf-embed .sf-hero-gold:hover { background-color:#f3e4b8; border-color:#f3e4b8; }
+  #sf-embed .project-logline { font-size: 1.35rem; line-height: 1.5; color: var(--text-muted); max-width: 34rem; margin-bottom: 1.5rem; }
+  #sf-embed .project-hero-actions { margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:.75rem; }
+  #sf-embed .sponsor-strip { display:flex; align-items:center; justify-content:center; height:68px; border:1px solid var(--border-color); border-radius:4px; color:var(--text-main); text-decoration:none; transition:border-color .2s ease; }
+  #sf-embed .sponsor-strip:hover { border-color:var(--gold); }
+  #sf-embed .sponsor-wordmark { font-size:1.35rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; }
+  #sf-embed .media-arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:5; width:48px; height:48px; border-radius:50%; border:1px solid rgba(255,255,255,.35); background:rgba(10,10,10,.6); color:#fff; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  #sf-embed .media-arrow:hover { border-color:var(--gold); color:var(--gold); }
+  #sf-embed .media-arrow.prev { left:1rem; }
+  #sf-embed .media-arrow.next { right:1rem; }
+  #sf-embed .project-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.1) 0%,
+      rgba(10,10,10,0.3) 40%,
+      rgba(10,10,10,0.85) 75%,
+      rgba(10,10,10,1) 100%
+    );
+    z-index: 1;
+  }
+  #sf-embed .project-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 4rem 0 3rem;
+  }
+  #sf-embed .project-type-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    background: rgba(10,10,10,0.6);
+    padding: 0.4rem 0.85rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+  }
+  #sf-embed .project-hero h1 {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+
+  /* META ROW SPECIFIC OVERRIDES */
+  #sf-embed .project-meta-row {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .project-meta-cell {
+    flex: 1;
+    padding: 2rem 2rem;
+    border-right: 1px solid var(--border-color);
+  }
+  #sf-embed .project-meta-cell:last-child { border-right: none; }
+  #sf-embed .project-meta-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  #sf-embed .project-meta-value {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  #sf-embed .project-meta-award {
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* SHARE ICONS SPECIFIC OVERRIDES */
+  #sf-embed .share-icons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  #sf-embed .share-icon {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border-color);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+  }
+  #sf-embed .share-icon:hover { border-color: var(--text-main); color: var(--text-main); }
+
+  /* CONTENT BODY SPECIFIC OVERRIDES */
+  #sf-embed .project-body {
+    padding: 4.5rem 0 4.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .project-body-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 6rem;
+    align-items: stretch;
+  }
+  #sf-embed .project-body-text h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 2rem;
+  }
+  
+  /* POEM SPECIFIC OVERRIDES */
+  #sf-embed .project-poem {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+
+  /* SPONSOR BLOCK SPECIFIC OVERRIDES */
+  #sf-embed .project-sponsors {
+    padding: 3.5rem 0 4rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  #sf-embed .sponsor-label {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--text-main);
+    margin: 0 0 2rem;
+  }
+
+  #sf-embed .sponsor-logos { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; max-width:960px; }
+  #sf-embed .sponsor-logo { display:grid; grid-template-rows:72px minmax(36px,auto); align-items:center; justify-items:center; min-width:0; padding:12px 8px; box-sizing:border-box; background:#101010; border:1px solid #303030; border-radius:4px; text-decoration:none; transition:border-color .2s ease,background .2s ease; }
+  #sf-embed a.sponsor-logo:hover { border-color:#888; background:#151515; }
+  #sf-embed a.sponsor-logo:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+  #sf-embed .sponsor-mark { display:flex; align-items:center; justify-content:center; width:100%; min-width:0; height:72px; }
+  #sf-embed .sponsor-mark img { max-width:min(100%,180px); max-height:64px; width:auto; height:auto; object-fit:contain; display:block; opacity:.9; }
+  #sf-embed .sponsor-mark img[src$="/nickel-a-play.png"] { mix-blend-mode:screen; }
+  #sf-embed .sponsor-name { color:#d6d6d8; font-size:14px; font-weight:400; line-height:18px; letter-spacing:0; text-transform:none; text-align:center; overflow-wrap:anywhere; }
+  #sf-embed .sponsor-logo.no-logo .sponsor-name { grid-row:1 / -1; }
+  @media (max-width: 600px) { #sf-embed .sponsor-logos { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; } }
+
+  /* DETAILS SIDEBAR SPECIFIC OVERRIDES */
+  #sf-embed .project-details-sidebar {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  #sf-embed .sidebar-item {
+    padding: 1.05rem 1.75rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  #sf-embed .sidebar-item:last-child { border-bottom: none; }
+  #sf-embed .sidebar-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  #sf-embed .sidebar-value {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  #sf-embed .sidebar-link { color: var(--text-main); border-bottom: 1px solid rgba(255,255,255,.35); }
+  #sf-embed .sidebar-link:hover { color: var(--gold); border-color: var(--gold); }
+  #sf-embed .sidebar-gold { color: var(--gold); }
+
+  /* CAROUSEL GALLERY SPECIFIC OVERRIDES */
+  #sf-embed .media-showcase {
+    border-bottom: 1px solid var(--border-color);
+    padding: 3.5rem 0 4rem;
+    background: var(--bg-dark);
+  }
+  #sf-embed .media-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+  #sf-embed .media-frame {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    min-height: 500px;
+    max-height: 800px;
+    background: #050505;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #sf-embed .media-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    pointer-events: none;
+  }
+  #sf-embed .media-slide.active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+  }
+  #sf-embed .media-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+  }
+  #sf-embed .media-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  #sf-embed .media-dot {
+    width: 40px;
+    height: 2px;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  #sf-embed .media-dot.active {
+    background: var(--accent);
+  }
+
+  /* PREV/NEXT NAVIGATION MODULES */
+  #sf-embed .project-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border-color);
+  }
+  #sf-embed .project-nav-item {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+  }
+  #sf-embed .project-nav-item:last-child { border-right: none; text-align: right; align-items: flex-end; }
+  #sf-embed .project-nav-item:hover { background: var(--bg-panel); }
+  #sf-embed .project-nav-dir {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  #sf-embed .project-nav-item:last-child .project-nav-dir { justify-content: flex-end; }
+  #sf-embed .project-nav-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+  }
+
+  /* RESPONSIVE RESPONSIVITY OVERRIDES */
+  @media (max-width: 900px) {
+    #sf-embed .project-hero { min-height: 60vh; }
+    #sf-embed .project-meta-row { flex-direction: column; }
+    #sf-embed .project-meta-cell { border-right: none; border-bottom: 1px solid var(--border-color); padding: 1.5rem; }
+    #sf-embed .project-meta-cell:last-child { border-bottom: none; }
+
+    #sf-embed .project-body { padding: 4rem 0; }
+    #sf-embed .project-body-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    #sf-embed .media-frame { height: 50vh; min-height: 400px; }
+
+    #sf-embed .project-nav { grid-template-columns: 1fr; }
+    #sf-embed .project-nav-item { border-right: none; border-bottom: 1px solid var(--border-color); text-align: left; align-items: flex-start; }
+    #sf-embed .project-nav-item:last-child { border-bottom: none; }
+    #sf-embed .project-nav-item:last-child .project-nav-dir { justify-content: flex-start; }
+  }
+  @media (max-width: 480px) {
+    #sf-embed .media-frame { height: 40vh; min-height: 350px; padding: 1rem; }
+  }
+</style>
+<link rel="stylesheet" href="/bottom-bar.css?v=20261101-mobile-heroes">
+<script src="/bottom-bar.js?v=20261101-mobile-heroes" defer></script>
+</head>
+<body>
+
+<div id="sf-embed">
+
+  <div id="nav-placeholder"></div>
+
+  <div class="breadcrumb">
+    <div class="sf-container breadcrumb-inner">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="/watch.html">Watch</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">Blu Has a Gun</span>
+    </div>
+  </div>
+
+  <section class="project-hero sf-page-hero">
+    <img src="/watch/blu/images/blu%20-%20temp%20-%20poster%20-%20cover%20-image%20(1).jpg" alt="Blu Has a Gun" class="project-hero-img">
+    
+    <div class="project-hero-overlay" aria-hidden="true"></div>
+    <div class="project-hero-content">
+      <div class="sf-container">
+        <div class="project-type-pill reveal"><i class="fa-solid fa-film" style="font-size:0.6rem;"></i> Feature Film &nbsp;·&nbsp; 2028</div>
+        <h1 class="reveal reveal-d1">Blu Has<br>a Gun</h1>
+        <div class="project-hero-actions reveal reveal-d2"><button type="button" class="sf-btn sf-hero-gold" disabled aria-disabled="true">Coming Soon</button></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="project-meta-row">
+    <div class="project-meta-cell"><span class="project-meta-label">Starring</span><div class="project-meta-value">Charlize Delenn, Rich Richardson III, and Annaleah Ferguson</div></div>
+    <div class="project-meta-cell"><span class="project-meta-label">Created By</span><div class="project-meta-value">Terrell Lamont</div></div>
+    <div class="project-meta-cell">
+      <span class="project-meta-label">Share On</span>
+      <div class="share-icons">
+        <span class="share-icon" aria-disabled="true" aria-label="Share on Facebook unavailable"><i class="fa-brands fa-facebook-f"></i></span>
+        <span class="share-icon" aria-disabled="true" aria-label="Share on Instagram unavailable"><i class="fa-brands fa-instagram"></i></span>
+        <span class="share-icon" aria-disabled="true" aria-label="Share on LinkedIn unavailable"><i class="fa-brands fa-linkedin-in"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <section class="project-body">
+    <div class="sf-container">
+      <div class="project-body-grid">
+        <div class="project-body-text reveal">
+          <h2>How far will<br>you go?</h2>
+          <p class="project-logline">When the world treats you wrong, how far will you go to make it right.</p>
+          
+        </div>
+        <div class="project-details-sidebar reveal reveal-d1">
+          <div class="sidebar-item"><span class="sidebar-label">Type</span><span class="sidebar-value">Feature Film</span></div>
+          <div class="sidebar-item"><span class="sidebar-label">Year</span><span class="sidebar-value">2028</span></div>
+          <div class="sidebar-item"><span class="sidebar-label">Written By</span><span class="sidebar-value">Terrell Lamont</span></div>
+          <div class="sidebar-item"><span class="sidebar-label">Directed By</span><span class="sidebar-value">Terrell Lamont</span></div>
+          <div class="sidebar-item"><span class="sidebar-label">Made In</span><span class="sidebar-value"><a href="/gear1.html" class="sidebar-link">Sweetfly Shop</a> — Aurora, CO</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="media-showcase">
+    <div class="sf-container">
+      <div class="media-header reveal">
+        <div>
+          <span class="sf-label">Gallery</span>
+          <h3 style="font-size: 1.5rem;">Posters &amp; Stills</h3>
+        </div>
+      </div>
+      <div class="media-frame reveal reveal-d1" id="mediaCarousel">
+        
+        <div class="media-slide active" data-slide="0"><img src="/watch/blu/images/blu%20-%20temp%20-%20poster%20-%20cover%20-image%20(1).jpg" onerror="this.style.display='none'" alt="Blu Has a Gun — image 1"></div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="project-sponsors" aria-labelledby="sponsor-heading">
+          <div class="sf-container">
+            <h2 class="sponsor-label" id="sponsor-heading">Supported By</h2>
+            <div class="sponsor-logos">
+              <a class="sponsor-logo" href="https://www.shotgun-willies.com/" target="_blank" rel="noopener"><span class="sponsor-mark"><img src="/watch/blu/images/sponsors/shotgun-willies.png" alt="" loading="lazy"></span><span class="sponsor-name">Shotgun Willie’s</span></a>
+              <a class="sponsor-logo" href="https://www.lunchwired.com/" target="_blank" rel="noopener"><span class="sponsor-mark"><img src="/watch/blu/images/sponsors/lunchwired.png" alt="" loading="lazy"></span><span class="sponsor-name">LunchWired</span></a>
+              <a class="sponsor-logo" href="https://www.coloradocreolecafe.com/" target="_blank" rel="noopener"><span class="sponsor-mark"><img src="/watch/blu/images/sponsors/creole-cafe.png" alt="" loading="lazy"></span><span class="sponsor-name">Colorado Creole Cafe</span></a>
+              <div class="sponsor-logo"><span class="sponsor-mark"><img src="/watch/blu/images/sponsors/aurora-mini-storage.png" alt="" loading="lazy"></span><span class="sponsor-name">Aurora Mini Storage</span></div>
+            </div>
+          </div>
+  </section>
+
+  <nav class="project-nav" aria-label="Project navigation">
+    <a href="/watch/lpp/lpp.html" class="project-nav-item">
+      <span class="project-nav-dir"><i class="fa-solid fa-arrow-left"></i> Prev Work</span>
+      <span class="project-nav-title">Love, Pills, &amp; A Pistol</span>
+    </a>
+    <a href="/watch/b4ts/b4ts.html" class="project-nav-item">
+      <span class="project-nav-dir">Next Work <i class="fa-solid fa-arrow-right"></i></span>
+      <span class="project-nav-title">Before The Sun</span>
+    </a>
+  </nav>
+
+
+  <div id="footer-placeholder"></div>
+
+</div>
+
+<script src="/script.js?v=20261101-header-search"></script>
+<script src="/watch-checkout.js?v=20261101-viewer"></script>
+
+<script>
+  // Single Frame Carousel Logic
+  (function() {
+    const slides = document.querySelectorAll('.media-slide');
+    const dots = document.querySelectorAll('.media-dot');
+    const dotContainer = document.getElementById('mediaDots');
+    let currentSlide = 0;
+    
+    let validSlides = 0;
+    slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      if(img && img.getAttribute('src') !== '') validSlides++;
+    });
+
+    if(validSlides <= 1 && dotContainer) {
+      dotContainer.style.display = 'none';
+    }
+
+    window.sfGoToMediaSlide = function(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      
+      if(slides[index]) slides[index].classList.add('active');
+      if(dots[index]) dots[index].classList.add('active');
+      
+      currentSlide = index;
+    };
+    window.sfStepMedia = function(d) { sfGoToMediaSlide((currentSlide + d + slides.length) % slides.length); restart(); };
+    var frame = document.getElementById("mediaCarousel"), timer = null;
+    function restart() { clearInterval(timer); if (slides.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(function () { sfGoToMediaSlide((currentSlide + 1) % slides.length); }, 5000); }
+    if (frame) { frame.addEventListener("mouseenter", function () { clearInterval(timer); }); frame.addEventListener("mouseleave", restart); }
+    restart();
+  })();
+</script>
+
+<script>
+(function () {
+  var v = document.querySelector('.project-hero-video');
+  if (!v || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var s = +v.dataset.clipStart, e = +v.dataset.clipEnd;
+  v.muted = true; v.src = v.dataset.clipSrc;
+  v.addEventListener('loadedmetadata', function () { v.currentTime = s; var p = v.play(); if (p) p.catch(function () {}); });
+  v.addEventListener('playing', function () { v.classList.add('is-playing'); });
+  v.addEventListener('timeupdate', function () { if (v.currentTime >= e) v.currentTime = s; });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) v.pause(); else v.play().catch(function () {}); });
+})();
+</script>
+</body>
+</html>

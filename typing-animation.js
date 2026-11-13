@@ -1,217 +1,160 @@
 /**
- * Typing Animation for the "Beauty in progress." section
- * Types out the adjacent paragraph with natural mistakes and corrections
+ * Hire Us "Our Story" typing animation.
+ * Fast, human-ish sequence (about 13-15 s): per-character typing at 45-65 ms for
+ * the opening and the key phrases, quick word bursts for the long middle, short
+ * sentence pauses, two quick corrections and two brief "want to quit" hesitations.
+ * The finished copy is always the original markup (never rebuilt from a string).
+ * Reduced motion shows the finished copy at once. A Replay button appears after
+ * the animation completes.
  */
+(function () {
+  var SELECTOR = '.sf-our-story-text';
+  var el = document.querySelector(SELECTOR);
+  if (!el) return;
 
-class TypingAnimator {
-  constructor(targetSelector = '.sf-our-story-text') {
-    this.targetElement = document.querySelector(targetSelector);
-    this.isAnimating = false;
-    this.hasAnimated = false;
+  var finalHTML = el.innerHTML;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var run = 0;          // run token: a newer run cancels an older one
+  var started = false;
+  var replayBtn = null;
 
-    if (!this.targetElement) {
-      console.warn(`[TypingAnimator] Target element not found: ${targetSelector}`);
-      return;
-    }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function rand(a, b) { return a + Math.random() * (b - a); }
 
-    // Check for prefers-reduced-motion
-    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    this.init();
+  function ensureReplay() {
+    if (replayBtn) return replayBtn;
+    replayBtn = document.createElement('button');
+    replayBtn.type = 'button';
+    replayBtn.className = 'sf-typing-replay';
+    replayBtn.textContent = 'Replay';
+    replayBtn.setAttribute('aria-label', 'Replay the typing animation');
+    replayBtn.hidden = true;
+    replayBtn.addEventListener('click', function () { play(); });
+    el.insertAdjacentElement('afterend', replayBtn);
+    return replayBtn;
   }
 
-  init() {
-    // Observe when the section comes into view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !this.hasAnimated && !this.prefersReducedMotion) {
-            this.hasAnimated = true;
-            observer.unobserve(entry.target);
-            // Small delay before starting animation
-            setTimeout(() => this.startAnimation(), 300);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+  function showFinal() {
+    el.innerHTML = finalHTML;
+    el.classList.remove('is-pending');
+    el.classList.add('typing-complete');
+    el.style.minHeight = '';
+  }
 
-    observer.observe(this.targetElement);
+  async function play() {
+    var me = ++run;
+    var btn = ensureReplay();
+    btn.hidden = true;
 
-    // If already in view on page load, start after a delay
-    if (!this.prefersReducedMotion) {
-      const rect = this.targetElement.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        setTimeout(() => {
-          if (!this.hasAnimated) {
-            this.hasAnimated = true;
-            setTimeout(() => this.startAnimation(), 300);
-          }
-        }, 100);
+    // Hold the finished height so the page below never jumps while typing.
+    el.style.minHeight = el.offsetHeight + 'px';
+    el.classList.remove('typing-complete', 'is-pending');
+
+    var text = '';
+    function draw() { el.textContent = text; }
+    function alive() { return me === run; }
+
+    async function type(str, lo, hi, typoRate) {
+      for (var i = 0; i < str.length; i++) {
+        if (!alive()) return false;
+        text += str[i];
+        draw();
+        await wait(rand(lo, hi));
+        // quick, rare slip: wrong key, then fixed almost at once
+        if (typoRate && Math.random() < typoRate && i < str.length - 1 && /[a-z]/.test(str[i + 1])) {
+          text += String.fromCharCode(97 + Math.floor(Math.random() * 26));
+          draw();
+          await wait(90);
+          text = text.slice(0, -1);
+          draw();
+          await wait(60);
+        }
       }
-    }
-  }
-
-  async startAnimation() {
-    if (this.isAnimating || this.prefersReducedMotion) return;
-
-    this.isAnimating = true;
-    let displayText = '';
-
-    // Clear the element and prepare for animation
-    this.targetElement.innerHTML = '';
-
-    // Segment 1: "Being a creative is understanding your life will be "
-    await this.typeText('Being a creative is understanding your life will be ', 50, 80);
-    displayText = 'Being a creative is understanding your life will be ';
-    this.updateDisplay(displayText);
-
-    // Segment 2: Type mistake "insane", then correct to "crazy"
-    await this.typeText('insane', 50, 80);
-    displayText += 'insane';
-    this.updateDisplay(displayText);
-    
-    await this.delay(600);
-    
-    // Delete "insane"
-    await this.backspaceText(7);
-    displayText = displayText.slice(0, -7);
-    this.updateDisplay(displayText);
-    
-    // Type "crazy"
-    await this.typeText('crazy', 60, 90);
-    displayText += 'crazy';
-    this.updateDisplay(displayText);
-
-    // Continue with main text
-    const mainText = '. But crazy and the chaos it brings is what helps us make better art and develop deeper connections. Crazy to try new things. Crazy to go at it as independent artists (just make it!). Crazy to try and maintain friends, family, and your even crazier counterparts (does that make us normal?). But we do it, man, with what we have and all we have. And in the end, we learn our crazy is just ';
-    
-    await this.typeText(mainText, 40, 70);
-    displayText += mainText;
-    this.updateDisplay(displayText);
-
-    // Occasional pause
-    if (Math.random() < 0.3) {
-      await this.delay(400);
+      return alive();
     }
 
-    // Special handling for final sentence
-    // Type "just"
-    await this.typeText('just', 80, 100);
-    displayText += 'just';
-    this.updateDisplay(displayText);
-
-    // Pause
-    await this.delay(800);
-
-    // Type "..."
-    await this.typeText('...', 200, 300);
-    displayText += '...';
-    this.updateDisplay(displayText);
-
-    // Longer pause - contemplation
-    await this.delay(1200);
-
-    // Delete "just..." (7 characters)
-    await this.backspaceText(7);
-    displayText = displayText.slice(0, -7);
-    this.updateDisplay(displayText);
-
-    // Type "beautiful"
-    await this.typeText('beautiful', 70, 90);
-    displayText += 'beautiful';
-    this.updateDisplay(displayText);
-
-    // Pause
-    await this.delay(700);
-
-    // Type "..."
-    await this.typeText('...', 200, 300);
-    displayText += '...';
-    this.updateDisplay(displayText);
-
-    // Longer pause - contemplation
-    await this.delay(1500);
-
-    // Delete "beautiful..." (12 characters)
-    await this.backspaceText(12);
-    displayText = displayText.slice(0, -12);
-    this.updateDisplay(displayText);
-
-    // Type the final phrase
-    await this.typeText('beauty in progress.', 50, 80);
-    displayText += 'beauty in progress.';
-    this.updateDisplay(displayText);
-
-    // Final pause
-    await this.delay(400);
-
-    // Animation complete - finalize and add HTML structure
-    this.finalizeDisplay();
-    this.isAnimating = false;
-  }
-
-  async typeText(text, minDelay = 40, maxDelay = 70) {
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      
-      // Add character to display
-      const currentText = this.targetElement.textContent || '';
-      this.updateDisplay(currentText + char);
-
-      // Variable typing speed for natural feel
-      const delay = minDelay + Math.random() * (maxDelay - minDelay);
-      await this.delay(delay);
-
-      // Occasionally add a typo (random character mistake that gets corrected)
-      if (Math.random() < 0.05 && i < text.length - 1) {
-        const wrongChar = String.fromCharCode(
-          97 + Math.floor(Math.random() * 26)
-        ); // random lowercase letter
-        this.updateDisplay((this.targetElement.textContent || '') + wrongChar);
-        await this.delay(200);
-
-        // Delete the wrong character
-        const textWithoutWrong = (this.targetElement.textContent || '').slice(0, -1);
-        this.updateDisplay(textWithoutWrong);
-        await this.delay(150);
+    // Quick burst: whole words land together, with a beat after sentence ends.
+    async function burst(str, perWord) {
+      var parts = str.match(/\S+\s*/g) || [];
+      for (var i = 0; i < parts.length; i++) {
+        if (!alive()) return false;
+        text += parts[i];
+        draw();
+        var end = /[.?!)]\s*$/.test(parts[i]);
+        await wait(end ? rand(170, 290) : rand(perWord - 8, perWord + 12));
       }
+      return alive();
+    }
+
+    async function back(n, per) {
+      for (var i = 0; i < n; i++) {
+        if (!alive()) return false;
+        text = text.slice(0, -1);
+        draw();
+        await wait(per);
+      }
+      return alive();
+    }
+
+    el.textContent = '';
+    await wait(250);
+
+    if (!(await type('Being a creative is understanding your life will be ', 42, 58, 0.04))) return;
+
+    // wrong word, rapid correction
+    if (!(await type('insane', 45, 65))) return;
+    await wait(260);
+    if (!(await back(6, 30))) return;
+    if (!(await type('crazy', 45, 65))) return;
+
+    var body = '. But crazy and the chaos it brings is what helps us make better art and develop deeper connections. ' +
+      'Crazy to try new things. Crazy to go at it as independent artists (just make it!). ' +
+      'Crazy to try and maintain friends, family, and your even crazier counterparts (does that make us normal?). ' +
+      'But we do it, man, with what we have and all we have. And in the end, we learn our crazy is just ';
+    if (!(await burst(body, 32))) return;
+
+    // hesitation 1: "just..." then bail
+    if (!(await type('just', 55, 65))) return;
+    if (!(await type('...', 140, 160))) return;
+    await wait(650);
+    if (!(await back(7, 32))) return;
+
+    // hesitation 2: "beautiful..." then bail
+    if (!(await type('beautiful', 45, 60))) return;
+    if (!(await type('...', 140, 160))) return;
+    await wait(700);
+    if (!(await back(12, 24))) return;
+
+    if (!(await type('beauty in progress.', 45, 60))) return;
+    await wait(250);
+    if (!alive()) return;
+
+    showFinal();
+    btn.hidden = false;
+  }
+
+  function init() {
+    if (reduced.matches) { showFinal(); return; }
+    // Keep the copy hidden (but space reserved) until it starts, so it never flashes.
+    el.classList.add('is-pending');
+    var go = function () {
+      if (started) return;
+      started = true;
+      play();
+    };
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); go(); }
+      }, { threshold: 0.3 });
+      io.observe(el);
+    } else {
+      go();
     }
   }
 
-  async backspaceText(count) {
-    for (let i = 0; i < count; i++) {
-      const current = this.targetElement.textContent || '';
-      this.updateDisplay(current.slice(0, -1));
-      await this.delay(50 + Math.random() * 40);
-    }
-  }
-
-  updateDisplay(text) {
-    this.targetElement.textContent = text;
-  }
-
-  finalizeDisplay() {
-    // Recreate the HTML structure with proper styling
-    this.targetElement.innerHTML = `<strong>Being a creative is understanding your life will be crazy.</strong> But crazy and the chaos it brings is what helps us make better art and develop deeper connections. Crazy to try new things. Crazy to go at it as independent artists (just make it!). Crazy to try and maintain friends, family, and your even crazier counterparts (does that make us normal?). But we do it, man, with what we have and all we have. And in the end, we learn our crazy is just beauty in progress.`;
-    
-    // Add class to remove cursor animation
-    setTimeout(() => {
-      this.targetElement.classList.add('typing-complete');
-    }, 100);
-  }
-
-  delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-}
-
-// Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new TypingAnimator('.sf-our-story-text');
+  reduced.addEventListener('change', function () {
+    if (reduced.matches) { run++; showFinal(); if (replayBtn) replayBtn.hidden = true; }
   });
-} else {
-  new TypingAnimator('.sf-our-story-text');
-}
 
+  init();
+})();

@@ -1,0 +1,64 @@
+.sf-bottom-bar {
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  bottom: 0;
+  z-index: 9000;
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(128px, 1fr);
+  align-items: center;
+  min-height: 44px;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: #141414;
+  border-top: 1px solid #888;
+  color: #fff;
+  font-family: 'Geist Mono', monospace;
+  box-sizing: border-box;
+}
+.sf-bottom-bar .sf-bottom-rent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sf-bottom-bar .sf-bottom-rent { background: #141414; color: #b8b8b8; }
+.sf-bottom-bar .sf-bottom-rent strong { color: #fff; font-weight: 500; }
+.sf-bottom-bar .sf-bottom-rent:hover { color: #fff; }
+.sf-bottom-bar .sf-bottom-contact {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-width: 0; min-height: 44px; box-sizing: border-box;
+  margin: 0; padding: 0 0.75rem;
+  background: #141414; color: #fff; border: 0; border-left: 1px solid #888; border-radius: 0;
+  box-shadow: none;
+  font: inherit; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;
+  line-height: 1.2; white-space: nowrap;
+  text-decoration: none; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease;
+}
+.sf-bottom-bar .sf-bottom-contact:hover { background: #fff; color: #0a0a0a; border-color: #fff; }
+.sf-bottom-bar .sf-bottom-contact svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; flex-shrink: 0; }
+.sf-bottom-bar :focus-visible { outline: 2px solid #fff; outline-offset: -5px; }
+.sf-bottom-bar-spacer { height: calc(45px + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 600px) {
+  .sf-bottom-bar { grid-template-columns: minmax(0, 1fr) 128px; }
+  .sf-bottom-bar .sf-bottom-rent { gap: 0.35rem; padding: 0 0.5rem; font-size: 0.65rem; white-space: nowrap; }
+  .sf-bottom-bar .sf-bottom-contact { padding: 0 0.5rem; font-size: 0.7rem; letter-spacing: 0; }
+  .sf-bottom-bar .sf-bottom-rent { text-align: center; }
+  .sf-bottom-bar .sf-bottom-rent > span:first-child { max-width: 100%; }
+}
+@media (max-width: 380px) {
+  .sf-bottom-bar .sf-bottom-rent-detail { display: none; }
+}

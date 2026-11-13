@@ -14,7 +14,7 @@
 <script async src="https://tally.so/widgets/embed.js"></script>
 <script src="/script.js?v=20261101-header-search" defer></script>
 <script src="/services-gallery.js?v=20261025-atmosphere" defer></script>
-<script src="/typing-animation.js?v=20261109-typing" defer></script>
+<script src="/typing-animation.js?v=20261110-fast" defer></script>
 
 <style>
   /* Continue the old Studio orange/olive gel and blue expanding-circle treatment. */
@@ -60,6 +60,10 @@
   @keyframes blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
   #sf-embed .sf-our-story-text::after { content: '│'; display: inline; animation: blink 1s infinite; margin-left: 2px; color: var(--text-main); font-weight: 600; }
   #sf-embed .sf-our-story-text.typing-complete::after { display: none; }
+  #sf-embed .sf-our-story-text.is-pending { opacity: 0; }
+  #sf-embed .sf-typing-replay { display: inline-flex; align-items: center; min-height: 44px; margin-top: 0.75rem; padding: 0 1.1rem; font-family: 'Geist Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-main); background: transparent; border: 1px solid var(--text-muted); border-radius: 0; cursor: pointer; transition: border-color 200ms ease; }
+  #sf-embed .sf-typing-replay:hover, #sf-embed .sf-typing-replay:focus-visible { border-color: #b89b43; }
+  #sf-embed .sf-typing-replay[hidden] { display: none; }
   @media (max-width: 900px) {
     #sf-embed .sf-our-story { padding: 3rem 0 0.5rem; }
     #sf-embed .sf-our-story-grid { grid-template-columns: 1fr; gap: 1.5rem; }

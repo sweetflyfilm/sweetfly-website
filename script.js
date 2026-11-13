@@ -12,8 +12,8 @@ loadScript(function () { beTracker.t({ hash: "81671013044c72132a63d7e1235e5785" 
 
 async function loadGlobals() {
   const [navData, footerData] = await Promise.all([
-    fetch('/nav.html').then(r => r.text()),
-    fetch('/footer.html').then(r => r.text())
+    fetch('/nav.html?v=20261108-discovery').then(r => r.text()),
+    fetch('/footer.html?v=20261024-watch').then(r => r.text())
   ]);
   
   const navPlaceholder = document.getElementById('nav-placeholder');
@@ -40,4 +40,5 @@ function initScrollReveal() {
 
 loadGlobals().then(() => {
   initScrollReveal();
+  import('/site-search.js?v=20261108-discovery').then(({ initSiteSearch }) => initSiteSearch());
 });

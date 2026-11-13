@@ -1,24 +1,26 @@
-<nav class="sf-navbar">
+<nav class="sf-navbar" aria-label="Primary navigation">
   <div class="sf-container sf-nav-inner">
-    <a href="/" class="sf-nav-logo">
-      <img src="https://cdn.prod.website-files.com/67fc42d490d84f183ae5ee77/69ba2bcc6b3a1dfd57c6d8a3_sf-p-500.png" alt="Sweet Flypaper" class="sf-nav-text-logo">
+    <a href="/" class="sf-nav-logo" aria-label="Sweet Flypaper of Film home">
+      <img src="/images/sfof-logo-full-white.png" alt="Sweet Flypaper of Film" width="900" height="69" class="sf-nav-text-logo">
     </a>
-    
+
     <ul class="sf-nav-menu">
-      <!-- <li><a href="/gear.html" class="sf-nav-link"><i class="fa-solid fa-video"></i> <span>Gear</span></a></li> -->
-      
-      <li><a href="/coverage.html" class="sf-nav-link"><i class="fa-solid fa-file-pen"></i> <span>Coverage</span></a></li>
-      <li><a href="/projects.html" class="sf-nav-link"><i class="fa-solid fa-film"></i> <span>Projects</span></a></li>
-      <li><a href="https://community.sweetflyfilm.com" class="sf-nav-link"><i class="fa-solid fa-users"></i> <span>Community</span></a></li>
-      <li><a href="/info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info"></i> <span>Info</span></a></li>
+      <!-- <li><a href="/gear.html" class="sf-nav-link"><i class="fa-solid fa-video" aria-hidden="true"></i> <span>Gear</span></a></li> -->
+
+      <li><a href="/watch.html" class="sf-nav-link"><i class="fa-solid fa-film" aria-hidden="true"></i> <span>Watch</span></a></li>
+      <li><a href="/community.html" class="sf-nav-link"><i class="fa-solid fa-users" aria-hidden="true"></i> <span>Follow</span></a></li>
+      <li><a href="/services.html" class="sf-nav-link"><i class="fa-solid fa-clapperboard" aria-hidden="true"></i> <span>Hire Us</span></a></li>
+      <li><a href="/info.html" class="sf-nav-link"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> <span>Info</span></a></li>
+      <li><button class="sf-nav-search" type="button" aria-label="Search" title="Search" aria-haspopup="dialog" aria-expanded="false" aria-controls="site-search-dialog"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button></li>
     </ul>
   </div>
+  <dialog class="sf-site-search" id="site-search-dialog" aria-labelledby="site-search-title">
+    <div class="sf-site-search-heading"><h2 id="site-search-title">Search</h2><button type="button" data-close-search>Close</button></div>
+    <form class="sf-site-search-form" role="search" aria-label="Search Sweet Flypaper">
+      <label for="site-search-query">People, films, posts, services and the reel</label>
+      <div class="sf-site-search-input"><input id="site-search-query" type="search" placeholder="Enter a name or keyword" autocomplete="off" maxlength="200" aria-controls="site-search-results"><button type="button" data-clear-search>Clear</button></div>
+    </form>
+    <p class="sf-site-search-status" id="site-search-status" role="status" aria-live="polite"></p>
+    <ul class="sf-site-search-results" id="site-search-results" aria-label="Search results"></ul>
+  </dialog>
 </nav>
-
-<button class="sf-floating-contact" 
-        data-tally-open="ODPpg7" 
-        data-tally-hide-title="1" 
-        data-tally-emoji-text="👋🏾" 
-        data-tally-emoji-animation="wave">
-  <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact Us
-</button>
