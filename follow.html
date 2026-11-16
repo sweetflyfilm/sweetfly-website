@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow | Sweet Flypaper Film</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/styles.css?v=20261101-header-search">
+
+<script async src="https://tally.so/widgets/embed.js"></script>
+<script src="/script.js?v=20261101-header-search" defer></script>
+
+<style>
+  #nav-placeholder { position: sticky; top: 0; z-index: 10000; width: 100%; }
+
+  /* Carried over from the Softr Community Board block. */
+  #sf-embed {
+    --com-purple: 75, 20, 140;     /* Deep Purple */
+    --com-uv: 95, 25, 155;         /* Ultraviolet */
+    --com-contrast: 255, 20, 147;  /* Neon Pink Contrast */
+  }
+
+  /* Hero: photo, purple/UV gel, pink perimeter, radar ping, veil */
+  #sf-embed .sf-pg-hero { position: relative; width: 100%; min-height: 80vh; display: flex; align-items: flex-end; overflow: hidden; border-bottom: 1px solid var(--border-color); background-color: #050505; }
+  #sf-embed .sf-pg-hero-content { position: relative; z-index: 20; width: 100%; padding: 8rem 0 6rem; }
+  #sf-embed .sf-pg-hero-veil { position: absolute; bottom: 0; left: 0; right: 0; height: 75%; background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.4) 60%, transparent 100%); z-index: 15; pointer-events: none; }
+  #sf-embed .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: grayscale(100%) contrast(1.2); opacity: 0.55; pointer-events: none; transition: transform 10s ease; }
+  #sf-embed .sf-pg-hero:hover .hero-bg-img { transform: scale(1.04); }
+  #sf-embed .pulse-base { position: absolute; inset: -50px; z-index: 2; background-image: radial-gradient(circle at 20% 45%, rgba(var(--com-purple), 0.85) 0%, transparent 70%), radial-gradient(circle at 80% 45%, rgba(var(--com-uv), 0.75) 0%, transparent 70%); mix-blend-mode: overlay; animation: baseBreathe 6s ease-in-out infinite alternate; }
+  @keyframes baseBreathe { 0% { transform: scale(0.96); opacity: 0.75; } 100% { transform: scale(1.04); opacity: 1; } }
+  #sf-embed .contrast-perimeter { position: absolute; inset: -20px; z-index: 3; background-image: radial-gradient(circle at 0% 0%, rgba(var(--com-contrast), 0.45) 0%, transparent 55%), radial-gradient(circle at 100% 100%, rgba(var(--com-contrast), 0.42) 0%, transparent 55%), radial-gradient(circle at 100% 10%, rgba(var(--com-contrast), 0.38) 0%, transparent 50%); mix-blend-mode: screen; animation: contrastBreathe 4.5s ease-in-out infinite alternate; }
+  @keyframes contrastBreathe { 0% { opacity: 0.55; } 100% { opacity: 1; } }
+  #sf-embed .radar-ring { position: absolute; top: 45%; left: 50%; width: 150px; height: 150px; border-radius: 50%; z-index: 4; pointer-events: none; border: 3px solid rgba(var(--com-contrast), 0.65); box-shadow: inset 0 0 60px rgba(var(--com-contrast), 0.45), 0 0 60px rgba(var(--com-contrast), 0.45); animation: deepRadar 8s linear infinite; }
+  @keyframes deepRadar { 0% { transform: translate(-50%,-50%) scale(0.4); opacity: 0; } 15% { opacity: 0.85; } 100% { transform: translate(-50%,-50%) scale(8.5); opacity: 0; } }
+
+  /* Board grid */
+  #sf-embed .sf-follow-section-title { font-size: 1rem; line-height: 1.4; margin: 0 0 1rem; padding-bottom: .75rem; border-bottom: 1px solid #888; font-weight: 500; letter-spacing: 0; }
+  #sf-embed .sf-pg-content { width: 100%; max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 4rem; position: relative; z-index: 10; }
+  #sf-embed .sf-pg-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+  #sf-embed .sf-pg-card { scroll-margin-top: 100px; min-width: 0; background-color: var(--bg-panel); border: 1px solid #888; border-radius: 2px; padding: 1rem; display: flex; flex-direction: row-reverse; gap: .75rem; align-items: flex-start; }
+  #sf-embed .sf-pg-img-wrap { flex: 0 0 56px; width: 56px; aspect-ratio: 1; background-color: var(--bg-dark); overflow: hidden; }
+  #sf-embed .sf-pg-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%); transition: transform 0.6s ease, filter 0.6s ease; display: block; }
+  #sf-embed .sf-pg-card:hover .sf-pg-img-wrap img { transform: scale(1.05); filter: grayscale(0%); }
+  #sf-embed .sf-pg-info { min-width: 0; display: flex; flex-direction: column; flex: 1; }
+  #sf-embed .sf-pg-meta { display: flex; align-items: center; gap: .4rem; font-family: 'Geist Mono', monospace; font-size: .65rem; text-transform: uppercase; letter-spacing: .02em; color: #b8b8b8; margin-bottom: .4rem; }
+  #sf-embed .sf-gold-dot { width: 6px; height: 6px; background-color: var(--gold); border-radius: 50%; box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); flex-shrink: 0; }
+  #sf-embed .sf-pg-title { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: .45rem; line-height: 1.3; color: var(--text-main); overflow-wrap: anywhere; }
+  #sf-embed .sf-pg-excerpt { font-size: .9rem; line-height: 1.45; color: #b8b8b8; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+  #sf-embed .sf-pg-byline { font-size: .8rem; line-height: 1.4; color: #b8b8b8; margin-bottom: .4rem; overflow-wrap: anywhere; }
+  #sf-embed .sf-pg-details summary { min-height: 44px; display: flex; align-items: center; gap: .4rem; width: fit-content; cursor: pointer; font: 400 .75rem 'Geist Mono', monospace; color: #fff; list-style: none; }
+  #sf-embed .sf-pg-details summary::-webkit-details-marker { display: none; }
+  #sf-embed .sf-pg-details summary::before { content: '+'; color: #b89b43; }
+  #sf-embed .sf-pg-details[open] summary::before { content: '−'; }
+  #sf-embed .sf-pg-details[open] .sf-pg-read-more, #sf-embed .sf-pg-details:not([open]) .sf-pg-read-less { display: none; }
+  #sf-embed .sf-pg-full { display: grid; gap: .75rem; border-top: 1px solid #888; padding-top: .75rem; }
+  #sf-embed .sf-pg-details summary:focus-visible { outline: 2px solid #b89b43; outline-offset: 2px; }
+  #sf-embed .sf-pg-field { display: flex; flex-direction: column; gap: 0.2rem; }
+  #sf-embed .sf-pg-field-label { font-family: 'Geist Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
+  #sf-embed .sf-pg-field-value { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
+  #sf-embed .sf-pg-field-link { color: var(--text-main); border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s; display: inline-flex; align-items: center; gap: 0.3rem; width: fit-content; margin-top: 0.5rem; font-size: 0.85rem; min-height: 32px; }
+  #sf-embed .sf-pg-field-link:hover { border-color: var(--text-main); }
+  #sf-embed .sf-pg-loading { text-align: center; font-family: 'Geist Mono', monospace; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; padding: 4rem 0; }
+  #sf-embed .sf-pg-loading:empty { display: none; }
+
+  /* Post Here form (replaces the Tally popup RGJAoJ) */
+  #sf-embed .sf-post-dialog { margin: auto; width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 32px); background: var(--bg-panel); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 4px; padding: 0; }
+  #sf-embed .sf-post-dialog::backdrop { background: rgba(0,0,0,0.75); }
+  #sf-embed .sf-post-form { padding: 2rem; display: grid; gap: 1.1rem; }
+  #sf-embed .sf-post-form h2 { font-size: 1.6rem; font-weight: 500; }
+  #sf-embed .sf-post-form label { display: grid; gap: 0.4rem; font-family: 'Geist Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+  #sf-embed .sf-post-form input, #sf-embed .sf-post-form textarea, #sf-embed .sf-post-form select { font: 400 1rem 'Geist', sans-serif; text-transform: none; letter-spacing: 0; color: var(--text-main); background: #0a0a0a; border: 1px solid var(--border-color); border-radius: 2px; padding: 0.75rem; min-height: 44px; width: 100%; }
+  #sf-embed .sf-post-form textarea { min-height: 120px; resize: vertical; }
+  #sf-embed .sf-post-form .sf-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  #sf-embed .sf-post-form .sf-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  #sf-embed .sf-post-form .sf-form-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+  #sf-embed .sf-form-status { font-size: 0.95rem; color: var(--gold); min-height: 1.5rem; }
+
+  @media (max-width: 900px) {
+    #sf-embed .sf-pg-hero { min-height: 65vh; }
+    #sf-embed .sf-pg-hero-content { padding: 6rem 0 4rem; }
+    #sf-embed .sf-pg-content { padding: 1.5rem 16px 4rem; }
+    #sf-embed .sf-pg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 600px) {
+    #sf-embed .sf-pg-grid { grid-template-columns: 1fr; gap: .75rem; }
+    #sf-embed .sf-post-form { padding: 1.25rem; }
+    #sf-embed .sf-post-form .sf-two { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #sf-embed .pulse-base, #sf-embed .contrast-perimeter, #sf-embed .radar-ring { animation: none; }
+  }
+</style>
+<link rel="stylesheet" href="/bottom-bar.css?v=20261101-mobile-heroes">
+<script src="/bottom-bar.js?v=20261101-mobile-heroes" defer></script>
+</head>
+<body data-bottom-action="post">
+
+<div id="sf-embed">
+
+  <div id="nav-placeholder"></div>
+
+  <section class="sf-pg-hero sf-page-hero">
+    <img class="hero-bg-img" src="https://pub-9ec495f3f50a4ce4996997612a67d638.r2.dev/community.png" alt="">
+    <div class="pulse-base"></div>
+    <div class="contrast-perimeter"></div>
+    <div class="radar-ring"></div>
+    <div class="sf-pg-hero-veil"></div>
+    <div class="sf-pg-hero-content">
+      <div class="sf-container">
+        <div class="reveal"><span class="sf-label">Who We Serve</span></div>
+        <h1 class="reveal reveal-d1" style="font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.05; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.04em;">Follow</h1>
+        <p class="reveal reveal-d2" style="font-size: 1.15rem; color: var(--text-muted); max-width: 550px; line-height: 1.6;">A community board for us. Find cast, crew, and collaborators for your next project. Celebrate your wins, your friends, and your journey here.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-pg-content" aria-labelledby="follow-section-title">
+    <h2 class="sf-follow-section-title" id="follow-section-title">Newsletter and Community Board</h2>
+    <div class="sf-pg-grid" id="board"></div>
+    <p class="sf-pg-loading" id="board-note" role="status">Loading posts</p>
+  </section>
+
+  <dialog class="sf-post-dialog" id="post-dialog" aria-labelledby="post-title">
+    <form class="sf-post-form" id="post-form" novalidate>
+      <h2 id="post-title">Post to the board</h2>
+      <p style="color: var(--text-muted); line-height: 1.6;">We read every post before it goes up.</p>
+      <label>Title<input name="project_name" required maxlength="120" placeholder="Project, event, or win"></label>
+      <label>Kind of post
+        <select name="category">
+          <option>Seeking Crew</option>
+          <option>Seeking Cast</option>
+          <option>Win</option>
+          <option>Event</option>
+        </select>
+      </label>
+      <label>Details<textarea name="description" required maxlength="2000"></textarea></label>
+      <div class="sf-two">
+        <label>Roles needed<input name="roles_needed" maxlength="300"></label>
+        <label>Shoot dates / times<input name="shoot_dates" maxlength="200"></label>
+      </div>
+      <label>Pay / compensation<input name="compensation" maxlength="200"></label>
+      <div class="sf-two">
+        <label>Your name<input name="contact_name" maxlength="120" autocomplete="name"></label>
+        <label>Your email (shown on the post)<input name="contact_email" type="email" required maxlength="200" autocomplete="email"></label>
+      </div>
+      <div class="sf-two">
+        <label>Phone (only we see it)<input name="contact_phone" type="tel" maxlength="40" autocomplete="tel"></label>
+        <label>Link<input name="website" type="url" maxlength="500" placeholder="https://"></label>
+      </div>
+      <div class="sf-trap" aria-hidden="true"><label>Company<input name="company" tabindex="-1" autocomplete="off"></label></div>
+      <p class="sf-form-status" id="form-status" role="status"></p>
+      <div class="sf-form-actions">
+        <button type="submit" class="sf-btn sf-btn-primary">Send post</button>
+        <button type="button" class="sf-btn sf-btn-ghost" data-close-post>Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="footer-placeholder"></div>
+
+</div>
+
+<script type="module">
+  import { readCommunityBoard, communityCategory } from '/community-source.js?v=20261101-header-search';
+  // Posts live in the Sweet Flypaper OS (Community Board page). The OS decides
+  // what shows here; a Post Here submission waits there until someone turns it on.
+  let activeCommunityApi;
+  const board = document.getElementById('board');
+  const note = document.getElementById('board-note');
+  let boardLoaded = false;
+
+  // Softr always printed "Seeking Crew"; NocoDB's '["Playground"]' means the same.
+  function categoryLabel(value) {
+    return communityCategory(value);
+  }
+  function monthYear(value) {
+    const date = value ? new Date(value) : null;
+    return date && !isNaN(date) ? date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Recent';
+  }
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+  function safeUrl(value) {
+    try { const url = new URL(value); return /^https?:$/.test(url.protocol) ? url.href : ''; } catch (e) { return ''; }
+  }
+  function field(label, text) {
+    const wrap = el('div', 'sf-pg-field');
+    wrap.append(el('span', 'sf-pg-field-label', label), el('span', 'sf-pg-field-value', text));
+    return wrap;
+  }
+
+  function card(post) {
+    const article = el('article', 'sf-pg-card');
+    article.id = `post-${post.id}`;
+    const imgWrap = el('div', 'sf-pg-img-wrap');
+    const image = safeUrl(post.image_url);
+    if (image) { const img = el('img'); img.src = image; img.alt = post.project_name || 'Project'; img.loading = 'lazy'; imgWrap.append(img); }
+
+    const info = el('div', 'sf-pg-info');
+    const meta = el('div', 'sf-pg-meta');
+    meta.append(el('span', 'sf-gold-dot'), el('span', '', `${categoryLabel(post.category)} · ${monthYear(post.created_at)}`));
+    const details = el('div', 'sf-pg-full');
+    if (post.description) details.append(field('Details', post.description));
+    if (post.roles_needed) details.append(field('Roles Needed', post.roles_needed));
+    if (post.shoot_dates) details.append(field('Shoot Dates', post.shoot_dates));
+    if (post.compensation) details.append(field('Compensation', post.compensation));
+    if (post.contact_name || post.contact_email) {
+      const contact = field('Contact', post.contact_name || '');
+      contact.style.marginTop = '0.5rem';
+      if (post.contact_email) {
+        const value = contact.querySelector('.sf-pg-field-value');
+        const mail = el('span', '', post.contact_email);
+        if (post.contact_name) value.append(' (', mail, ')'); else value.append(mail);
+      }
+      details.append(contact);
+    }
+    const link = safeUrl(post.website);
+    if (link) {
+      const wrap = el('div', 'sf-pg-field'); wrap.style.marginTop = '0.5rem';
+      const a = el('a', 'sf-pg-field-link', 'External Link'); a.href = link; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      const icon = el('i', 'fa-solid fa-arrow-up-right-from-square'); icon.setAttribute('aria-hidden', 'true'); icon.style.fontSize = '0.8em';
+      a.append(icon); wrap.append(a); details.append(wrap);
+    }
+    const disclosure = el('details', 'sf-pg-details');
+    const summary = el('summary');
+    summary.append(el('span', 'sf-pg-read-more', 'Read more'), el('span', 'sf-pg-read-less', 'Show less'));
+    disclosure.append(summary, details);
+    info.append(meta, el('h3', 'sf-pg-title', post.project_name || 'Untitled Post'));
+    if (post.contact_name) info.append(el('p', 'sf-pg-byline', post.contact_name));
+    info.append(el('p', 'sf-pg-excerpt', post.description || ''), disclosure);
+    if (image) article.append(imgWrap);
+    article.append(info);
+    return article;
+  }
+
+  function render(posts) {
+    board.replaceChildren(...posts.map(card));
+    note.textContent = posts.length ? '' : 'No community posts yet.';
+    boardLoaded = true;
+    requestAnimationFrame(revealLinkedPost);
+  }
+
+  function revealLinkedPost() {
+    if (!boardLoaded || !location.hash.startsWith('#post-')) return;
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+    const article = document.getElementById(id);
+    if (!article) return;
+    article.querySelector('details').open = true;
+    article.scrollIntoView({ block: 'start' });
+  }
+  window.addEventListener('hashchange', revealLinkedPost);
+
+  async function loadBoard() {
+    try {
+      const { endpoint, posts } = await readCommunityBoard();
+      activeCommunityApi = endpoint;
+      render(posts);
+    } catch {
+      note.textContent = 'The board could not load. Try again in a minute.';
+    }
+  }
+
+  const dialog = document.getElementById('post-dialog');
+  const form = document.getElementById('post-form');
+  const status = document.getElementById('form-status');
+  document.addEventListener('click', event => {
+    if (event.target.closest('[data-open-post]')) { status.textContent = ''; dialog.showModal(); }
+    if (event.target.closest('[data-close-post]')) dialog.close();
+  });
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const button = form.querySelector('[type=submit]');
+    button.disabled = true; status.textContent = 'Sending…';
+    try {
+      await boardReady;
+      if (!activeCommunityApi) throw new Error('The board is unavailable. Please try again in a minute.');
+      const res = await fetch(activeCommunityApi, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Could not send your post.');
+      form.reset();
+      status.textContent = 'Thanks. We’ll read it and put it up soon.';
+    } catch (e) {
+      status.textContent = e.message;
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  const boardReady = loadBoard();
+</script>
+
+</body>
+</html>

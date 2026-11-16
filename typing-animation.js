@@ -2,7 +2,7 @@
  * Hire Us "Our Story" typing animation.
  * One steady per-character speed (42-58 ms) from first word to last, one quick
  * correction, and two brief "want to quit" hesitations at the end. When done,
- * the two .sf-story-key phrases get a gold underline sweep (CSS in services.html).
+ * the two .sf-story-key phrases get a gold underline sweep (CSS in hire.html).
  * The finished copy is always the original markup (never rebuilt from a string).
  * Reduced motion shows the finished copy at once. A Replay button appears after
  * the animation completes.
