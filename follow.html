@@ -93,6 +93,14 @@
   @media (prefers-reduced-motion: reduce) {
     #sf-embed .pulse-base, #sf-embed .contrast-perimeter, #sf-embed .radar-ring { animation: none; }
   }
+  /* Gigs (Grant 2026-11-14): one-off paid work (a day-rate shoot, a crew call, a Tongal pitch) gets
+     its own teal tag so it doesn't read as a staff job; the filter row narrows the board. */
+  #sf-embed .sf-gig-tag { font-family: 'Geist Mono', monospace; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: #4aa79d; border: 1px solid #4aa79d; border-radius: 3px; padding: .05rem .4rem; line-height: 1.5; }
+  #sf-embed .sf-pg-card.is-gig { border-color: rgba(74, 167, 157, 0.55); }
+  #sf-embed .sf-board-filter { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.25rem; }
+  #sf-embed .sf-board-filter button { font: inherit; font-size: .85rem; color: #b8b8b8; background: none; border: 1px solid #27272a; border-radius: 999px; padding: .45rem 1rem; min-height: 40px; cursor: pointer; }
+  #sf-embed .sf-board-filter button[aria-pressed="true"] { color: #fff; border-color: var(--gold); }
+  #sf-embed .sf-board-filter button[hidden], #sf-embed .sf-pg-card[hidden] { display: none; }
 </style>
 <link rel="stylesheet" href="/bottom-bar.css?v=20261101-mobile-heroes">
 <script src="/bottom-bar.js?v=20261101-mobile-heroes" defer></script>
@@ -120,6 +128,12 @@
 
   <section class="sf-pg-content" aria-labelledby="follow-section-title">
     <h2 class="sf-follow-section-title" id="follow-section-title">Newsletter and Community Board</h2>
+    <div class="sf-board-filter" id="board-filter" role="group" aria-label="Show" hidden>
+      <button type="button" data-show="all" aria-pressed="true">All</button>
+      <button type="button" data-show="gig" aria-pressed="false">Gigs</button>
+      <button type="button" data-show="job" aria-pressed="false">Jobs</button>
+      <button type="button" data-show="community" aria-pressed="false">Community</button>
+    </div>
     <div class="sf-pg-grid" id="board"></div>
     <p class="sf-pg-loading" id="board-note" role="status">Loading posts</p>
   </section>
@@ -196,8 +210,18 @@
     return wrap;
   }
 
+  // Which filter a post falls under. Imported jobs carry a source; Gig is its own category.
+  function kindOf(post) {
+    const label = categoryLabel(post.category);
+    if (/^Gig$/i.test(label)) return 'gig';
+    if (post.source || /^Job$/i.test(label)) return 'job';
+    return 'community';
+  }
+
   function card(post) {
     const article = el('article', 'sf-pg-card');
+    article.dataset.kind = kindOf(post);
+    if (article.dataset.kind === 'gig') article.classList.add('is-gig');
     article.id = `post-${post.id}`;
     const imgWrap = el('div', 'sf-pg-img-wrap');
     const image = safeUrl(post.image_url);
@@ -205,7 +229,8 @@
 
     const info = el('div', 'sf-pg-info');
     const meta = el('div', 'sf-pg-meta');
-    meta.append(el('span', 'sf-gold-dot'), el('span', '', `${categoryLabel(post.category)} · ${monthYear(post.created_at)}`));
+    if (article.dataset.kind === 'gig') meta.append(el('span', 'sf-gig-tag', 'Gig'), el('span', '', monthYear(post.created_at)));
+    else meta.append(el('span', 'sf-gold-dot'), el('span', '', `${categoryLabel(post.category)} · ${monthYear(post.created_at)}`));
     const details = el('div', 'sf-pg-full');
     if (post.description) details.append(field('Details', post.description));
     if (post.roles_needed) details.append(field('Roles Needed', post.roles_needed));
@@ -240,9 +265,33 @@
     return article;
   }
 
+  const filterRow = document.getElementById('board-filter');
+  let showing = 'all';
+  function applyFilter() {
+    let shown = 0;
+    for (const article of board.children) {
+      const on = showing === 'all' || article.dataset.kind === showing;
+      article.hidden = !on;
+      if (on) shown++;
+    }
+    for (const b of filterRow.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.show === showing));
+    if (board.children.length) note.textContent = shown ? '' : 'Nothing here right now.';
+  }
+  filterRow.addEventListener('click', event => {
+    const b = event.target.closest('button[data-show]');
+    if (!b) return;
+    showing = b.dataset.show;
+    applyFilter();
+  });
+
   function render(posts) {
     board.replaceChildren(...posts.map(card));
     note.textContent = posts.length ? '' : 'No community posts yet.';
+    // Only offer a filter for kinds the board actually has.
+    const kinds = new Set([...board.children].map(a => a.dataset.kind));
+    for (const b of filterRow.querySelectorAll('button[data-show]')) b.hidden = b.dataset.show !== 'all' && !kinds.has(b.dataset.show);
+    filterRow.hidden = kinds.size < 2;
+    applyFilter();
     boardLoaded = true;
     requestAnimationFrame(revealLinkedPost);
   }
@@ -253,6 +302,7 @@
     try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
     const article = document.getElementById(id);
     if (!article) return;
+    if (article.hidden) { showing = 'all'; applyFilter(); }
     article.querySelector('details').open = true;
     article.scrollIntoView({ block: 'start' });
   }
