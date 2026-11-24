@@ -100,10 +100,7 @@
   /* Gigs (Grant 2026-11-14): one-off paid work (a day-rate shoot, a crew call, a Tongal pitch) gets
      its own teal tag so it doesn't read as a staff job; the filter row narrows the board. */
   #sf-embed .sf-gig-tag { font-family: 'Geist Mono', monospace; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: #4aa79d; border: 1px solid #4aa79d; border-radius: 3px; padding: .05rem .4rem; line-height: 1.5; }
-  /* Card wash (Grant 2026-11-24): a job's whole card takes a soft brass, a gig's a soft teal,
-     same colors as the OS Community page. It replaced the teal gig border. */
-  #sf-embed .sf-pg-card[data-kind="job"] { background-color: #48412b; border-color: #6b5f37; }
-  #sf-embed .sf-pg-card[data-kind="gig"] { background-color: #2b4743; border-color: #3f6a63; }
+  #sf-embed .sf-pg-card.is-gig { border-color: rgba(74, 167, 157, 0.55); }
   #sf-embed .sf-board-filter { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.25rem; }
   #sf-embed .sf-board-filter button { font: inherit; font-size: .85rem; color: #b8b8b8; background: none; border: 1px solid #27272a; border-radius: 999px; padding: .45rem 1rem; min-height: 40px; cursor: pointer; }
   #sf-embed .sf-board-filter button[aria-pressed="true"] { color: #fff; border-color: var(--gold); }
